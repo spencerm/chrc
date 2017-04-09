@@ -1,0 +1,63 @@
+.content-info{
+	@include media-breakpoint-up(md) {
+		@include make-row();
+	}
+	margin-bottom:8rem;
+	padding-top:6px;
+	color: white;
+	transition: opacity .5s, background 1s;
+	opacity: .6;
+	position: relative;
+	&:hover{
+		// background-color: rgba(black,.3);
+		opacity: 1;
+	}
+	a{
+		text-shadow: rgba(black,0.5%) 1px 1px 1px;
+		padding-bottom: 0;
+		color: white;
+		transition: color .5s, fill .5s;
+		border-bottom: 2px solid transparent;
+		&:hover, &:focus{
+			border-bottom: 2px solid $brand-success;
+			text-shadow: rgba(black,0.5%) 1px 1px 1px;
+			.social-svg-path{
+				fill: $brand-success;
+				transition: color .5s, fill .5s;
+			}
+		}
+		.social-svg-path{
+			fill: #FFF;
+		}
+	}
+	&:last-child{
+		text-align: right;
+	}
+	.email{
+	}
+	p{
+		margin-top: 1rem;
+	}
+}
+#menu-primary-1 li{
+	padding-top: 0;
+}
+
+@include media-breakpoint-down(sm) {
+	.third{
+		text-align: center;
+	}
+}
+
+
+.running-runner{
+	background: url(../images/runningrunner.gif) no-repeat center;
+	background-size: contain;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	right: 15px;
+	top: -55px;
+	overflow: visible;
+	z-index: 999;
+}

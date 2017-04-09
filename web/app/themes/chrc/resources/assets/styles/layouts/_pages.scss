@@ -1,0 +1,83 @@
+/*
+ * all pages
+ *
+ */
+
+.page-header{
+	border-bottom: 0;
+	margin: 5rem 0 3rem;
+}
+.page-heading{
+	margin-top: 6rem;
+}
+.page article{
+	@extend .clearfix;
+	margin: 0 0 7rem;
+}
+
+
+/*
+ * home page
+ *
+ */
+
+.heading-block{
+	@extend .clearfix;
+	background-color: rgba(black,.6);
+	color: $brand-success;
+}
+.news-heading{
+	margin: 3rem 0;
+	// display: inline-block;
+	font-size: 5rem;
+	&:hover{
+		text-decoration: none;
+	}
+}
+
+.home .main{
+	// padding-top: 5rem;
+	padding-bottom: 5rem;
+	.btn-twitter-nojs{
+		max-width: 400px;
+	}
+}
+
+@include media-breakpoint-up(md) {
+	#homepagemain{
+		// left: 0;
+		// width: 100%;
+		// .entry-title{
+		// 	margin-top: 3rem;
+		// }
+	}
+	.entry-content.schedule{
+		
+		// margin-right: -11%;
+		// width: 920px;
+	}
+	.table-hover{
+		// margin-left: -1%;
+	}
+	.sidebar{
+		max-width: 320px;
+		// margin-right: 3rem;
+		float: right;
+	}
+}
+/*
+ * about page
+ *
+ */
+.pacers{
+	// font-size: 1.4rem;
+	// @media (min-width: $screen-md-min) {
+	// 	margin-left: -9%;
+	// 	margin-right: -9%;
+	// 	width: 920px;
+	// }
+	h3{
+		font-size: 22px;
+		// margin-top: 0;
+	}
+}

@@ -1,6 +1,49 @@
-.banner .nav li {
-  @extend .nav-item;
+.banner{
+	a{
+		color: white;
+		text-transform: uppercase;
+		text-shadow: 1px 1px 1px rgba(black, .8);
+		margin: 1rem 0;
+		border-bottom: 1px solid transparent;
+		&:hover, &:focus{
+			text-decoration: none;
+			color: darken(white, 15%);
+			border-bottom: 1px solid $brand-success;
+		}
+		.active{
+			border-bottom: 1px solid $brand-success;
+		}
+	}
+	.h1{
+		display: none;
+	}
+	// .h1{
+	// 	display: block;
+	// 	text-align: center;
+	// 	margin-bottom: 0;
+	// 	padding: 5px;
+	// 	letter-spacing: 5px;
+	// 	border-top: 3px solid white;
+	// 	border-bottom: 3px solid white;
+	// 	font-weight: 100;
+	// 	font-size: 4.6rem;
+	// 	color: white;
+	// 	text-transform: uppercase;
+	// 	text-shadow: 1px 1px 1px rgba(black, .8);
+	// 	@media (min-width: $screen-sm-min) {
+	// 		margin-top: 6rem; 
+	// 	}
+	// }
+	.navbar-brand{
+		display: block;
+		width: 260px;
+		min-height: 120px;
+		background: url('../images/logo.png') no-repeat;
+		background-size: contain;
+	}
 }
-.banner .nav a {
-  @extend .nav-link;
+@include media-breakpoint-up(sm) {
+	#menu-primary{
+		margin-top: 7.4rem;
+	}
 }

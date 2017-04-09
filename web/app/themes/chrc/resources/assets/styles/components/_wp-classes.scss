@@ -1,5 +1,9 @@
 // WordPress Generated Classes
 // http://codex.wordpress.org/CSS#WordPress_Generated_Classes
+.attachment-fullwidth{
+  @extend .img-fluid;
+}
+
 
 // Media alignment
 .alignnone {
@@ -15,6 +19,7 @@
 }
 .alignleft,
 .alignright {
+  margin-top: ($spacer / 5);
   margin-bottom: ($spacer / 2);
   height: auto;
 }
@@ -22,19 +27,16 @@
   // Only float if not on an extra small device
   .alignleft {
     float: left;
-    margin-right: ($spacer / 2);
+    margin-right: $spacer;
   }
   .alignright {
     float: right;
-    margin-left: ($spacer / 2);
+    margin-left: $spacer;
   }
 }
 
 // Captions
 .wp-caption {
-  @extend .figure;
-}
-.wp-caption img {
   @extend .figure-img;
   @extend .img-fluid;
 }
@@ -46,4 +48,17 @@
 .screen-reader-text {
   @extend .sr-only;
   @extend .sr-only-focusable;
+}
+
+.navbar-nav{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+  > .menu-item{
+    @extend .nav-item;
+  }
+  a{
+    @extend .nav-link;
+  }
 }

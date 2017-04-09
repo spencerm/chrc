@@ -1,4 +1,55 @@
-// Colors
-$brand-primary:         #27ae60;
-
+// Vendor variables
 $fa-font-path:          '~font-awesome/fonts';
+
+// Grid settings
+$main-sm-columns:             10;
+$sidebar-sm-columns:          4;
+$grid-columns:                12 !default;
+$grid-gutter-width-base:      30px !default;
+$enable-grid-classes:         false;
+
+
+// Colors
+$color-facebook:		    #3b5998;
+$color-twitter: 		    #55ACEE;
+$color-reddit:			    orangered;
+$color-google-plus: 	  #D34836;
+$color-pinterest: 		  #cb2027;
+
+$brand-primary:         #FFD745; // yellow
+$brand-success:         #af01df; // purple
+$brand-info:            darken(#cd3333,20%);
+$brand-warning:         #f0ad4e;
+$brand-danger:          #d9534f;
+
+
+$font-size-root: 14px !default;
+
+$font-size-h1:          2.4rem; // ~36px
+$font-size-h2:          2rem; // ~30px
+$font-size-h3:          1.3rem; // ~24px
+// $font-size-h4:          18px; // ~18px
+// $font-size-h5:          $font-size-base !default;
+// $font-size-h6:          ceil(($font-size-base * 0.85)) !default; // ~12px
+
+
+$font-family-sans-serif:  Oxygen, sans-serif;
+
+
+$headings-font-family:    Oxygen, sans-serif;
+$headings-font-weight:    300 !default;
+$headings-line-height:    1.1 !default;
+$headings-color:          #444;
+
+
+
+$body-bg:               black;
+$text-color:            #333;
+$line-height-base:      1.45;
+
+$link-color:            $brand-success;
+$link-hover-color:      darken($brand-success,10%);
+
+$nav-link-padding: 		6px 5px;
+$nav-link-hover-bg: 	inherit;
+$nav-link-color:		$brand-success;

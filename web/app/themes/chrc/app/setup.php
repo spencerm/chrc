@@ -30,6 +30,13 @@ add_action('after_setup_theme', function () {
     add_theme_support('soil-nice-search');
     add_theme_support('soil-relative-urls');
 
+    add_theme_support('soil-google-analytics', 'UA-67428114-1');
+    add_theme_support('soil-js-to-footer');
+    add_theme_support('soil-disable-asset-versioning');
+    add_theme_support('soil-disable-trackbacks');
+    add_theme_support('woocommerce');
+    define('POST_EXCERPT_LENGTH', 400);
+
     /**
      * Enable plugins to manage the document title
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
