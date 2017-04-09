@@ -1,0 +1,52 @@
+
+.nav {
+  display: flex;
+  margin-bottom: 0;
+  padding-left: 0; // Override default ul/ol
+  list-style: none;
+  width: 100%;
+  @include clearfix;
+
+  > li {
+    position: relative;
+    flex: auto;
+    justify-content: space-between;
+    text-align: center;
+    padding: $nav-link-padding;
+    // Make the list-items overlay the bottom border
+    margin-bottom: -1px;
+	
+	&:first-child{
+		padding-left:0;
+		// text-align: left;
+	}
+	
+	&:last-child{
+		padding-right:0;
+		// text-align: right;
+	}
+
+    > a {
+      position: relative;
+      display: block;
+      transition: opacity .4s, color .4s, background .4s;
+      font-family: $headings-font-family;
+      border-bottom: 1px solid transparent;
+      
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        // color: lighten($nav-link-color,15%);
+        background-color: $nav-link-hover-bg;
+        border-bottom: 1px solid $nav-link-color;
+      }
+    }
+  }
+}
+
+.current-menu-item, .active{
+  // display: none;
+  a{
+    border-bottom: 1px solid $nav-link-color;
+  }
+}

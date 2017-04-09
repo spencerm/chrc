@@ -1,0 +1,44 @@
+.twitter-stream{
+	p{
+		font-size: .9 em;
+		font-weight: 300;
+		margin: 0;
+		padding: .5rem 1rem .5rem 3rem;
+		border-left: 10px solid #EEEEEE;
+	}
+	a{
+		color:#626;
+		// opacity: .9;
+		&:hover{
+			opacity: 1;
+			color: $link-color;
+		}
+	}
+}
+
+.at-reply,
+.hash-tag {
+	color: #626;
+}
+
+a.twitter-link{
+	color: $link-color;
+	&:hover{
+		text-decoration: underline;
+	}
+} 
+a:hover.twitter-link{
+
+}
+a.twitter-date{
+	font-size: .8em;
+}
+a:hover.twitter-date{
+
+}
+.profile-link{
+
+}
+.follower-count{
+
+}

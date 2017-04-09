@@ -1,0 +1,60 @@
+// Grid system
+.main {
+  padding: 1rem 0;
+  @include make-col-ready();
+  @include media-breakpoint-up(sm) {
+    @include make-col($main-sm-columns);
+    @include make-col-push(1);
+    .sidebar-primary & {
+      @include make-col($main-sm-columns - $sidebar-sm-columns);
+    }
+  }
+}
+.sidebar {
+  @include make-col-ready();
+  @include media-breakpoint-up(sm) {
+    @include make-col($sidebar-sm-columns);
+  }
+}
+
+
+@if $enable-grid-classes == false{
+  .container{
+    @include make-container();
+    max-width: 960px;
+    position: relative;
+  }
+}
+@if $enable-grid-classes == false{
+  .row {
+    @include make-row();
+  }
+}
+
+
+
+.content{
+  background: white;
+}
+
+
+
+.half, .third, .two-third, .quarter{
+  @include make-col-ready();
+  @extend .clearfix;
+}
+
+@include media-breakpoint-up(sm) {
+  .quarter{ 
+    @include make-col(3);
+  }
+  .third{ 
+    @include make-col(4);
+  }
+  .half{
+    @include make-col(6);
+  }
+  .two-third{ 
+    @include make-col(8);
+  }
+}
