@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "28664a723bc521d2d2d29059ab01e865",
+    "content-hash": "be76152c2bbaa7120d8f8781ca0e0be7",
     "packages": [
         {
             "name": "composer/installers",
@@ -375,6 +375,30 @@
             "time": "2016-03-01T16:27:06+00:00"
         },
         {
+            "name": "spencerm/google-events-calendar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:spencerm/google-events-calendar.git",
+                "reference": "a2edab5f72df876b2700e5c33824a382e2780f88"
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "wordpress-plugin",
+            "license": [
+                "GPL2"
+            ],
+            "authors": [
+                {
+                    "name": "spencer",
+                    "email": "spnzrr@gmail.com"
+                }
+            ],
+            "description": "fork of wp google calender events",
+            "time": "2017-04-11 19:14:19"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.4.0",
             "source": {
@@ -586,36 +610,16 @@
             "homepage": "https://wordpress.org/plugins/autodescription/"
         },
         {
-            "name": "wpackagist-plugin/google-calendar-events",
-            "version": "2.3.2",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/google-calendar-events/",
-                "reference": "tags/2.3.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/google-calendar-events.2.3.2.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/google-calendar-events/"
-        },
-        {
             "name": "wpackagist-plugin/mailchimp-for-wp",
-            "version": "4.1.0",
+            "version": "4.1.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mailchimp-for-wp/",
-                "reference": "tags/4.1.0"
+                "reference": "tags/4.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.1.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.1.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -704,6 +708,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/woocommerce-gateway-stripe/"
+        },
+        {
+            "name": "wpackagist-plugin/wpgform",
+            "version": "0.91",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wpgform/",
+                "reference": "tags/0.91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wpgform.0.91.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wpgform/"
         }
     ],
     "packages-dev": [
@@ -792,7 +816,8 @@
         "roots/soil": 20,
         "wp-sync-db/wp-sync-db": 20,
         "wp-sync-db/wp-sync-db-cli": 20,
-        "wp-sync-db/wp-sync-db-media-files": 20
+        "wp-sync-db/wp-sync-db-media-files": 20,
+        "spencerm/google-events-calendar": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

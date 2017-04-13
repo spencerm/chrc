@@ -3,8 +3,7 @@
 		@include make-row();
 	}
 	margin-bottom:8rem;
-	padding-top:6px;
-	color: white;
+	color: white !important;
 	transition: opacity .5s, background 1s;
 	opacity: .6;
 	position: relative;
@@ -13,10 +12,10 @@
 		opacity: 1;
 	}
 	a{
-		text-shadow: rgba(black,0.5%) 1px 1px 1px;
-		padding-bottom: 0;
 		color: white;
 		transition: color .5s, fill .5s;
+		padding-bottom: 0;
+		padding-top: 1rem; // overrides nav & link padding :)
 		border-bottom: 2px solid transparent;
 		&:hover, &:focus{
 			border-bottom: 2px solid $brand-success;
@@ -30,22 +29,21 @@
 			fill: #FFF;
 		}
 	}
-	&:last-child{
-		text-align: right;
-	}
+
 	.email{
 	}
 	p{
 		margin-top: 1rem;
 	}
-}
-#menu-primary-1 li{
-	padding-top: 0;
+	.nav{
+		flex-direction: column;
+	}
 }
 
-@include media-breakpoint-down(sm) {
+
+@include media-breakpoint-up(md) {
 	.third{
-		text-align: center;
+		text-align: right;
 	}
 }
 

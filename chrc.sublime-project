@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "web/app/themes/chrc/resources/assets"
+		},
+		{
+			"path": "web/app/themes/chrc/app"
+		},
+		{
+			"path": "web/app/themes/chrc/resources/views"
+		}
+	]
+}

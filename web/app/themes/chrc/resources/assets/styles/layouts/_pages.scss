@@ -2,25 +2,19 @@
  * all pages
  *
  */
-
-.page-header{
-	border-bottom: 0;
-	margin: 5rem 0 3rem;
+.page-title{
+	margin-top: 3rem 0 1rem;
 }
-.page-heading{
-	margin-top: 6rem;
+@include media-breakpoint-up(md) {
+	.page-header{
+		border-bottom: 0;
+		margin: 1rem 0 3rem;
+	}
 }
 .page article{
 	@extend .clearfix;
 	margin: 0 0 7rem;
 }
-
-
-/*
- * home page
- *
- */
-
 .heading-block{
 	@extend .clearfix;
 	background-color: rgba(black,.6);
@@ -35,6 +29,12 @@
 	}
 }
 
+
+/*
+ * home page
+ *
+ */
+
 .home .main{
 	// padding-top: 5rem;
 	padding-bottom: 5rem;
@@ -44,20 +44,8 @@
 }
 
 @include media-breakpoint-up(md) {
-	#homepagemain{
-		// left: 0;
-		// width: 100%;
-		// .entry-title{
-		// 	margin-top: 3rem;
-		// }
-	}
-	.entry-content.schedule{
-		
-		// margin-right: -11%;
-		// width: 920px;
-	}
-	.table-hover{
-		// margin-left: -1%;
+	.mc4wp-form{
+		padding: 16px 26px;
 	}
 	.sidebar{
 		max-width: 320px;

@@ -1,49 +1,68 @@
-.banner{
-	a{
+#pageHeader{
+  padding-left: 0;
+  .navbar{
+		padding: 0;
+	}
+	.navbar-toggler{
+		color: white;
+		width: 50%;
+    padding: .2rem;
+    background: black;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    min-height: 60px;
+		text-align: right;
+	}
+  .navbar-brand{
+		display: block;
+		width: 50%;
+		min-height: 60px;
+		background: url('../images/logo.png') no-repeat 0px 0px;
+		background-size: contain;
+		border-bottom: 2px solid black;
+		margin: 0;
+		@include media-breakpoint-up(sm) {
+			width: 310px;
+			min-height: 110px;
+			margin-right: 1rem;
+		}
+	}
+	#primaryNav{
+		text-align: left;
+		@include media-breakpoint-up(sm) {
+			align-self: flex-end;
+			text-align: right;
+		}
+	}
+	.navbar-nav{
+		@include media-breakpoint-down(sm) {
+			text-align: right;
+			padding-right: 5px;
+		}
+	}
+	.nav-link{
 		color: white;
 		text-transform: uppercase;
-		text-shadow: 1px 1px 1px rgba(black, .8);
-		margin: 1rem 0;
+		text-shadow: 1px 1px 1px rgba($brand-success, 0.0);
 		border-bottom: 1px solid transparent;
+		margin-bottom: 3px;
 		&:hover, &:focus{
 			text-decoration: none;
 			color: darken(white, 15%);
 			border-bottom: 1px solid $brand-success;
+			text-shadow: 1px 1px 1px rgba($brand-success, 0.8);
 		}
 		.active{
 			border-bottom: 1px solid $brand-success;
 		}
 	}
-	.h1{
-		display: none;
-	}
-	// .h1{
-	// 	display: block;
-	// 	text-align: center;
-	// 	margin-bottom: 0;
-	// 	padding: 5px;
-	// 	letter-spacing: 5px;
-	// 	border-top: 3px solid white;
-	// 	border-bottom: 3px solid white;
-	// 	font-weight: 100;
-	// 	font-size: 4.6rem;
-	// 	color: white;
-	// 	text-transform: uppercase;
-	// 	text-shadow: 1px 1px 1px rgba(black, .8);
-	// 	@media (min-width: $screen-sm-min) {
-	// 		margin-top: 6rem; 
-	// 	}
-	// }
-	.navbar-brand{
-		display: block;
-		width: 260px;
-		min-height: 120px;
-		background: url('../images/logo.png') no-repeat;
-		background-size: contain;
-	}
+
+
+
 }
 @include media-breakpoint-up(sm) {
 	#menu-primary{
-		margin-top: 7.4rem;
+		// margin-top: 7.4rem;
 	}
 }

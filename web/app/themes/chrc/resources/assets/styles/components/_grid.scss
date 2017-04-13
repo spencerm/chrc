@@ -44,7 +44,7 @@
   @extend .clearfix;
 }
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(md) {
   .quarter{ 
     @include make-col(3);
   }

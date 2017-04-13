@@ -19,7 +19,6 @@
 }
 .alignleft,
 .alignright {
-  margin-top: ($spacer / 5);
   margin-bottom: ($spacer / 2);
   height: auto;
 }
@@ -27,16 +26,19 @@
   // Only float if not on an extra small device
   .alignleft {
     float: left;
-    margin-right: $spacer;
+    margin-right: ($spacer / 2);
   }
   .alignright {
     float: right;
-    margin-left: $spacer;
+    margin-left: ($spacer / 2);
   }
 }
 
 // Captions
 .wp-caption {
+  @extend .figure;
+}
+.wp-caption img {
   @extend .figure-img;
   @extend .img-fluid;
 }
@@ -50,12 +52,20 @@
   @extend .sr-only-focusable;
 }
 
-.navbar-nav{
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
 
-  > .menu-item{
+// bs4 nav
+.nav{
+  padding: 2px 0;
+
+  .menu-item:first-child{
+    > a{
+      @include media-breakpoint-up(sm) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .menu-item{
     @extend .nav-item;
   }
   a{

@@ -33,9 +33,9 @@
 .gce-list-event{
 	// background-color: #eee;
 	font-weight: 400;
-	padding: 9px 0 6px;
+	padding: 6px 0;
 	margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
 /* PAGE GRID */
@@ -116,9 +116,9 @@
 
 .gce-feed {
   border-top: 1px solid #ddd;
-  padding: 5px 0;
+  padding: 9px 0;
   @include media-breakpoint-up(sm) {
-    padding: 16px 20px;
+    padding: 16px 26px;
   	&:hover{
   		background: #F9F9F9;
   	}
@@ -127,6 +127,7 @@
 
 .gce-list p{ /* Each piece of information in the list */
 	margin:0;
+  font-size: .9rem;
 }
 
 .gce-page-list .gce-list p span,
@@ -225,11 +226,11 @@
     text-align: center;
     clear: both;
     overflow: hidden;
-    position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 5px;
-    font-size: 1.3em;
+    padding: 1rem 0;
+    margin: 1rem 0;
+    font-size: 1.2em;
     border-bottom: 1px solid #ddd;
     border-top: 1px solid #ddd;
 }
