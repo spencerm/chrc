@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "be76152c2bbaa7120d8f8781ca0e0be7",
+    "content-hash": "ff43b4753f144d2daa7066d2fa301163",
     "packages": [
         {
             "name": "composer/installers",
@@ -498,20 +498,24 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/wp-sync-db/wp-sync-db.git",
-                "reference": "8f18390a83374089acfac202491e78d4938616fd"
+                "url": "https://github.com/VaLeXaR/wp-sync-db.git",
+                "reference": "22a5f31407bcaba34194da5607ab5dd45fda1bfe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-sync-db/wp-sync-db/zipball/8f18390a83374089acfac202491e78d4938616fd",
-                "reference": "8f18390a83374089acfac202491e78d4938616fd",
+                "url": "https://api.github.com/repos/VaLeXaR/wp-sync-db/zipball/22a5f31407bcaba34194da5607ab5dd45fda1bfe",
+                "reference": "22a5f31407bcaba34194da5607ab5dd45fda1bfe",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "~1.0.6"
             },
             "type": "wordpress-plugin",
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "test": [
+                    "./test.sh"
+                ]
+            },
             "license": [
                 "GPL-2.0"
             ],
@@ -523,7 +527,10 @@
                 "wordpress",
                 "wp-sync-db"
             ],
-            "time": "2016-04-24T08:56:12+00:00"
+            "support": {
+                "source": "https://github.com/VaLeXaR/wp-sync-db/tree/master"
+            },
+            "time": "2017-01-05T20:55:44+00:00"
         },
         {
             "name": "wp-sync-db/wp-sync-db-cli",
@@ -671,16 +678,16 @@
         },
         {
             "name": "wpackagist-plugin/woocommerce",
-            "version": "3.0.1",
+            "version": "3.0.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/woocommerce/",
-                "reference": "tags/3.0.1"
+                "reference": "tags/3.0.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/woocommerce.3.0.1.zip",
-                "reference": "tags/3.0.1",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce.3.0.3.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
