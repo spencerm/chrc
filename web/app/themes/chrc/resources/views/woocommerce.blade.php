@@ -1,5 +1,5 @@
 @extends('layouts.base') 
 
-  @section('content') 
+  @section('content')
     @php(woocommerce_content())
   @endsection
