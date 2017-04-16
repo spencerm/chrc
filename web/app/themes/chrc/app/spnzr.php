@@ -1,5 +1,7 @@
 <?php namespace Spnzr;
 
+
+
 function the_first_term( $post_id = false , $taxonomy = 'category' ){
 	foreach( get_the_terms( $post_id , $taxonomy ) as $term ) {
 	    if ($term->parent  != 0) {

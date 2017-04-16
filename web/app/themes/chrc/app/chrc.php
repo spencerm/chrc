@@ -16,6 +16,17 @@ function change_gce_next( $next ) {
 add_filter( 'gce_next_text', __NAMESPACE__ . '\\change_gce_next' );
 
 
+/**
+ *  CHRC shop
+ *
+ */
+
+/**
+ * turn off sku site wide
+ */
+add_filter( 'wc_product_sku_enabled', '__return_false' );
+
+
 
 /**
  *  CMB2 People 
@@ -23,12 +34,11 @@ add_filter( 'gce_next_text', __NAMESPACE__ . '\\change_gce_next' );
  */
 add_action( 'cmb2_admin_init', function() {
 
-    $prefix = 'people_';
-
     $cmb_group = new_cmb2_box( array(
         'id'            => 'people_metabox',
         'title'         => 'People',
         'object_types'  => array( 'page' ), // Post type
+        'show_on'      => array( 'key' => 'page-template', 'value' => 'template-user.blade.php' ),
         'context'       => 'normal',
         'priority'      => 'high',
         'show_names'    => true, // Show field names on the left
@@ -37,7 +47,7 @@ add_action( 'cmb2_admin_init', function() {
     ) );
 
     $group_field_id = $cmb_group->add_field( array(
-      'id'          => $prefix . 'person',
+      'id'          => 'people_group',
       'type'        => 'group',
       'options'     => array(
         'group_title'   => esc_html__( 'Person {#}', 'cmb2' ), // {#} gets replaced by row number
@@ -57,6 +67,11 @@ add_action( 'cmb2_admin_init', function() {
       'type'       => 'text',
     ) );
     $cmb_group->add_group_field( $group_field_id, array(
+      'name'       => esc_html__( 'Contact', 'cmb2' ),
+      'id'         => 'contact',
+      'type'       => 'text',
+    ) );
+    $cmb_group->add_group_field( $group_field_id, array(
       'name'        => esc_html__( 'Description', 'cmb2' ),
       'description' => esc_html__( 'Write a short description for this entry', 'cmb2' ),
       'id'          => 'description',
@@ -69,7 +84,7 @@ add_action( 'cmb2_admin_init', function() {
     ) );
     $cmb_group->add_group_field( $group_field_id, array(
       'name' => esc_html__( 'Image Caption', 'cmb2' ),
-      'id'   => 'image_caption',
+      'id'   => 'imagecaption',
       'type' => 'text',
     ) );
 });

@@ -35,8 +35,14 @@ add_action('after_setup_theme', function () {
     add_theme_support('soil-js-to-footer');
     add_theme_support('soil-disable-asset-versioning');
     add_theme_support('soil-disable-trackbacks');
-    add_theme_support('woocommerce');
     define('POST_EXCERPT_LENGTH', 400);
+
+    /* chrc store 2017 */
+    add_theme_support('woocommerce');
+    add_theme_support( 'wc-product-gallery-zoom' );
+    add_theme_support( 'wc-product-gallery-lightbox' );
+    add_theme_support( 'wc-product-gallery-slider' );
+
 
     /**
      * Enable plugins to manage the document title

@@ -55,17 +55,47 @@
 }
 /*
  * about page
- *
+ * @uses user template file
  */
-.pacers{
-	// font-size: 1.4rem;
-	// @media (min-width: $screen-md-min) {
-	// 	margin-left: -9%;
-	// 	margin-right: -9%;
-	// 	width: 920px;
-	// }
+.user-profiles{
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	.user-profile{
+		text-align: center;
+		padding-bottom: 1rem;
+		flex: 1 1 auto;
+    padding-bottom: 1rem;
+    min-width: 180px;
+	}
 	h3{
-		font-size: 22px;
-		// margin-top: 0;
+		font-size: 18px;
+		font-weight: bold;
+		color: #555;
+		margin: .5rem 0 0;
+	}
+	.img-thumbnail{
+		border-radius: 50%;
+		max-width: 120px;
+		height: auto;
+	}
+	p{
+		margin: 0;
+		font-size: .95rem;
+		a{
+			font-weight: 300;
+		}
+	}
+	.modal-title .small{
+		color: #555;
 	}
 }
+
+/*
+ * chrc store
+ * @woocommerce templates
+ */
+.type-product{
+	padding: 2rem 0;
+}
+
