@@ -8,11 +8,16 @@
   max-width: 250px;
   margin: 2rem 0;
   float: right;
-  .btn-lg{
-    margin-bottom: 1rem;
+  h3{
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    color: #333;
+    font-weight: 400;
   }
   @include media-breakpoint-up(sm) {
     @include make-col-push(1);
+    background: white;
+    z-index: 1;
   }
   .social-svg-path{
     fill: inherit;
