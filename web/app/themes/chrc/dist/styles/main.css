@@ -13380,8 +13380,17 @@ h4 {
   list-style: none;
 }
 
+.ss-q-item-label {
+  margin: 0;
+}
+
 .required-message {
+  display: none;
   font-size: .9em;
+}
+
+.ss-legal {
+  display: none;
 }
 
 #pageHeader {
@@ -13740,6 +13749,12 @@ h4 {
   min-width: 180px;
 }
 
+@media (min-width: 768px) {
+  .user-profiles .user-profile {
+    max-width: 50%;
+  }
+}
+
 .user-profiles h3 {
   font-size: 18px;
   font-weight: bold;
@@ -13749,7 +13764,7 @@ h4 {
 
 .user-profiles .img-thumbnail {
   border-radius: 50%;
-  max-width: 120px;
+  max-width: 140px;
   height: auto;
 }
 

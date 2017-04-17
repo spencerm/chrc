@@ -4,6 +4,9 @@ namespace App;
 
 
 add_filter('sage/display_sidebar', function($sidebar){
+  if (is_page('about/join')) {
+    return false;
+  }
   if (is_page()) {
     return true;
   }

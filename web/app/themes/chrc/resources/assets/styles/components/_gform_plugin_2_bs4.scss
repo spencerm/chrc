@@ -28,7 +28,12 @@
   @extend .form-control;
 }
 
+.ss-q-item-label{
+  margin: 0;
+}
+
 .required-message{
+  display: none;
   @extend .text-muted;
   font-size: .9em;
 }
@@ -43,4 +48,9 @@
 #ss-submit{
   @extend .btn; 
   @extend .btn-primary;
+}
+
+.ss-legal{
+  display: none;
+  
 }

@@ -29,7 +29,7 @@
   <?php if( $bio ): ?>
     <a href="#modal-bio" data-toggle="modal" data-target="#modal-bio-<?= $nameLink ?>">
   <?php endif; ?>
-  <?php echo wp_get_attachment_image($userPhoto,'thumbnail',false,array('class' => 'img-fluid img-thumbnail')); ?>
+  <?php echo wp_get_attachment_image($userPhoto,array('140', '140'),false,array('class' => 'img-fluid img-thumbnail')); ?>
   <?php if( $bio ): ?>
     </a>
   <?php endif; ?>
@@ -50,9 +50,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h4 class="modal-title">
-             <small><?= $title ?></small> <?= $name ?> <br><small><?= $userTitle ?></small>
-            </h4>
+            <h5 class="modal-title">
+             <small><?= $title ?></small> <?= $name ?> <br><i><?= $userTitle ?></i>
+            </h5>
           </div>
           <div class="modal-body">
             <p><?= $bio ?></p>
