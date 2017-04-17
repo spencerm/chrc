@@ -27,6 +27,41 @@ add_filter( 'gce_next_text', __NAMESPACE__ . '\\change_gce_next' );
 add_filter( 'wc_product_sku_enabled', '__return_false' );
 
 
+/**
+ *  CMB2 Page
+ *
+ */
+add_action( 'cmb2_admin_init', function() {
+
+  $prefix = '_page_';
+
+  $cmb = new_cmb2_box( array(
+      'id'            => 'post_metabox',
+      'title'         => __( 'Add posts to page', 'cmb2' ),
+      'object_types'  => array( 'page' ), // Post type
+      'context'       => 'normal',
+      'priority'      => 'low',
+      'show_names'    => true, // Show field names on the left
+      // 'cmb_styles'    => false, // false to disable the CMB stylesheet
+      // 'closed'     => true, // Keep the metabox closed by default
+  ) );
+
+  $cmb->add_field( array(
+      'name'           => 'Show category',
+      'desc'           => 'If a category is selected, posts of that category will be additionally rendered',
+      'id'            => $prefix . 'more_posts',
+      'type'          => 'select',
+      // Use a callback to avoid performance hits on pages where this field is not displayed (including the front-end).
+      'default'       => 'None',
+      'show_option_none' => true,
+      'options_cb'    => '\Spnzr\cmb2_get_term_options',
+      // Same arguments you would pass to `get_terms`.
+      'get_terms_args' => array(
+        'taxonomy'    => 'category',
+        'hide_empty'  => false,
+      ),
+  ) );
+});
 
 /**
  *  CMB2 People 

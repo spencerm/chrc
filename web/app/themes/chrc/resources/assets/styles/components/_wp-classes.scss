@@ -1,6 +1,6 @@
 // WordPress Generated Classes
 // http://codex.wordpress.org/CSS#WordPress_Generated_Classes
-.attachment-fullwidth{
+.attachment-fullwidth, .size-large{
   @extend .img-fluid;
 }
 
@@ -33,6 +33,8 @@
     margin-left: ($spacer / 2);
   }
 }
+
+
 
 // Captions
 .wp-caption {

@@ -15,7 +15,7 @@
           'walker'          => new bs4navwalker()
         ]) !!}
       @endif
-        @include('partials.social-links');
+        @include('partials.social-links')
     </div>
   </nav>
 </header>
