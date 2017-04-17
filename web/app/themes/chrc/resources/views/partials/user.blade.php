@@ -29,7 +29,7 @@
   <?php if( $bio ): ?>
     <a href="#modal-bio" data-toggle="modal" data-target="#modal-bio-<?= $nameLink ?>">
   <?php endif; ?>
-  <?php echo wp_get_attachment_image($userPhoto,array('140', '140'),false,array('class' => 'img-fluid img-thumbnail')); ?>
+  <?php echo wp_get_attachment_image($userPhoto, 'thumbnail', false, array('class' => 'img-fluid img-thumbnail')); ?>
   <?php if( $bio ): ?>
     </a>
   <?php endif; ?>

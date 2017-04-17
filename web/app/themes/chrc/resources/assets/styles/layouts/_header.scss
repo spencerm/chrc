@@ -67,10 +67,14 @@
 			fill: $brand-success;
 		}
 	}
-
-
-
 }
+/**
+ * hide join link from larger views
+ */
+.menu-item-1443{
+	@extend .hidden-md-up;
+}
+
 @include media-breakpoint-up(sm) {
 	#menu-primary{
 		// margin-top: 7.4rem;
