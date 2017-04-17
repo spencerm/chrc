@@ -47,11 +47,6 @@
 	.mc4wp-form{
 		padding: 16px 26px;
 	}
-	.sidebar{
-		max-width: 320px;
-		// margin-right: 3rem;
-		float: right;
-	}
 }
 /*
  * about page
@@ -86,9 +81,16 @@
 			font-weight: 300;
 		}
 	}
-	.modal-title .small{
-		color: #555;
+	.modal-title{
+		.small{
+			color: #555;
+		}
+		i{
+			font-size: .9em;
+			text-align: right;
+		}
 	}
+
 }
 
 /*

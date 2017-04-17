@@ -5605,7 +5605,8 @@ return Tether;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(2);
-module.exports = __webpack_require__(3);
+__webpack_require__(3);
+(function webpackMissingModule() { throw new Error("Cannot find module \"production\""); }());
 
 
 /***/ })

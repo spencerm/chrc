@@ -34,18 +34,12 @@
     </a>
   <?php endif; ?>
   <h3><?= $name ?></h3>
-  <p><?= $userTitle ?></p>
+  <p><?= $title ?> / <?= $userTitle ?></p>
   <p><a href="mailto:<?= $email ?>"><?= $email ?></a></p>
   <?php 
     if( $bio ){
-      echo "<p>";
-    }
-    if( $bio ): ?>
-      &sim; <a href="#modal-bio" data-toggle="modal" data-target="#modal-bio-<?= $nameLink ?>">bio</a> &sim;
-  <?php endif; ?>
-  <?php if( $bio ): ?>
-    </p>
-  <?php endif; ?>
+      echo '<p>(<small><a href="#modal-bio" data-toggle="modal" data-target="#modal-bio-' . $nameLink . '">click for bio</a></small>)</p>';
+    } ?>
 </div>
 
 <?php if( $bio ): ?>
@@ -56,7 +50,9 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h5 class="modal-title"><?= $name ?> <br><small><?= $userTitle ?></small></h5>
+            <h4 class="modal-title">
+             <small><?= $title ?></small> <?= $name ?> <br><small><?= $userTitle ?></small>
+            </h4>
           </div>
           <div class="modal-body">
             <p><?= $bio ?></p>

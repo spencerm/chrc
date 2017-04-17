@@ -1,0 +1,46 @@
+.ss-form-heading{
+  @extend .form-text;
+}
+
+#ss-form{
+  margin-top: 1rem;
+  ol{
+    padding: 0;
+  }
+  ol, ul{
+    list-style: none;
+  }
+}
+
+.errorheader{
+  @extend .has-warning;
+  @extend .form-control;
+  b{
+    @extend .form-control-feedback;
+  }
+}
+
+.ss-form-question{
+  @extend .form-group;
+}
+
+.ss-q-short{
+  @extend .form-control;
+}
+
+.required-message{
+  @extend .text-muted;
+  font-size: .9em;
+}
+
+.ss-q-radio{
+  @extend .form-check-input;
+}
+#ss-back-button, #ss-forward-button{
+  @extend .btn; 
+  @extend .btn-secondary;
+}
+#ss-submit{
+  @extend .btn; 
+  @extend .btn-primary;
+}

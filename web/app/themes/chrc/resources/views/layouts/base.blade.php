@@ -12,13 +12,13 @@
     <div class="wrap container" role="document">
       <div class="content row">
         <main class="main">
+          @if (App\display_sidebar())
+            <aside class="sidebar hidden-sm-down">
+              @include('partials.sidebar')
+            </aside>
+          @endif
           @yield('content')
         </main>
-        @if (App\display_sidebar())
-          <aside class="sidebar">
-            @include('partials.sidebar')
-          </aside>
-        @endif
       </div>
     </div>
     @php(do_action('get_footer'))

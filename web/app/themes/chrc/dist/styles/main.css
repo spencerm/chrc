@@ -4057,7 +4057,9 @@ pre code {
 .comment-form input[type="email"],
 .comment-form input[type="url"],
 .comment-form textarea,
-.search-form .search-field {
+.search-form .search-field,
+.errorheader,
+.ss-q-short {
   display: block;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -4079,7 +4081,9 @@ pre code {
 .comment-form input[type="email"]::-ms-expand,
 .comment-form input[type="url"]::-ms-expand,
 .comment-form textarea::-ms-expand,
-.search-form .search-field::-ms-expand {
+.search-form .search-field::-ms-expand,
+.errorheader::-ms-expand,
+.ss-q-short::-ms-expand {
   background-color: transparent;
   border: 0;
 }
@@ -4089,7 +4093,9 @@ pre code {
 .comment-form input[type="email"]:focus,
 .comment-form input[type="url"]:focus,
 .comment-form textarea:focus,
-.search-form .search-field:focus {
+.search-form .search-field:focus,
+.errorheader:focus,
+.ss-q-short:focus {
   color: #464a4c;
   background-color: #fff;
   border-color: #d12efe;
@@ -4101,7 +4107,9 @@ pre code {
 .comment-form input[type="email"]::-webkit-input-placeholder,
 .comment-form input[type="url"]::-webkit-input-placeholder,
 .comment-form textarea::-webkit-input-placeholder,
-.search-form .search-field::-webkit-input-placeholder {
+.search-form .search-field::-webkit-input-placeholder,
+.errorheader::-webkit-input-placeholder,
+.ss-q-short::-webkit-input-placeholder {
   color: #636c72;
   opacity: 1;
 }
@@ -4111,7 +4119,9 @@ pre code {
 .comment-form input[type="email"]:-ms-input-placeholder,
 .comment-form input[type="url"]:-ms-input-placeholder,
 .comment-form textarea:-ms-input-placeholder,
-.search-form .search-field:-ms-input-placeholder {
+.search-form .search-field:-ms-input-placeholder,
+.errorheader:-ms-input-placeholder,
+.ss-q-short:-ms-input-placeholder {
   color: #636c72;
   opacity: 1;
 }
@@ -4121,7 +4131,9 @@ pre code {
 .comment-form input[type="email"]::placeholder,
 .comment-form input[type="url"]::placeholder,
 .comment-form textarea::placeholder,
-.search-form .search-field::placeholder {
+.search-form .search-field::placeholder,
+.errorheader::placeholder,
+.ss-q-short::placeholder {
   color: #636c72;
   opacity: 1;
 }
@@ -4132,12 +4144,16 @@ pre code {
 .comment-form input[type="url"]:disabled,
 .comment-form textarea:disabled,
 .search-form .search-field:disabled,
+.errorheader:disabled,
+.ss-q-short:disabled,
 .form-control[readonly],
 .comment-form input[readonly][type="text"],
 .comment-form input[readonly][type="email"],
 .comment-form input[readonly][type="url"],
 .comment-form textarea[readonly],
-.search-form [readonly].search-field {
+.search-form [readonly].search-field,
+[readonly].errorheader,
+[readonly].ss-q-short {
   background-color: #eceeef;
   opacity: 1;
 }
@@ -4147,17 +4163,23 @@ pre code {
 .comment-form input[type="email"]:disabled,
 .comment-form input[type="url"]:disabled,
 .comment-form textarea:disabled,
-.search-form .search-field:disabled {
+.search-form .search-field:disabled,
+.errorheader:disabled,
+.ss-q-short:disabled {
   cursor: not-allowed;
 }
 
 select.form-control:not([size]):not([multiple]),
-.search-form select.search-field:not([size]):not([multiple]) {
+.search-form select.search-field:not([size]):not([multiple]),
+select.errorheader:not([size]):not([multiple]),
+select.ss-q-short:not([size]):not([multiple]) {
   height: calc(2.25rem + 2px);
 }
 
 select.form-control:focus::-ms-value,
-.search-form select.search-field:focus::-ms-value {
+.search-form select.search-field:focus::-ms-value,
+select.errorheader:focus::-ms-value,
+select.ss-q-short:focus::-ms-value {
   color: #464a4c;
   background-color: #fff;
 }
@@ -4208,12 +4230,17 @@ select.form-control:focus::-ms-value,
 .comment-form .input-group-sm > input.form-control-static[type="url"],
 .comment-form .input-group-sm > textarea.form-control-static,
 .search-form .input-group-sm > .form-control-static.search-field,
+.input-group-sm > .form-control-static.errorheader,
+.input-group-sm > .form-control-static.ss-q-short,
 .input-group-sm > .form-control-static.input-group-addon,
 .input-group-sm > .input-group-btn > .form-control-static.btn,
 .comment-form
   .input-group-sm > .input-group-btn > input.form-control-static[type="submit"],
 .search-form
   .input-group-sm > .input-group-btn > .form-control-static.search-submit,
+.input-group-sm > .input-group-btn > .form-control-static#ss-back-button,
+.input-group-sm > .input-group-btn > .form-control-static#ss-forward-button,
+.input-group-sm > .input-group-btn > .form-control-static#ss-submit,
 .form-control-static.form-control-lg,
 .input-group-lg > .form-control-static.form-control,
 .comment-form .input-group-lg > input.form-control-static[type="text"],
@@ -4221,12 +4248,17 @@ select.form-control:focus::-ms-value,
 .comment-form .input-group-lg > input.form-control-static[type="url"],
 .comment-form .input-group-lg > textarea.form-control-static,
 .search-form .input-group-lg > .form-control-static.search-field,
+.input-group-lg > .form-control-static.errorheader,
+.input-group-lg > .form-control-static.ss-q-short,
 .input-group-lg > .form-control-static.input-group-addon,
 .input-group-lg > .input-group-btn > .form-control-static.btn,
 .comment-form
   .input-group-lg > .input-group-btn > input.form-control-static[type="submit"],
 .search-form
-  .input-group-lg > .input-group-btn > .form-control-static.search-submit {
+  .input-group-lg > .input-group-btn > .form-control-static.search-submit,
+.input-group-lg > .input-group-btn > .form-control-static#ss-back-button,
+.input-group-lg > .input-group-btn > .form-control-static#ss-forward-button,
+.input-group-lg > .input-group-btn > .form-control-static#ss-submit {
   padding-right: 0;
   padding-left: 0;
 }
@@ -4238,12 +4270,17 @@ select.form-control:focus::-ms-value,
 .comment-form .input-group-sm > input[type="url"],
 .comment-form .input-group-sm > textarea,
 .search-form .input-group-sm > .search-field,
+.input-group-sm > .errorheader,
+.input-group-sm > .ss-q-short,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn,
 .comment-form
 .input-group-sm > .input-group-btn > input[type="submit"],
 .search-form
-.input-group-sm > .input-group-btn > .search-submit {
+.input-group-sm > .input-group-btn > .search-submit,
+.input-group-sm > .input-group-btn > #ss-back-button,
+.input-group-sm > .input-group-btn > #ss-forward-button,
+.input-group-sm > .input-group-btn > #ss-submit {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
@@ -4252,10 +4289,15 @@ select.form-control:focus::-ms-value,
 select.form-control-sm:not([size]):not([multiple]),
 .input-group-sm > select.form-control:not([size]):not([multiple]),
 .search-form .input-group-sm > select.search-field:not([size]):not([multiple]),
+.input-group-sm > select.errorheader:not([size]):not([multiple]),
+.input-group-sm > select.ss-q-short:not([size]):not([multiple]),
 .input-group-sm > select.input-group-addon:not([size]):not([multiple]),
 .input-group-sm > .input-group-btn > select.btn:not([size]):not([multiple]),
 .search-form
-.input-group-sm > .input-group-btn > select.search-submit:not([size]):not([multiple]) {
+.input-group-sm > .input-group-btn > select.search-submit:not([size]):not([multiple]),
+.input-group-sm > .input-group-btn > select#ss-back-button:not([size]):not([multiple]),
+.input-group-sm > .input-group-btn > select#ss-forward-button:not([size]):not([multiple]),
+.input-group-sm > .input-group-btn > select#ss-submit:not([size]):not([multiple]) {
   height: 1.8125rem;
 }
 
@@ -4266,12 +4308,17 @@ select.form-control-sm:not([size]):not([multiple]),
 .comment-form .input-group-lg > input[type="url"],
 .comment-form .input-group-lg > textarea,
 .search-form .input-group-lg > .search-field,
+.input-group-lg > .errorheader,
+.input-group-lg > .ss-q-short,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn,
 .comment-form
 .input-group-lg > .input-group-btn > input[type="submit"],
 .search-form
-.input-group-lg > .input-group-btn > .search-submit {
+.input-group-lg > .input-group-btn > .search-submit,
+.input-group-lg > .input-group-btn > #ss-back-button,
+.input-group-lg > .input-group-btn > #ss-forward-button,
+.input-group-lg > .input-group-btn > #ss-submit {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
@@ -4280,20 +4327,27 @@ select.form-control-sm:not([size]):not([multiple]),
 select.form-control-lg:not([size]):not([multiple]),
 .input-group-lg > select.form-control:not([size]):not([multiple]),
 .search-form .input-group-lg > select.search-field:not([size]):not([multiple]),
+.input-group-lg > select.errorheader:not([size]):not([multiple]),
+.input-group-lg > select.ss-q-short:not([size]):not([multiple]),
 .input-group-lg > select.input-group-addon:not([size]):not([multiple]),
 .input-group-lg > .input-group-btn > select.btn:not([size]):not([multiple]),
 .search-form
-.input-group-lg > .input-group-btn > select.search-submit:not([size]):not([multiple]) {
+.input-group-lg > .input-group-btn > select.search-submit:not([size]):not([multiple]),
+.input-group-lg > .input-group-btn > select#ss-back-button:not([size]):not([multiple]),
+.input-group-lg > .input-group-btn > select#ss-forward-button:not([size]):not([multiple]),
+.input-group-lg > .input-group-btn > select#ss-submit:not([size]):not([multiple]) {
   height: 3.16667rem;
 }
 
 .form-group,
 .comment-form p,
-.search-form label {
+.search-form label,
+.ss-form-question {
   margin-bottom: 1rem;
 }
 
-.form-text {
+.form-text,
+.ss-form-heading {
   display: block;
   margin-top: 0.25rem;
 }
@@ -4315,13 +4369,15 @@ select.form-control-lg:not([size]):not([multiple]),
   cursor: pointer;
 }
 
-.form-check-input {
+.form-check-input,
+.ss-q-radio {
   position: absolute;
   margin-top: 0.25rem;
   margin-left: -1.25rem;
 }
 
-.form-check-input:only-child {
+.form-check-input:only-child,
+.ss-q-radio:only-child {
   position: static;
 }
 
@@ -4337,7 +4393,8 @@ select.form-control-lg:not([size]):not([multiple]),
   margin-left: 0.75rem;
 }
 
-.form-control-feedback {
+.form-control-feedback,
+.errorheader b {
   margin-top: 0.25rem;
 }
 
@@ -4351,6 +4408,8 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .has-success .form-control-feedback,
+.has-success .errorheader b,
+.errorheader .has-success b,
 .has-success .form-control-label,
 .has-success .col-form-label,
 .has-success .form-check-label,
@@ -4371,7 +4430,9 @@ select.form-control-lg:not([size]):not([multiple]),
 .comment-form textarea,
 .comment-form .has-success textarea,
 .has-success .search-form .search-field,
-.search-form .has-success .search-field {
+.search-form .has-success .search-field,
+.has-success .errorheader,
+.has-success .ss-q-short {
   border-color: #af01df;
 }
 
@@ -4386,41 +4447,71 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .has-warning .form-control-feedback,
+.errorheader .form-control-feedback,
+.has-warning .errorheader b,
+.errorheader .has-warning b,
+.errorheader b,
 .has-warning .form-control-label,
+.errorheader .form-control-label,
 .has-warning .col-form-label,
+.errorheader .col-form-label,
 .has-warning .form-check-label,
-.has-warning .custom-control {
+.errorheader .form-check-label,
+.has-warning .custom-control,
+.errorheader .custom-control {
   color: #f0ad4e;
 }
 
 .has-warning .form-control,
+.errorheader .form-control,
 .has-warning .comment-form input[type="text"],
 .comment-form .has-warning input[type="text"],
+.errorheader .comment-form input[type="text"],
+.comment-form .errorheader input[type="text"],
 .has-warning
 .comment-form input[type="email"],
 .comment-form .has-warning input[type="email"],
+.errorheader
+.comment-form input[type="email"],
+.comment-form .errorheader input[type="email"],
 .has-warning
 .comment-form input[type="url"],
 .comment-form .has-warning input[type="url"],
+.errorheader
+.comment-form input[type="url"],
+.comment-form .errorheader input[type="url"],
 .has-warning
 .comment-form textarea,
 .comment-form .has-warning textarea,
+.errorheader
+.comment-form textarea,
+.comment-form .errorheader textarea,
 .has-warning .search-form .search-field,
-.search-form .has-warning .search-field {
+.search-form .has-warning .search-field,
+.errorheader .search-form .search-field,
+.search-form .errorheader .search-field,
+.has-warning .errorheader,
+.errorheader .errorheader,
+.has-warning .ss-q-short,
+.errorheader .ss-q-short {
   border-color: #f0ad4e;
 }
 
-.has-warning .input-group-addon {
+.has-warning .input-group-addon,
+.errorheader .input-group-addon {
   color: #f0ad4e;
   border-color: #f0ad4e;
   background-color: white;
 }
 
-.has-warning .form-control-warning {
+.has-warning .form-control-warning,
+.errorheader .form-control-warning {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23f0ad4e' d='M4.4 5.324h-.8v-2.46h.8zm0 1.42h-.8V5.89h.8zM3.76.63L.04 7.075c-.115.2.016.425.26.426h7.397c.242 0 .372-.226.258-.426C6.726 4.924 5.47 2.79 4.253.63c-.113-.174-.39-.174-.494 0z'/%3E%3C/svg%3E");
 }
 
 .has-danger .form-control-feedback,
+.has-danger .errorheader b,
+.errorheader .has-danger b,
 .has-danger .form-control-label,
 .has-danger .col-form-label,
 .has-danger .form-check-label,
@@ -4441,7 +4532,9 @@ select.form-control-lg:not([size]):not([multiple]),
 .comment-form textarea,
 .comment-form .has-danger textarea,
 .has-danger .search-form .search-field,
-.search-form .has-danger .search-field {
+.search-form .has-danger .search-field,
+.has-danger .errorheader,
+.has-danger .ss-q-short {
   border-color: #d9534f;
 }
 
@@ -4497,7 +4590,9 @@ select.form-control-lg:not([size]):not([multiple]),
   .comment-form .search-form p,
   .form-inline .search-form label,
   .search-form .form-inline label,
-  .search-form label {
+  .search-form label,
+  .form-inline .ss-form-question,
+  .search-form .ss-form-question {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4538,7 +4633,11 @@ select.form-control-lg:not([size]):not([multiple]),
   .search-form
     .comment-form textarea,
   .comment-form .search-form textarea,
-  .search-form .search-field {
+  .search-form .search-field,
+  .form-inline .errorheader,
+  .search-form .errorheader,
+  .form-inline .ss-q-short,
+  .search-form .ss-q-short {
     display: inline-block;
     width: auto;
     vertical-align: middle;
@@ -4582,7 +4681,9 @@ select.form-control-lg:not([size]):not([multiple]),
   }
 
   .form-inline .form-check-input,
-  .search-form .form-check-input {
+  .search-form .form-check-input,
+  .form-inline .ss-q-radio,
+  .search-form .ss-q-radio {
     position: relative;
     margin-top: 0;
     margin-right: 0.25rem;
@@ -4612,14 +4713,21 @@ select.form-control-lg:not([size]):not([multiple]),
   }
 
   .form-inline .has-feedback .form-control-feedback,
-  .search-form .has-feedback .form-control-feedback {
+  .search-form .has-feedback .form-control-feedback,
+  .form-inline .has-feedback .errorheader b,
+  .errorheader .form-inline .has-feedback b,
+  .search-form .has-feedback .errorheader b,
+  .errorheader .search-form .has-feedback b {
     top: 0;
   }
 }
 
 .btn,
 .comment-form input[type="submit"],
-.search-form .search-submit {
+.search-form .search-submit,
+#ss-back-button,
+#ss-forward-button,
+#ss-submit {
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;
@@ -4642,18 +4750,30 @@ select.form-control-lg:not([size]):not([multiple]),
 .btn:focus,
 .comment-form input[type="submit"]:focus,
 .search-form .search-submit:focus,
+#ss-back-button:focus,
+#ss-forward-button:focus,
+#ss-submit:focus,
 .btn:hover,
 .comment-form input[type="submit"]:hover,
-.search-form .search-submit:hover {
+.search-form .search-submit:hover,
+#ss-back-button:hover,
+#ss-forward-button:hover,
+#ss-submit:hover {
   text-decoration: none;
 }
 
 .btn:focus,
 .comment-form input[type="submit"]:focus,
 .search-form .search-submit:focus,
+#ss-back-button:focus,
+#ss-forward-button:focus,
+#ss-submit:focus,
 .btn.focus,
 .comment-form input.focus[type="submit"],
-.search-form .focus.search-submit {
+.search-form .focus.search-submit,
+.focus#ss-back-button,
+.focus#ss-forward-button,
+.focus#ss-submit {
   outline: 0;
   box-shadow: 0 0 0 2px rgba(135, 1, 172, 0.25);
 }
@@ -4661,9 +4781,15 @@ select.form-control-lg:not([size]):not([multiple]),
 .btn.disabled,
 .comment-form input.disabled[type="submit"],
 .search-form .disabled.search-submit,
+.disabled#ss-back-button,
+.disabled#ss-forward-button,
+.disabled#ss-submit,
 .btn:disabled,
 .comment-form input[type="submit"]:disabled,
-.search-form .search-submit:disabled {
+.search-form .search-submit:disabled,
+#ss-back-button:disabled,
+#ss-forward-button:disabled,
+#ss-submit:disabled {
   cursor: not-allowed;
   opacity: .65;
 }
@@ -4671,30 +4797,44 @@ select.form-control-lg:not([size]):not([multiple]),
 .btn:active,
 .comment-form input[type="submit"]:active,
 .search-form .search-submit:active,
+#ss-back-button:active,
+#ss-forward-button:active,
+#ss-submit:active,
 .btn.active,
 .comment-form input.active[type="submit"],
-.search-form .active.search-submit {
+.search-form .active.search-submit,
+.active#ss-back-button,
+.active#ss-forward-button,
+.active#ss-submit {
   background-image: none;
 }
 
 a.btn.disabled,
 .search-form a.disabled.search-submit,
+a.disabled#ss-back-button,
+a.disabled#ss-forward-button,
+a.disabled#ss-submit,
 fieldset[disabled] a.btn,
 fieldset[disabled] .search-form a.search-submit,
 .search-form
-fieldset[disabled] a.search-submit {
+fieldset[disabled] a.search-submit,
+fieldset[disabled] a#ss-back-button,
+fieldset[disabled] a#ss-forward-button,
+fieldset[disabled] a#ss-submit {
   pointer-events: none;
 }
 
 .btn-primary,
-.comment-form input[type="submit"] {
+.comment-form input[type="submit"],
+#ss-submit {
   color: #fff;
   background-color: #8701ac;
   border-color: #8701ac;
 }
 
 .btn-primary:hover,
-.comment-form input[type="submit"]:hover {
+.comment-form input[type="submit"]:hover,
+#ss-submit:hover {
   color: #fff;
   background-color: #5f0179;
   border-color: #57006f;
@@ -4702,26 +4842,33 @@ fieldset[disabled] a.search-submit {
 
 .btn-primary:focus,
 .comment-form input[type="submit"]:focus,
+#ss-submit:focus,
 .btn-primary.focus,
-.comment-form input.focus[type="submit"] {
+.comment-form input.focus[type="submit"],
+.focus#ss-submit {
   box-shadow: 0 0 0 2px rgba(135, 1, 172, 0.5);
 }
 
 .btn-primary.disabled,
 .comment-form input.disabled[type="submit"],
+.disabled#ss-submit,
 .btn-primary:disabled,
-.comment-form input[type="submit"]:disabled {
+.comment-form input[type="submit"]:disabled,
+#ss-submit:disabled {
   background-color: #8701ac;
   border-color: #8701ac;
 }
 
 .btn-primary:active,
 .comment-form input[type="submit"]:active,
+#ss-submit:active,
 .btn-primary.active,
 .comment-form input.active[type="submit"],
+.active#ss-submit,
 .show > .btn-primary.dropdown-toggle,
 .comment-form
-  .show > input.dropdown-toggle[type="submit"] {
+  .show > input.dropdown-toggle[type="submit"],
+.show > .dropdown-toggle#ss-submit {
   color: #fff;
   background-color: #5f0179;
   background-image: none;
@@ -4729,14 +4876,18 @@ fieldset[disabled] a.search-submit {
 }
 
 .btn-secondary,
-.search-form .search-submit {
+.search-form .search-submit,
+#ss-back-button,
+#ss-forward-button {
   color: #292b2c;
   background-color: #fff;
   border-color: #ccc;
 }
 
 .btn-secondary:hover,
-.search-form .search-submit:hover {
+.search-form .search-submit:hover,
+#ss-back-button:hover,
+#ss-forward-button:hover {
   color: #292b2c;
   background-color: #e6e6e6;
   border-color: #adadad;
@@ -4744,26 +4895,40 @@ fieldset[disabled] a.search-submit {
 
 .btn-secondary:focus,
 .search-form .search-submit:focus,
+#ss-back-button:focus,
+#ss-forward-button:focus,
 .btn-secondary.focus,
-.search-form .focus.search-submit {
+.search-form .focus.search-submit,
+.focus#ss-back-button,
+.focus#ss-forward-button {
   box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.5);
 }
 
 .btn-secondary.disabled,
 .search-form .disabled.search-submit,
+.disabled#ss-back-button,
+.disabled#ss-forward-button,
 .btn-secondary:disabled,
-.search-form .search-submit:disabled {
+.search-form .search-submit:disabled,
+#ss-back-button:disabled,
+#ss-forward-button:disabled {
   background-color: #fff;
   border-color: #ccc;
 }
 
 .btn-secondary:active,
 .search-form .search-submit:active,
+#ss-back-button:active,
+#ss-forward-button:active,
 .btn-secondary.active,
 .search-form .active.search-submit,
+.active#ss-back-button,
+.active#ss-forward-button,
 .show > .btn-secondary.dropdown-toggle,
 .search-form
-  .show > .dropdown-toggle.search-submit {
+  .show > .dropdown-toggle.search-submit,
+.show > .dropdown-toggle#ss-back-button,
+.show > .dropdown-toggle#ss-forward-button {
   color: #292b2c;
   background-color: #e6e6e6;
   background-image: none;
@@ -5132,7 +5297,10 @@ fieldset[disabled] a.search-submit {
 .btn-lg,
 .btn-group-lg > .btn,
 .comment-form .btn-group-lg > input[type="submit"],
-.search-form .btn-group-lg > .search-submit {
+.search-form .btn-group-lg > .search-submit,
+.btn-group-lg > #ss-back-button,
+.btn-group-lg > #ss-forward-button,
+.btn-group-lg > #ss-submit {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
@@ -5141,7 +5309,10 @@ fieldset[disabled] a.search-submit {
 .btn-sm,
 .btn-group-sm > .btn,
 .comment-form .btn-group-sm > input[type="submit"],
-.search-form .btn-group-sm > .search-submit {
+.search-form .btn-group-sm > .search-submit,
+.btn-group-sm > #ss-back-button,
+.btn-group-sm > #ss-forward-button,
+.btn-group-sm > #ss-submit {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
@@ -5339,11 +5510,17 @@ tbody.collapse.show {
 .btn-group > .btn,
 .comment-form .btn-group > input[type="submit"],
 .search-form .btn-group > .search-submit,
+.btn-group > #ss-back-button,
+.btn-group > #ss-forward-button,
+.btn-group > #ss-submit,
 .btn-group-vertical > .btn,
 .comment-form
   .btn-group-vertical > input[type="submit"],
 .search-form
-  .btn-group-vertical > .search-submit {
+  .btn-group-vertical > .search-submit,
+.btn-group-vertical > #ss-back-button,
+.btn-group-vertical > #ss-forward-button,
+.btn-group-vertical > #ss-submit {
   position: relative;
   -webkit-box-flex: 0;
       -ms-flex: 0 1 auto;
@@ -5353,38 +5530,62 @@ tbody.collapse.show {
 .btn-group > .btn:hover,
 .comment-form .btn-group > input[type="submit"]:hover,
 .search-form .btn-group > .search-submit:hover,
+.btn-group > #ss-back-button:hover,
+.btn-group > #ss-forward-button:hover,
+.btn-group > #ss-submit:hover,
 .btn-group-vertical > .btn:hover,
 .comment-form
     .btn-group-vertical > input[type="submit"]:hover,
 .search-form
-    .btn-group-vertical > .search-submit:hover {
+    .btn-group-vertical > .search-submit:hover,
+.btn-group-vertical > #ss-back-button:hover,
+.btn-group-vertical > #ss-forward-button:hover,
+.btn-group-vertical > #ss-submit:hover {
   z-index: 2;
 }
 
 .btn-group > .btn:focus,
 .comment-form .btn-group > input[type="submit"]:focus,
 .search-form .btn-group > .search-submit:focus,
+.btn-group > #ss-back-button:focus,
+.btn-group > #ss-forward-button:focus,
+.btn-group > #ss-submit:focus,
 .btn-group > .btn:active,
 .comment-form .btn-group > input[type="submit"]:active,
 .search-form .btn-group > .search-submit:active,
+.btn-group > #ss-back-button:active,
+.btn-group > #ss-forward-button:active,
+.btn-group > #ss-submit:active,
 .btn-group > .btn.active,
 .comment-form .btn-group > input.active[type="submit"],
 .search-form .btn-group > .active.search-submit,
+.btn-group > .active#ss-back-button,
+.btn-group > .active#ss-forward-button,
+.btn-group > .active#ss-submit,
 .btn-group-vertical > .btn:focus,
 .comment-form
     .btn-group-vertical > input[type="submit"]:focus,
 .search-form
     .btn-group-vertical > .search-submit:focus,
+.btn-group-vertical > #ss-back-button:focus,
+.btn-group-vertical > #ss-forward-button:focus,
+.btn-group-vertical > #ss-submit:focus,
 .btn-group-vertical > .btn:active,
 .comment-form
     .btn-group-vertical > input[type="submit"]:active,
 .search-form
     .btn-group-vertical > .search-submit:active,
+.btn-group-vertical > #ss-back-button:active,
+.btn-group-vertical > #ss-forward-button:active,
+.btn-group-vertical > #ss-submit:active,
 .btn-group-vertical > .btn.active,
 .comment-form
     .btn-group-vertical > input.active[type="submit"],
 .search-form
-    .btn-group-vertical > .active.search-submit {
+    .btn-group-vertical > .active.search-submit,
+.btn-group-vertical > .active#ss-back-button,
+.btn-group-vertical > .active#ss-forward-button,
+.btn-group-vertical > .active#ss-submit {
   z-index: 2;
 }
 
@@ -5393,6 +5594,9 @@ tbody.collapse.show {
 .comment-form .btn-group input[type="submit"] + .btn,
 .btn-group .search-form .search-submit + .btn,
 .search-form .btn-group .search-submit + .btn,
+.btn-group #ss-back-button + .btn,
+.btn-group #ss-forward-button + .btn,
+.btn-group #ss-submit + .btn,
 .btn-group .comment-form .btn + input[type="submit"],
 .comment-form .btn-group .btn + input[type="submit"],
 .btn-group .comment-form input[type="submit"] + input[type="submit"],
@@ -5401,6 +5605,12 @@ tbody.collapse.show {
 .comment-form .btn-group .search-form .search-submit + input[type="submit"],
 .search-form .btn-group .comment-form .search-submit + input[type="submit"],
 .comment-form .search-form .btn-group .search-submit + input[type="submit"],
+.btn-group .comment-form #ss-back-button + input[type="submit"],
+.comment-form .btn-group #ss-back-button + input[type="submit"],
+.btn-group .comment-form #ss-forward-button + input[type="submit"],
+.comment-form .btn-group #ss-forward-button + input[type="submit"],
+.btn-group .comment-form #ss-submit + input[type="submit"],
+.comment-form .btn-group #ss-submit + input[type="submit"],
 .btn-group .search-form .btn + .search-submit,
 .search-form .btn-group .btn + .search-submit,
 .btn-group .comment-form .search-form input[type="submit"] + .search-submit,
@@ -5409,6 +5619,36 @@ tbody.collapse.show {
 .search-form .comment-form .btn-group input[type="submit"] + .search-submit,
 .btn-group .search-form .search-submit + .search-submit,
 .search-form .btn-group .search-submit + .search-submit,
+.btn-group .search-form #ss-back-button + .search-submit,
+.search-form .btn-group #ss-back-button + .search-submit,
+.btn-group .search-form #ss-forward-button + .search-submit,
+.search-form .btn-group #ss-forward-button + .search-submit,
+.btn-group .search-form #ss-submit + .search-submit,
+.search-form .btn-group #ss-submit + .search-submit,
+.btn-group .btn + #ss-back-button,
+.btn-group .comment-form input[type="submit"] + #ss-back-button,
+.comment-form .btn-group input[type="submit"] + #ss-back-button,
+.btn-group .search-form .search-submit + #ss-back-button,
+.search-form .btn-group .search-submit + #ss-back-button,
+.btn-group #ss-back-button + #ss-back-button,
+.btn-group #ss-forward-button + #ss-back-button,
+.btn-group #ss-submit + #ss-back-button,
+.btn-group .btn + #ss-forward-button,
+.btn-group .comment-form input[type="submit"] + #ss-forward-button,
+.comment-form .btn-group input[type="submit"] + #ss-forward-button,
+.btn-group .search-form .search-submit + #ss-forward-button,
+.search-form .btn-group .search-submit + #ss-forward-button,
+.btn-group #ss-back-button + #ss-forward-button,
+.btn-group #ss-forward-button + #ss-forward-button,
+.btn-group #ss-submit + #ss-forward-button,
+.btn-group .btn + #ss-submit,
+.btn-group .comment-form input[type="submit"] + #ss-submit,
+.comment-form .btn-group input[type="submit"] + #ss-submit,
+.btn-group .search-form .search-submit + #ss-submit,
+.search-form .btn-group .search-submit + #ss-submit,
+.btn-group #ss-back-button + #ss-submit,
+.btn-group #ss-forward-button + #ss-submit,
+.btn-group #ss-submit + #ss-submit,
 .btn-group .btn + .btn-group,
 .btn-group .comment-form input[type="submit"] + .btn-group,
 .comment-form
@@ -5416,6 +5656,9 @@ tbody.collapse.show {
 .btn-group .search-form .search-submit + .btn-group,
 .search-form
   .btn-group .search-submit + .btn-group,
+.btn-group #ss-back-button + .btn-group,
+.btn-group #ss-forward-button + .btn-group,
+.btn-group #ss-submit + .btn-group,
 .btn-group .btn-group + .btn,
 .btn-group .comment-form .btn-group + input[type="submit"],
 .comment-form
@@ -5423,6 +5666,9 @@ tbody.collapse.show {
 .btn-group .search-form .btn-group + .search-submit,
 .search-form
   .btn-group .btn-group + .search-submit,
+.btn-group .btn-group + #ss-back-button,
+.btn-group .btn-group + #ss-forward-button,
+.btn-group .btn-group + #ss-submit,
 .btn-group .btn-group + .btn-group,
 .btn-group-vertical .btn + .btn,
 .btn-group-vertical .comment-form input[type="submit"] + .btn,
@@ -5431,6 +5677,9 @@ tbody.collapse.show {
 .btn-group-vertical .search-form .search-submit + .btn,
 .search-form
   .btn-group-vertical .search-submit + .btn,
+.btn-group-vertical #ss-back-button + .btn,
+.btn-group-vertical #ss-forward-button + .btn,
+.btn-group-vertical #ss-submit + .btn,
 .btn-group-vertical .comment-form .btn + input[type="submit"],
 .comment-form
   .btn-group-vertical .btn + input[type="submit"],
@@ -5444,6 +5693,15 @@ tbody.collapse.show {
   .btn-group-vertical .comment-form .search-submit + input[type="submit"],
 .comment-form .search-form
   .btn-group-vertical .search-submit + input[type="submit"],
+.btn-group-vertical .comment-form #ss-back-button + input[type="submit"],
+.comment-form
+  .btn-group-vertical #ss-back-button + input[type="submit"],
+.btn-group-vertical .comment-form #ss-forward-button + input[type="submit"],
+.comment-form
+  .btn-group-vertical #ss-forward-button + input[type="submit"],
+.btn-group-vertical .comment-form #ss-submit + input[type="submit"],
+.comment-form
+  .btn-group-vertical #ss-submit + input[type="submit"],
 .btn-group-vertical .search-form .btn + .search-submit,
 .search-form
   .btn-group-vertical .btn + .search-submit,
@@ -5457,6 +5715,45 @@ tbody.collapse.show {
 .btn-group-vertical .search-form .search-submit + .search-submit,
 .search-form
   .btn-group-vertical .search-submit + .search-submit,
+.btn-group-vertical .search-form #ss-back-button + .search-submit,
+.search-form
+  .btn-group-vertical #ss-back-button + .search-submit,
+.btn-group-vertical .search-form #ss-forward-button + .search-submit,
+.search-form
+  .btn-group-vertical #ss-forward-button + .search-submit,
+.btn-group-vertical .search-form #ss-submit + .search-submit,
+.search-form
+  .btn-group-vertical #ss-submit + .search-submit,
+.btn-group-vertical .btn + #ss-back-button,
+.btn-group-vertical .comment-form input[type="submit"] + #ss-back-button,
+.comment-form
+  .btn-group-vertical input[type="submit"] + #ss-back-button,
+.btn-group-vertical .search-form .search-submit + #ss-back-button,
+.search-form
+  .btn-group-vertical .search-submit + #ss-back-button,
+.btn-group-vertical #ss-back-button + #ss-back-button,
+.btn-group-vertical #ss-forward-button + #ss-back-button,
+.btn-group-vertical #ss-submit + #ss-back-button,
+.btn-group-vertical .btn + #ss-forward-button,
+.btn-group-vertical .comment-form input[type="submit"] + #ss-forward-button,
+.comment-form
+  .btn-group-vertical input[type="submit"] + #ss-forward-button,
+.btn-group-vertical .search-form .search-submit + #ss-forward-button,
+.search-form
+  .btn-group-vertical .search-submit + #ss-forward-button,
+.btn-group-vertical #ss-back-button + #ss-forward-button,
+.btn-group-vertical #ss-forward-button + #ss-forward-button,
+.btn-group-vertical #ss-submit + #ss-forward-button,
+.btn-group-vertical .btn + #ss-submit,
+.btn-group-vertical .comment-form input[type="submit"] + #ss-submit,
+.comment-form
+  .btn-group-vertical input[type="submit"] + #ss-submit,
+.btn-group-vertical .search-form .search-submit + #ss-submit,
+.search-form
+  .btn-group-vertical .search-submit + #ss-submit,
+.btn-group-vertical #ss-back-button + #ss-submit,
+.btn-group-vertical #ss-forward-button + #ss-submit,
+.btn-group-vertical #ss-submit + #ss-submit,
 .btn-group-vertical .btn + .btn-group,
 .btn-group-vertical .comment-form input[type="submit"] + .btn-group,
 .comment-form
@@ -5464,6 +5761,9 @@ tbody.collapse.show {
 .btn-group-vertical .search-form .search-submit + .btn-group,
 .search-form
   .btn-group-vertical .search-submit + .btn-group,
+.btn-group-vertical #ss-back-button + .btn-group,
+.btn-group-vertical #ss-forward-button + .btn-group,
+.btn-group-vertical #ss-submit + .btn-group,
 .btn-group-vertical .btn-group + .btn,
 .btn-group-vertical .comment-form .btn-group + input[type="submit"],
 .comment-form
@@ -5471,6 +5771,9 @@ tbody.collapse.show {
 .btn-group-vertical .search-form .btn-group + .search-submit,
 .search-form
   .btn-group-vertical .btn-group + .search-submit,
+.btn-group-vertical .btn-group + #ss-back-button,
+.btn-group-vertical .btn-group + #ss-forward-button,
+.btn-group-vertical .btn-group + #ss-submit,
 .btn-group-vertical .btn-group + .btn-group {
   margin-left: -1px;
 }
@@ -5490,19 +5793,28 @@ tbody.collapse.show {
 
 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle),
 .comment-form .btn-group > input[type="submit"]:not(:first-child):not(:last-child):not(.dropdown-toggle),
-.search-form .btn-group > .search-submit:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.search-form .btn-group > .search-submit:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.btn-group > #ss-back-button:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.btn-group > #ss-forward-button:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.btn-group > #ss-submit:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
 }
 
 .btn-group > .btn:first-child,
 .comment-form .btn-group > input[type="submit"]:first-child,
-.search-form .btn-group > .search-submit:first-child {
+.search-form .btn-group > .search-submit:first-child,
+.btn-group > #ss-back-button:first-child,
+.btn-group > #ss-forward-button:first-child,
+.btn-group > #ss-submit:first-child {
   margin-left: 0;
 }
 
 .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle),
 .comment-form .btn-group > input[type="submit"]:first-child:not(:last-child):not(.dropdown-toggle),
-.search-form .btn-group > .search-submit:first-child:not(:last-child):not(.dropdown-toggle) {
+.search-form .btn-group > .search-submit:first-child:not(:last-child):not(.dropdown-toggle),
+.btn-group > #ss-back-button:first-child:not(:last-child):not(.dropdown-toggle),
+.btn-group > #ss-forward-button:first-child:not(:last-child):not(.dropdown-toggle),
+.btn-group > #ss-submit:first-child:not(:last-child):not(.dropdown-toggle) {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -5510,6 +5822,9 @@ tbody.collapse.show {
 .btn-group > .btn:last-child:not(:first-child),
 .comment-form .btn-group > input[type="submit"]:last-child:not(:first-child),
 .search-form .btn-group > .search-submit:last-child:not(:first-child),
+.btn-group > #ss-back-button:last-child:not(:first-child),
+.btn-group > #ss-forward-button:last-child:not(:first-child),
+.btn-group > #ss-submit:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -5521,13 +5836,19 @@ tbody.collapse.show {
 
 .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn,
 .comment-form .btn-group > .btn-group:not(:first-child):not(:last-child) > input[type="submit"],
-.search-form .btn-group > .btn-group:not(:first-child):not(:last-child) > .search-submit {
+.search-form .btn-group > .btn-group:not(:first-child):not(:last-child) > .search-submit,
+.btn-group > .btn-group:not(:first-child):not(:last-child) > #ss-back-button,
+.btn-group > .btn-group:not(:first-child):not(:last-child) > #ss-forward-button,
+.btn-group > .btn-group:not(:first-child):not(:last-child) > #ss-submit {
   border-radius: 0;
 }
 
 .btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,
 .comment-form .btn-group > .btn-group:first-child:not(:last-child) > input[type="submit"]:last-child,
 .search-form .btn-group > .btn-group:first-child:not(:last-child) > .search-submit:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > #ss-back-button:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > #ss-forward-button:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > #ss-submit:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
@@ -5535,7 +5856,10 @@ tbody.collapse.show {
 
 .btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child,
 .comment-form .btn-group > .btn-group:last-child:not(:first-child) > input[type="submit"]:first-child,
-.search-form .btn-group > .btn-group:last-child:not(:first-child) > .search-submit:first-child {
+.search-form .btn-group > .btn-group:last-child:not(:first-child) > .search-submit:first-child,
+.btn-group > .btn-group:last-child:not(:first-child) > #ss-back-button:first-child,
+.btn-group > .btn-group:last-child:not(:first-child) > #ss-forward-button:first-child,
+.btn-group > .btn-group:last-child:not(:first-child) > #ss-submit:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5547,21 +5871,30 @@ tbody.collapse.show {
 
 .btn + .dropdown-toggle-split,
 .comment-form input[type="submit"] + .dropdown-toggle-split,
-.search-form .search-submit + .dropdown-toggle-split {
+.search-form .search-submit + .dropdown-toggle-split,
+#ss-back-button + .dropdown-toggle-split,
+#ss-forward-button + .dropdown-toggle-split,
+#ss-submit + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem;
 }
 
 .btn + .dropdown-toggle-split::after,
 .comment-form input[type="submit"] + .dropdown-toggle-split::after,
-.search-form .search-submit + .dropdown-toggle-split::after {
+.search-form .search-submit + .dropdown-toggle-split::after,
+#ss-back-button + .dropdown-toggle-split::after,
+#ss-forward-button + .dropdown-toggle-split::after,
+#ss-submit + .dropdown-toggle-split::after {
   margin-left: 0;
 }
 
 .btn-sm + .dropdown-toggle-split,
 .btn-group-sm > .btn + .dropdown-toggle-split,
 .comment-form .btn-group-sm > input[type="submit"] + .dropdown-toggle-split,
-.search-form .btn-group-sm > .search-submit + .dropdown-toggle-split {
+.search-form .btn-group-sm > .search-submit + .dropdown-toggle-split,
+.btn-group-sm > #ss-back-button + .dropdown-toggle-split,
+.btn-group-sm > #ss-forward-button + .dropdown-toggle-split,
+.btn-group-sm > #ss-submit + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem;
 }
@@ -5569,7 +5902,10 @@ tbody.collapse.show {
 .btn-lg + .dropdown-toggle-split,
 .btn-group-lg > .btn + .dropdown-toggle-split,
 .comment-form .btn-group-lg > input[type="submit"] + .dropdown-toggle-split,
-.search-form .btn-group-lg > .search-submit + .dropdown-toggle-split {
+.search-form .btn-group-lg > .search-submit + .dropdown-toggle-split,
+.btn-group-lg > #ss-back-button + .dropdown-toggle-split,
+.btn-group-lg > #ss-forward-button + .dropdown-toggle-split,
+.btn-group-lg > #ss-submit + .dropdown-toggle-split {
   padding-right: 1.125rem;
   padding-left: 1.125rem;
 }
@@ -5595,6 +5931,9 @@ tbody.collapse.show {
 .comment-form .btn-group-vertical input[type="submit"],
 .btn-group-vertical .search-form .search-submit,
 .search-form .btn-group-vertical .search-submit,
+.btn-group-vertical #ss-back-button,
+.btn-group-vertical #ss-forward-button,
+.btn-group-vertical #ss-submit,
 .btn-group-vertical .btn-group {
   width: 100%;
 }
@@ -5602,24 +5941,57 @@ tbody.collapse.show {
 .btn-group-vertical > .btn + .btn,
 .comment-form .btn-group-vertical > input[type="submit"] + .btn,
 .search-form .btn-group-vertical > .search-submit + .btn,
+.btn-group-vertical > #ss-back-button + .btn,
+.btn-group-vertical > #ss-forward-button + .btn,
+.btn-group-vertical > #ss-submit + .btn,
 .comment-form .btn-group-vertical > .btn + input[type="submit"],
 .comment-form .btn-group-vertical > input[type="submit"] + input[type="submit"],
 .search-form .comment-form .btn-group-vertical > .search-submit + input[type="submit"],
 .comment-form .search-form .btn-group-vertical > .search-submit + input[type="submit"],
+.comment-form .btn-group-vertical > #ss-back-button + input[type="submit"],
+.comment-form .btn-group-vertical > #ss-forward-button + input[type="submit"],
+.comment-form .btn-group-vertical > #ss-submit + input[type="submit"],
 .search-form .btn-group-vertical > .btn + .search-submit,
 .comment-form .search-form .btn-group-vertical > input[type="submit"] + .search-submit,
 .search-form .comment-form .btn-group-vertical > input[type="submit"] + .search-submit,
 .search-form .btn-group-vertical > .search-submit + .search-submit,
+.search-form .btn-group-vertical > #ss-back-button + .search-submit,
+.search-form .btn-group-vertical > #ss-forward-button + .search-submit,
+.search-form .btn-group-vertical > #ss-submit + .search-submit,
+.btn-group-vertical > .btn + #ss-back-button,
+.comment-form .btn-group-vertical > input[type="submit"] + #ss-back-button,
+.search-form .btn-group-vertical > .search-submit + #ss-back-button,
+.btn-group-vertical > #ss-back-button + #ss-back-button,
+.btn-group-vertical > #ss-forward-button + #ss-back-button,
+.btn-group-vertical > #ss-submit + #ss-back-button,
+.btn-group-vertical > .btn + #ss-forward-button,
+.comment-form .btn-group-vertical > input[type="submit"] + #ss-forward-button,
+.search-form .btn-group-vertical > .search-submit + #ss-forward-button,
+.btn-group-vertical > #ss-back-button + #ss-forward-button,
+.btn-group-vertical > #ss-forward-button + #ss-forward-button,
+.btn-group-vertical > #ss-submit + #ss-forward-button,
+.btn-group-vertical > .btn + #ss-submit,
+.comment-form .btn-group-vertical > input[type="submit"] + #ss-submit,
+.search-form .btn-group-vertical > .search-submit + #ss-submit,
+.btn-group-vertical > #ss-back-button + #ss-submit,
+.btn-group-vertical > #ss-forward-button + #ss-submit,
+.btn-group-vertical > #ss-submit + #ss-submit,
 .btn-group-vertical > .btn + .btn-group,
 .comment-form
   .btn-group-vertical > input[type="submit"] + .btn-group,
 .search-form
   .btn-group-vertical > .search-submit + .btn-group,
+.btn-group-vertical > #ss-back-button + .btn-group,
+.btn-group-vertical > #ss-forward-button + .btn-group,
+.btn-group-vertical > #ss-submit + .btn-group,
 .btn-group-vertical > .btn-group + .btn,
 .comment-form
   .btn-group-vertical > .btn-group + input[type="submit"],
 .search-form
   .btn-group-vertical > .btn-group + .search-submit,
+.btn-group-vertical > .btn-group + #ss-back-button,
+.btn-group-vertical > .btn-group + #ss-forward-button,
+.btn-group-vertical > .btn-group + #ss-submit,
 .btn-group-vertical > .btn-group + .btn-group {
   margin-top: -1px;
   margin-left: 0;
@@ -5627,33 +5999,48 @@ tbody.collapse.show {
 
 .btn-group-vertical > .btn:not(:first-child):not(:last-child),
 .comment-form .btn-group-vertical > input[type="submit"]:not(:first-child):not(:last-child),
-.search-form .btn-group-vertical > .search-submit:not(:first-child):not(:last-child) {
+.search-form .btn-group-vertical > .search-submit:not(:first-child):not(:last-child),
+.btn-group-vertical > #ss-back-button:not(:first-child):not(:last-child),
+.btn-group-vertical > #ss-forward-button:not(:first-child):not(:last-child),
+.btn-group-vertical > #ss-submit:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 
 .btn-group-vertical > .btn:first-child:not(:last-child),
 .comment-form .btn-group-vertical > input[type="submit"]:first-child:not(:last-child),
-.search-form .btn-group-vertical > .search-submit:first-child:not(:last-child) {
+.search-form .btn-group-vertical > .search-submit:first-child:not(:last-child),
+.btn-group-vertical > #ss-back-button:first-child:not(:last-child),
+.btn-group-vertical > #ss-forward-button:first-child:not(:last-child),
+.btn-group-vertical > #ss-submit:first-child:not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 .btn-group-vertical > .btn:last-child:not(:first-child),
 .comment-form .btn-group-vertical > input[type="submit"]:last-child:not(:first-child),
-.search-form .btn-group-vertical > .search-submit:last-child:not(:first-child) {
+.search-form .btn-group-vertical > .search-submit:last-child:not(:first-child),
+.btn-group-vertical > #ss-back-button:last-child:not(:first-child),
+.btn-group-vertical > #ss-forward-button:last-child:not(:first-child),
+.btn-group-vertical > #ss-submit:last-child:not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
 
 .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn,
 .comment-form .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > input[type="submit"],
-.search-form .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .search-submit {
+.search-form .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .search-submit,
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > #ss-back-button,
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > #ss-forward-button,
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > #ss-submit {
   border-radius: 0;
 }
 
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child,
 .comment-form .btn-group-vertical > .btn-group:first-child:not(:last-child) > input[type="submit"]:last-child,
 .search-form .btn-group-vertical > .btn-group:first-child:not(:last-child) > .search-submit:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > #ss-back-button:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > #ss-forward-button:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > #ss-submit:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -5661,7 +6048,10 @@ tbody.collapse.show {
 
 .btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child,
 .comment-form .btn-group-vertical > .btn-group:last-child:not(:first-child) > input[type="submit"]:first-child,
-.search-form .btn-group-vertical > .btn-group:last-child:not(:first-child) > .search-submit:first-child {
+.search-form .btn-group-vertical > .btn-group:last-child:not(:first-child) > .search-submit:first-child,
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > #ss-back-button:first-child,
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > #ss-forward-button:first-child,
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > #ss-submit:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5669,21 +6059,33 @@ tbody.collapse.show {
 [data-toggle="buttons"] > .btn input[type="radio"],
 .comment-form [data-toggle="buttons"] > input[type="submit"] input[type="radio"],
 .search-form [data-toggle="buttons"] > .search-submit input[type="radio"],
+[data-toggle="buttons"] > #ss-back-button input[type="radio"],
+[data-toggle="buttons"] > #ss-forward-button input[type="radio"],
+[data-toggle="buttons"] > #ss-submit input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
 .comment-form
 [data-toggle="buttons"] > input[type="submit"] input[type="checkbox"],
 .search-form
 [data-toggle="buttons"] > .search-submit input[type="checkbox"],
+[data-toggle="buttons"] > #ss-back-button input[type="checkbox"],
+[data-toggle="buttons"] > #ss-forward-button input[type="checkbox"],
+[data-toggle="buttons"] > #ss-submit input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
 .comment-form
 [data-toggle="buttons"] > .btn-group > input[type="submit"] input[type="radio"],
 .search-form
 [data-toggle="buttons"] > .btn-group > .search-submit input[type="radio"],
+[data-toggle="buttons"] > .btn-group > #ss-back-button input[type="radio"],
+[data-toggle="buttons"] > .btn-group > #ss-forward-button input[type="radio"],
+[data-toggle="buttons"] > .btn-group > #ss-submit input[type="radio"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"],
 .comment-form
 [data-toggle="buttons"] > .btn-group > input[type="submit"] input[type="checkbox"],
 .search-form
-[data-toggle="buttons"] > .btn-group > .search-submit input[type="checkbox"] {
+[data-toggle="buttons"] > .btn-group > .search-submit input[type="checkbox"],
+[data-toggle="buttons"] > .btn-group > #ss-back-button input[type="checkbox"],
+[data-toggle="buttons"] > .btn-group > #ss-forward-button input[type="checkbox"],
+[data-toggle="buttons"] > .btn-group > #ss-submit input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
@@ -5710,7 +6112,9 @@ tbody.collapse.show {
   .comment-form textarea,
 .comment-form .input-group textarea,
 .input-group .search-form .search-field,
-.search-form .input-group .search-field {
+.search-form .input-group .search-field,
+.input-group .errorheader,
+.input-group .ss-q-short {
   position: relative;
   z-index: 2;
   -webkit-box-flex: 1;
@@ -5734,6 +6138,8 @@ tbody.collapse.show {
 .comment-form .input-group textarea:focus,
 .input-group .search-form .search-field:focus,
 .search-form .input-group .search-field:focus,
+.input-group .errorheader:focus,
+.input-group .ss-q-short:focus,
 .input-group .form-control:active,
 .input-group .comment-form input[type="text"]:active,
 .comment-form .input-group input[type="text"]:active,
@@ -5748,6 +6154,8 @@ tbody.collapse.show {
 .comment-form .input-group textarea:active,
 .input-group .search-form .search-field:active,
 .search-form .input-group .search-field:active,
+.input-group .errorheader:active,
+.input-group .ss-q-short:active,
 .input-group .form-control:hover,
 .input-group .comment-form input[type="text"]:hover,
 .comment-form .input-group input[type="text"]:hover,
@@ -5761,7 +6169,9 @@ tbody.collapse.show {
     .comment-form textarea:hover,
 .comment-form .input-group textarea:hover,
 .input-group .search-form .search-field:hover,
-.search-form .input-group .search-field:hover {
+.search-form .input-group .search-field:hover,
+.input-group .errorheader:hover,
+.input-group .ss-q-short:hover {
   z-index: 3;
 }
 
@@ -5785,7 +6195,9 @@ tbody.collapse.show {
 .input-group textarea,
 .input-group .search-form .search-field,
 .search-form
-.input-group .search-field {
+.input-group .search-field,
+.input-group .errorheader,
+.input-group .ss-q-short {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -5818,7 +6230,9 @@ tbody.collapse.show {
   .input-group textarea:not(:first-child):not(:last-child),
 .input-group .search-form .search-field:not(:first-child):not(:last-child),
 .search-form
-  .input-group .search-field:not(:first-child):not(:last-child) {
+  .input-group .search-field:not(:first-child):not(:last-child),
+.input-group .errorheader:not(:first-child):not(:last-child),
+.input-group .ss-q-short:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 
@@ -5852,7 +6266,10 @@ tbody.collapse.show {
 .comment-form
   .input-group-sm > .input-group-btn > input.input-group-addon[type="submit"],
 .search-form
-  .input-group-sm > .input-group-btn > .input-group-addon.search-submit {
+  .input-group-sm > .input-group-btn > .input-group-addon.search-submit,
+.input-group-sm > .input-group-btn > .input-group-addon#ss-back-button,
+.input-group-sm > .input-group-btn > .input-group-addon#ss-forward-button,
+.input-group-sm > .input-group-btn > .input-group-addon#ss-submit {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem;
@@ -5869,7 +6286,10 @@ tbody.collapse.show {
 .comment-form
   .input-group-lg > .input-group-btn > input.input-group-addon[type="submit"],
 .search-form
-  .input-group-lg > .input-group-btn > .input-group-addon.search-submit {
+  .input-group-lg > .input-group-btn > .input-group-addon.search-submit,
+.input-group-lg > .input-group-btn > .input-group-addon#ss-back-button,
+.input-group-lg > .input-group-btn > .input-group-addon#ss-forward-button,
+.input-group-lg > .input-group-btn > .input-group-addon#ss-submit {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem;
@@ -5894,28 +6314,42 @@ tbody.collapse.show {
 .comment-form .input-group textarea:not(:last-child),
 .input-group .search-form .search-field:not(:last-child),
 .search-form .input-group .search-field:not(:last-child),
+.input-group .errorheader:not(:last-child),
+.input-group .ss-q-short:not(:last-child),
 .input-group-addon:not(:last-child),
 .input-group-btn:not(:last-child) > .btn,
 .comment-form
 .input-group-btn:not(:last-child) > input[type="submit"],
 .search-form
 .input-group-btn:not(:last-child) > .search-submit,
+.input-group-btn:not(:last-child) > #ss-back-button,
+.input-group-btn:not(:last-child) > #ss-forward-button,
+.input-group-btn:not(:last-child) > #ss-submit,
 .input-group-btn:not(:last-child) > .btn-group > .btn,
 .comment-form
 .input-group-btn:not(:last-child) > .btn-group > input[type="submit"],
 .search-form
 .input-group-btn:not(:last-child) > .btn-group > .search-submit,
+.input-group-btn:not(:last-child) > .btn-group > #ss-back-button,
+.input-group-btn:not(:last-child) > .btn-group > #ss-forward-button,
+.input-group-btn:not(:last-child) > .btn-group > #ss-submit,
 .input-group-btn:not(:last-child) > .dropdown-toggle,
 .input-group-btn:not(:first-child) > .btn:not(:last-child):not(.dropdown-toggle),
 .comment-form
 .input-group-btn:not(:first-child) > input[type="submit"]:not(:last-child):not(.dropdown-toggle),
 .search-form
 .input-group-btn:not(:first-child) > .search-submit:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:not(:first-child) > #ss-back-button:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:not(:first-child) > #ss-forward-button:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:not(:first-child) > #ss-submit:not(:last-child):not(.dropdown-toggle),
 .input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn,
 .comment-form
 .input-group-btn:not(:first-child) > .btn-group:not(:last-child) > input[type="submit"],
 .search-form
-.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .search-submit {
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .search-submit,
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > #ss-back-button,
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > #ss-forward-button,
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > #ss-submit {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
@@ -5938,28 +6372,42 @@ tbody.collapse.show {
 .comment-form .input-group textarea:not(:first-child),
 .input-group .search-form .search-field:not(:first-child),
 .search-form .input-group .search-field:not(:first-child),
+.input-group .errorheader:not(:first-child),
+.input-group .ss-q-short:not(:first-child),
 .input-group-addon:not(:first-child),
 .input-group-btn:not(:first-child) > .btn,
 .comment-form
 .input-group-btn:not(:first-child) > input[type="submit"],
 .search-form
 .input-group-btn:not(:first-child) > .search-submit,
+.input-group-btn:not(:first-child) > #ss-back-button,
+.input-group-btn:not(:first-child) > #ss-forward-button,
+.input-group-btn:not(:first-child) > #ss-submit,
 .input-group-btn:not(:first-child) > .btn-group > .btn,
 .comment-form
 .input-group-btn:not(:first-child) > .btn-group > input[type="submit"],
 .search-form
 .input-group-btn:not(:first-child) > .btn-group > .search-submit,
+.input-group-btn:not(:first-child) > .btn-group > #ss-back-button,
+.input-group-btn:not(:first-child) > .btn-group > #ss-forward-button,
+.input-group-btn:not(:first-child) > .btn-group > #ss-submit,
 .input-group-btn:not(:first-child) > .dropdown-toggle,
 .input-group-btn:not(:last-child) > .btn:not(:first-child),
 .comment-form
 .input-group-btn:not(:last-child) > input[type="submit"]:not(:first-child),
 .search-form
 .input-group-btn:not(:last-child) > .search-submit:not(:first-child),
+.input-group-btn:not(:last-child) > #ss-back-button:not(:first-child),
+.input-group-btn:not(:last-child) > #ss-forward-button:not(:first-child),
+.input-group-btn:not(:last-child) > #ss-submit:not(:first-child),
 .input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn,
 .comment-form
 .input-group-btn:not(:last-child) > .btn-group:not(:first-child) > input[type="submit"],
 .search-form
-.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .search-submit {
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .search-submit,
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > #ss-back-button,
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > #ss-forward-button,
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > #ss-submit {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
 }
@@ -5969,7 +6417,9 @@ tbody.collapse.show {
 .comment-form input[type="email"] + .input-group-addon:not(:first-child),
 .comment-form input[type="url"] + .input-group-addon:not(:first-child),
 .comment-form textarea + .input-group-addon:not(:first-child),
-.search-form .search-field + .input-group-addon:not(:first-child) {
+.search-form .search-field + .input-group-addon:not(:first-child),
+.errorheader + .input-group-addon:not(:first-child),
+.ss-q-short + .input-group-addon:not(:first-child) {
   border-left: 0;
 }
 
@@ -5981,7 +6431,10 @@ tbody.collapse.show {
 
 .input-group-btn > .btn,
 .comment-form .input-group-btn > input[type="submit"],
-.search-form .input-group-btn > .search-submit {
+.search-form .input-group-btn > .search-submit,
+.input-group-btn > #ss-back-button,
+.input-group-btn > #ss-forward-button,
+.input-group-btn > #ss-submit {
   position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -5991,32 +6444,71 @@ tbody.collapse.show {
 .input-group-btn > .btn + .btn,
 .comment-form .input-group-btn > input[type="submit"] + .btn,
 .search-form .input-group-btn > .search-submit + .btn,
+.input-group-btn > #ss-back-button + .btn,
+.input-group-btn > #ss-forward-button + .btn,
+.input-group-btn > #ss-submit + .btn,
 .comment-form .input-group-btn > .btn + input[type="submit"],
 .comment-form .input-group-btn > input[type="submit"] + input[type="submit"],
 .search-form .comment-form .input-group-btn > .search-submit + input[type="submit"],
 .comment-form .search-form .input-group-btn > .search-submit + input[type="submit"],
+.comment-form .input-group-btn > #ss-back-button + input[type="submit"],
+.comment-form .input-group-btn > #ss-forward-button + input[type="submit"],
+.comment-form .input-group-btn > #ss-submit + input[type="submit"],
 .search-form .input-group-btn > .btn + .search-submit,
 .comment-form .search-form .input-group-btn > input[type="submit"] + .search-submit,
 .search-form .comment-form .input-group-btn > input[type="submit"] + .search-submit,
-.search-form .input-group-btn > .search-submit + .search-submit {
+.search-form .input-group-btn > .search-submit + .search-submit,
+.search-form .input-group-btn > #ss-back-button + .search-submit,
+.search-form .input-group-btn > #ss-forward-button + .search-submit,
+.search-form .input-group-btn > #ss-submit + .search-submit,
+.input-group-btn > .btn + #ss-back-button,
+.comment-form .input-group-btn > input[type="submit"] + #ss-back-button,
+.search-form .input-group-btn > .search-submit + #ss-back-button,
+.input-group-btn > #ss-back-button + #ss-back-button,
+.input-group-btn > #ss-forward-button + #ss-back-button,
+.input-group-btn > #ss-submit + #ss-back-button,
+.input-group-btn > .btn + #ss-forward-button,
+.comment-form .input-group-btn > input[type="submit"] + #ss-forward-button,
+.search-form .input-group-btn > .search-submit + #ss-forward-button,
+.input-group-btn > #ss-back-button + #ss-forward-button,
+.input-group-btn > #ss-forward-button + #ss-forward-button,
+.input-group-btn > #ss-submit + #ss-forward-button,
+.input-group-btn > .btn + #ss-submit,
+.comment-form .input-group-btn > input[type="submit"] + #ss-submit,
+.search-form .input-group-btn > .search-submit + #ss-submit,
+.input-group-btn > #ss-back-button + #ss-submit,
+.input-group-btn > #ss-forward-button + #ss-submit,
+.input-group-btn > #ss-submit + #ss-submit {
   margin-left: -1px;
 }
 
 .input-group-btn > .btn:focus,
 .comment-form .input-group-btn > input[type="submit"]:focus,
 .search-form .input-group-btn > .search-submit:focus,
+.input-group-btn > #ss-back-button:focus,
+.input-group-btn > #ss-forward-button:focus,
+.input-group-btn > #ss-submit:focus,
 .input-group-btn > .btn:active,
 .comment-form .input-group-btn > input[type="submit"]:active,
 .search-form .input-group-btn > .search-submit:active,
+.input-group-btn > #ss-back-button:active,
+.input-group-btn > #ss-forward-button:active,
+.input-group-btn > #ss-submit:active,
 .input-group-btn > .btn:hover,
 .comment-form .input-group-btn > input[type="submit"]:hover,
-.search-form .input-group-btn > .search-submit:hover {
+.search-form .input-group-btn > .search-submit:hover,
+.input-group-btn > #ss-back-button:hover,
+.input-group-btn > #ss-forward-button:hover,
+.input-group-btn > #ss-submit:hover {
   z-index: 3;
 }
 
 .input-group-btn:not(:last-child) > .btn,
 .comment-form .input-group-btn:not(:last-child) > input[type="submit"],
 .search-form .input-group-btn:not(:last-child) > .search-submit,
+.input-group-btn:not(:last-child) > #ss-back-button,
+.input-group-btn:not(:last-child) > #ss-forward-button,
+.input-group-btn:not(:last-child) > #ss-submit,
 .input-group-btn:not(:last-child) > .btn-group {
   margin-right: -1px;
 }
@@ -6024,6 +6516,9 @@ tbody.collapse.show {
 .input-group-btn:not(:first-child) > .btn,
 .comment-form .input-group-btn:not(:first-child) > input[type="submit"],
 .search-form .input-group-btn:not(:first-child) > .search-submit,
+.input-group-btn:not(:first-child) > #ss-back-button,
+.input-group-btn:not(:first-child) > #ss-forward-button,
+.input-group-btn:not(:first-child) > #ss-submit,
 .input-group-btn:not(:first-child) > .btn-group {
   z-index: 2;
   margin-left: -1px;
@@ -6032,12 +6527,21 @@ tbody.collapse.show {
 .input-group-btn:not(:first-child) > .btn:focus,
 .comment-form .input-group-btn:not(:first-child) > input[type="submit"]:focus,
 .search-form .input-group-btn:not(:first-child) > .search-submit:focus,
+.input-group-btn:not(:first-child) > #ss-back-button:focus,
+.input-group-btn:not(:first-child) > #ss-forward-button:focus,
+.input-group-btn:not(:first-child) > #ss-submit:focus,
 .input-group-btn:not(:first-child) > .btn:active,
 .comment-form .input-group-btn:not(:first-child) > input[type="submit"]:active,
 .search-form .input-group-btn:not(:first-child) > .search-submit:active,
+.input-group-btn:not(:first-child) > #ss-back-button:active,
+.input-group-btn:not(:first-child) > #ss-forward-button:active,
+.input-group-btn:not(:first-child) > #ss-submit:active,
 .input-group-btn:not(:first-child) > .btn:hover,
 .comment-form .input-group-btn:not(:first-child) > input[type="submit"]:hover,
 .search-form .input-group-btn:not(:first-child) > .search-submit:hover,
+.input-group-btn:not(:first-child) > #ss-back-button:hover,
+.input-group-btn:not(:first-child) > #ss-forward-button:hover,
+.input-group-btn:not(:first-child) > #ss-submit:hover,
 .input-group-btn:not(:first-child) > .btn-group:focus,
 .input-group-btn:not(:first-child) > .btn-group:active,
 .input-group-btn:not(:first-child) > .btn-group:hover {
@@ -7376,7 +7880,10 @@ tbody.collapse.show {
 
 .btn .badge,
 .comment-form input[type="submit"] .badge,
-.search-form .search-submit .badge {
+.search-form .search-submit .badge,
+#ss-back-button .badge,
+#ss-forward-button .badge,
+#ss-submit .badge {
   position: relative;
   top: -1px;
 }
@@ -12080,12 +12587,15 @@ a.bg-inverse:hover {
   color: #fff !important;
 }
 
-.text-muted {
+.text-muted,
+.required-message {
   color: #636c72 !important;
 }
 
 a.text-muted:focus,
-a.text-muted:hover {
+a.required-message:focus,
+a.text-muted:hover,
+a.required-message:hover {
   color: #4b5257 !important;
 }
 
@@ -12172,7 +12682,8 @@ a.text-gray-dark:hover {
 }
 
 @media (max-width: 767px) {
-  .hidden-sm-down {
+  .hidden-sm-down,
+  #pageHeader .social-links {
     display: none !important;
   }
 }
@@ -12337,58 +12848,6 @@ h4 {
             flex: 0 0 83.33333%;
     max-width: 83.33333%;
     left: 8.33333%;
-  }
-
-  .sidebar-primary .main {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 50%;
-            flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
-
-.sidebar {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-@media (min-width: 576px) {
-  .sidebar {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media (min-width: 768px) {
-  .sidebar {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media (min-width: 992px) {
-  .sidebar {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .sidebar {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-}
-
-@media (min-width: 576px) {
-  .sidebar {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 33.33333%;
-            flex: 0 0 33.33333%;
-    max-width: 33.33333%;
   }
 }
 
@@ -12584,14 +13043,20 @@ h4 {
 .btn-sm.btn-social,
 .btn-group-sm > .btn-social.btn,
 .comment-form .btn-group-sm > input.btn-social[type="submit"],
-.search-form .btn-group-sm > .btn-social.search-submit {
+.search-form .btn-group-sm > .btn-social.search-submit,
+.btn-group-sm > .btn-social#ss-back-button,
+.btn-group-sm > .btn-social#ss-forward-button,
+.btn-group-sm > .btn-social#ss-submit {
   padding-bottom: 7px;
 }
 
 .btn-sm .social-svg,
 .btn-group-sm > .btn .social-svg,
 .comment-form .btn-group-sm > input[type="submit"] .social-svg,
-.search-form .btn-group-sm > .search-submit .social-svg {
+.search-form .btn-group-sm > .search-submit .social-svg,
+.btn-group-sm > #ss-back-button .social-svg,
+.btn-group-sm > #ss-forward-button .social-svg,
+.btn-group-sm > #ss-submit .social-svg {
   margin-right: 2px;
   height: 16px;
   width: auto;
@@ -12601,7 +13066,10 @@ h4 {
 .btn-lg .social-svg,
 .btn-group-lg > .btn .social-svg,
 .comment-form .btn-group-lg > input[type="submit"] .social-svg,
-.search-form .btn-group-lg > .search-submit .social-svg {
+.search-form .btn-group-lg > .search-submit .social-svg,
+.btn-group-lg > #ss-back-button .social-svg,
+.btn-group-lg > #ss-forward-button .social-svg,
+.btn-group-lg > #ss-submit .social-svg {
   margin-right: 8px;
 }
 
@@ -12899,8 +13367,25 @@ h4 {
 
 /* Grouped List */
 
+#ss-form {
+  margin-top: 1rem;
+}
+
+#ss-form ol {
+  padding: 0;
+}
+
+#ss-form ol,
+#ss-form ul {
+  list-style: none;
+}
+
+.required-message {
+  font-size: .9em;
+}
+
 #pageHeader {
-  padding-left: 0;
+  padding: 0;
 }
 
 #pageHeader .navbar {
@@ -12984,8 +13469,85 @@ h4 {
   border-bottom: 1px solid #af01df;
 }
 
+#pageHeader .social-links {
+  margin: 0;
+}
+
+#pageHeader .social-links .social-svg-path {
+  fill: #FFF;
+}
+
+#pageHeader .social-links .social-link:hover .social-svg-path {
+  fill: #af01df;
+}
+
+.widget ul {
+  padding-left: 1rem;
+}
+
 .sidebar {
-  margin-bottom: 2rem;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+  max-width: 250px;
+  margin: 2rem 0;
+  float: right;
+}
+
+@media (min-width: 576px) {
+  .sidebar {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sidebar {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+.sidebar .btn-lg,
+.sidebar .btn-group-lg > .btn,
+.sidebar .comment-form .btn-group-lg > input[type="submit"],
+.comment-form .sidebar .btn-group-lg > input[type="submit"],
+.sidebar .search-form .btn-group-lg > .search-submit,
+.search-form .sidebar .btn-group-lg > .search-submit,
+.sidebar .btn-group-lg > #ss-back-button,
+.sidebar .btn-group-lg > #ss-forward-button,
+.sidebar .btn-group-lg > #ss-submit {
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 576px) {
+  .sidebar {
+    left: 8.33333%;
+  }
+}
+
+.sidebar .social-svg-path {
+  fill: inherit;
+}
+
+.sidebar .social-link a:hover .social-svg-path {
+  fill: #8701ac;
 }
 
 .content-info {
@@ -13150,20 +13712,10 @@ h4 {
   .mc4wp-form {
     padding: 16px 26px;
   }
-
-  .sidebar {
-    max-width: 320px;
-    float: right;
-  }
 }
 
 /*
  * about page
- *
- */
-
-/**
- * leadership page
  * @uses user template file
  */
 
@@ -13212,6 +13764,20 @@ h4 {
 
 .user-profiles .modal-title .small {
   color: #555;
+}
+
+.user-profiles .modal-title i {
+  font-size: .9em;
+  text-align: right;
+}
+
+/*
+ * chrc store
+ * @woocommerce templates
+ */
+
+.type-product {
+  padding: 2rem 0;
 }
 
 .main article,

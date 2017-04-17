@@ -1,5 +1,5 @@
 #pageHeader{
-  padding-left: 0;
+  padding: 0;
   .navbar{
 		padding: 0;
 	}
@@ -55,6 +55,16 @@
 		}
 		.active{
 			border-bottom: 1px solid $brand-success;
+		}
+	}
+	.social-links{
+		margin: 0;
+		@extend .hidden-sm-down;
+		.social-svg-path{
+			fill: #FFF;
+		}
+		.social-link:hover .social-svg-path{
+			fill: $brand-success;
 		}
 	}
 

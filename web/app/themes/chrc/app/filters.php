@@ -2,6 +2,15 @@
 
 namespace App;
 
+
+add_filter('sage/display_sidebar', function($sidebar){
+  if (is_page()) {
+    return true;
+  }
+  return $sidebar;
+});
+
+
 /**
  * Add <body> classes
  */
