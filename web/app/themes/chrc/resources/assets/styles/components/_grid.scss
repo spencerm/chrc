@@ -5,9 +5,9 @@
   @include media-breakpoint-up(sm) {
     @include make-col($main-sm-columns);
     @include make-col-push(1);
-    // .sidebar-primary & {
-    //   @include make-col($main-sm-columns - $sidebar-sm-columns);
-    // }
+    .sidebar-primary & {
+        left: 4%;
+    }
   }
 }
 
@@ -34,7 +34,7 @@
 
 .card{
   max-width: 402px;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem;  
 }
 
 

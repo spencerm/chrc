@@ -7,7 +7,7 @@ add_filter('sage/display_sidebar', function($sidebar){
   if (is_page('about/join')) {
     return false;
   }
-  if (is_page()) {
+  if (is_front_page() || is_page('about') || is_page('resources') ) {
     return true;
   }
   return $sidebar;

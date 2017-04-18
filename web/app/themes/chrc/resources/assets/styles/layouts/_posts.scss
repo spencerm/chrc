@@ -37,4 +37,13 @@
 		}
 
 	}
+	li{
+		@include media-breakpoint-up(md) {
+			padding-right: 2rem;
+		}
+		@include media-breakpoint-up(lg) {
+			padding-right: 7rem;
+		}
+
+	}
 }

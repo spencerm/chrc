@@ -22,7 +22,6 @@ add_filter( 'gce_next_text', __NAMESPACE__ . '\\change_gce_next' );
  * media
  */
 add_image_size('card' , 400 , 260 , true );
-add_image_size('thumb-user' , 140 , 140 , true );
 
 /**
  *  CHRC shop

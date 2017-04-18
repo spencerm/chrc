@@ -2,7 +2,7 @@
  * all pages
  *
  */
-.page-title{
+.page-title, .sidebar-primary .page-title{
 	margin: 2rem 0;
 }
 @include media-breakpoint-up(md) {

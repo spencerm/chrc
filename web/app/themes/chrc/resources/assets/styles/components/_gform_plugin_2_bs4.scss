@@ -24,23 +24,25 @@
   @extend .form-group;
 }
 
-.ss-q-short{
-  @extend .form-control;
-}
-
 .ss-q-item-label{
   margin: 0;
 }
-
+.ss-radio label{
+  display: inline;
+}
 .required-message{
   display: none;
   @extend .text-muted;
   font-size: .9em;
 }
 
-.ss-q-radio{
+.ss-radio{
   @extend .form-check-input;
 }
+.ss-q-short{
+  @extend .form-control;
+}
+
 #ss-back-button, #ss-forward-button{
   @extend .btn; 
   @extend .btn-secondary;
@@ -50,7 +52,6 @@
   @extend .btn-primary;
 }
 
-.ss-legal{
+.ss-legal, .ss-password-warning{
   display: none;
-  
 }

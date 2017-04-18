@@ -3,21 +3,25 @@
     padding-left: 1rem;
   }
 }
+
+/**
+ * sidebar has hidden sm down class aplied
+ */
 .sidebar {
   @include make-col-ready();
-  max-width: 250px;
+  @include make-col-push(1);
+  background: white;
+  z-index: 1;
+  max-width: 280px;
   margin: 2rem 0;
   float: right;
+  padding-left: 1.5rem;
+  border-left: #eee 1px solid;
   h3{
     font-size: 1.4rem;
     margin-top: 2rem;
     color: #333;
     font-weight: 400;
-  }
-  @include media-breakpoint-up(sm) {
-    @include make-col-push(1);
-    background: white;
-    z-index: 1;
   }
   .social-svg-path{
     fill: inherit;
