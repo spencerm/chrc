@@ -11,7 +11,6 @@ if($more_posts):
 ?>
     
 
-<div class="card-deck">
 <?php 
   $NewQuery = new WP_Query( array( 
     'cat' => $more_posts , 
@@ -28,7 +27,7 @@ if($more_posts):
 ?>
   <section class="card">
     <figure class="card-img-top">
-      <?php the_post_thumbnail('medium'); ?>
+      <?php the_post_thumbnail('card'); ?>
     </figure>
     <div class="card-block">
       <h3 class="card-title">
@@ -45,7 +44,6 @@ if($more_posts):
     endif;
   endif;
 ?>
-</div>
 
 
 <?php wp_reset_postdata(); ?>

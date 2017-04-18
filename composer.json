@@ -59,6 +59,7 @@
     "johnpbloch/wordpress": "4.7.3",
     "spencerm/google-events-calendar": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
+    "wpackagist-plugin/mailgun": "1.*",
     "wpackagist-plugin/wpgform": "0.91"
   },
   "require-dev": {
