@@ -60,6 +60,7 @@
     "spencerm/google-events-calendar": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
     "wpackagist-plugin/mailgun": "1.*",
+    "wpackagist-plugin/display-all-image-sizes": "dev-trunk",
     "wpackagist-plugin/wpgform": "0.91"
   },
   "require-dev": {

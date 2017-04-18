@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4b796d82eee1b0ca19a281f5bf71e4b",
+    "content-hash": "89c36dca9a2118a1b39938fdcfb29a2f",
     "packages": [
         {
             "name": "composer/installers",
@@ -617,6 +617,27 @@
             "homepage": "https://wordpress.org/plugins/autodescription/"
         },
         {
+            "name": "wpackagist-plugin/display-all-image-sizes",
+            "version": "dev-trunk",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/display-all-image-sizes/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/display-all-image-sizes.zip?timestamp=1486761895",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/display-all-image-sizes/",
+            "time": "2017-02-10T21:24:55+00:00"
+        },
+        {
             "name": "wpackagist-plugin/mailchimp-for-wp",
             "version": "4.1.1",
             "source": {
@@ -844,7 +865,8 @@
         "wp-sync-db/wp-sync-db": 20,
         "wp-sync-db/wp-sync-db-cli": 20,
         "wp-sync-db/wp-sync-db-media-files": 20,
-        "spencerm/google-events-calendar": 20
+        "spencerm/google-events-calendar": 20,
+        "wpackagist-plugin/display-all-image-sizes": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
