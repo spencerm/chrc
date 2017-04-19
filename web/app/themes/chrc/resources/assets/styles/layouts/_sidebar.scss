@@ -8,14 +8,15 @@
  * sidebar has hidden sm down class aplied
  */
 .sidebar {
-  @include make-col-ready();
-  @include make-col-push(1);
+  // @include make-col-ready();
+  left: 10%;
+  position: relative;
   background: white;
   z-index: 1;
-  max-width: 280px;
-  margin: 2rem 0;
+  max-width: 300px;
+  margin-top: 1rem;
+  padding: 2rem .5rem 2rem 1.5rem;
   float: right;
-  padding-left: 1.5rem;
   border-left: #eee 1px solid;
   h3{
     font-size: 1.4rem;
@@ -28,5 +29,14 @@
   }
   .social-link a:hover .social-svg-path{
     fill: $brand-primary;
+  }
+}
+
+.sidebar-primary{
+  .page-title{
+    margin: 2rem 0;
+  }
+  .gce-feed {
+    padding: 16px 12px;
   }
 }

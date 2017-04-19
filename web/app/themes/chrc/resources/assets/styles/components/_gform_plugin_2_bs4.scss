@@ -9,6 +9,7 @@
   }
   ol, ul{
     list-style: none;
+    padding: 0;
   }
 }
 
@@ -23,12 +24,11 @@
 .ss-form-question{
   @extend .form-group;
 }
-
+.ss-q-title{
+  padding-bottom: .5rem;
+}
 .ss-q-item-label{
   margin: 0;
-}
-.ss-radio label{
-  display: inline;
 }
 .required-message{
   display: none;
@@ -36,13 +36,51 @@
   font-size: .9em;
 }
 
-.ss-radio{
-  @extend .form-check-input;
-}
+
 .ss-q-short{
   @extend .form-control;
 }
+.ss-q-long{
+  @extend .form-control;
+}
+.ss-select select{
+  @extend .form-control;
+}
+.ss-choice-item-control{
+  padding-right: .5rem;
+}
+.ss-radio{
+  li{
+    padding-bottom: .5rem;
+  }
+  label{
+    display: inline;
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  .ss-q-title{
+    display: block;
+    width: 100%;
+    cursor: default;
+    padding: 0;
+  }
+} 
 
+
+
+.ss-section-description{
+  max-width: 650px;
+} 
+.ss-no-ignore-whitespace {
+  white-space: pre-wrap;
+}
+
+
+
+.ss-navigate{
+  position: relative;
+  z-index: 999;
+}
 #ss-back-button, #ss-forward-button{
   @extend .btn; 
   @extend .btn-secondary;

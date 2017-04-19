@@ -4,35 +4,17 @@ if (post_password_required()) {
 }
 @endphp
 
-<section id="comments" class="comments">
-  @if (have_comments())
-    <h2>
-      {!! sprintf(_nx('One response to &ldquo;%2$s&rdquo;', '%1$s responses to &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'sage'), number_format_i18n(get_comments_number()), '<span>' . get_the_title() . '</span>') !!}
-    </h2>
-
-    <ol class="comment-list">
-      {!! wp_list_comments(['style' => 'ol', 'short_ping' => true]) !!}
-    </ol>
-
-    @if (get_comment_pages_count() > 1 && get_option('page_comments'))
-      <nav>
-        <ul class="pager">
-          @if (get_previous_comments_link())
-            <li class="previous">@php(previous_comments_link(__('&larr; Older comments', 'sage')))</li>
-          @endif
-          @if (get_next_comments_link())
-            <li class="next">@php(next_comments_link(__('Newer comments &rarr;', 'sage')))</li>
-          @endif
-        </ul>
-      </nav>
-    @endif
-  @endif
-
-  @if (!comments_open() && get_comments_number() != '0' && post_type_supports(get_post_type(), 'comments'))
-    <div class="alert alert-warning">
-      {{ __('Comments are closed.', 'sage') }}
-    </div>
-  @endif
-
-  @php(comment_form())
+<section id="comments" class="comments card" style="max-width:700px">
+<div class="card-block">
+  <h3 class="card-title">Comments</h3>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=703067233106476";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  <div class="fb-comments card-text" data-href="{{ get_the_permalink() }}" data-numposts="12"></div>
+</div>
 </section>

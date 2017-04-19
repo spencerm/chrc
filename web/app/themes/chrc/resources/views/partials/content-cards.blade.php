@@ -11,6 +11,7 @@ if($more_posts):
 ?>
     
 
+<div class="card-dark">
 <?php 
   $NewQuery = new WP_Query( array( 
     'cat' => $more_posts , 
@@ -44,6 +45,7 @@ if($more_posts):
     endif;
   endif;
 ?>
+</div>
 
 
 <?php wp_reset_postdata(); ?>
