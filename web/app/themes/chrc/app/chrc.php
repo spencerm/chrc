@@ -76,11 +76,63 @@ add_action( 'cmb2_admin_init', function() {
  */
 add_action( 'cmb2_admin_init', function() {
 
+  $runnerbox = new_cmb2_box( array(
+    'id'            => 'runner_metabox',
+    'title'         => 'Run Leaders',
+    'object_types'  => array( 'page' ), // Post type
+    'show_on'       => array( 'key' => 'page-template', 'value' => 'template-user.blade.php' ),
+    'context'       => 'normal',
+    'priority'      => 'high',
+    'show_names'    => true, // Show field names on the left
+    'cmb_styles'    => false, // false to disable the CMB stylesheet
+  ) );
+  $runnerbox_id = $runnerbox->add_field( array(
+    'id'          => 'run_leader_group',
+    'type'        => 'group',
+    'options'     => array(
+      'group_title'   => esc_html__( 'Runner {#}', 'cmb2' ), // {#} gets replaced by row number
+      'add_button'    => esc_html__( 'Add Another', 'cmb2' ),
+      'remove_button' => esc_html__( 'Remove', 'cmb2' ),
+      'sortable'      => true,
+    ),
+  ) );
+  $runnerbox->add_group_field( $runnerbox_id, array(
+    'name'       => esc_html__( 'Name', 'cmb2' ),
+    'id'         => 'name',
+    'type'       => 'text',
+  ) );
+  $runnerbox->add_group_field( $runnerbox_id, array(
+    'name'       => esc_html__( 'Title', 'cmb2' ),
+    'id'         => 'title',
+    'type'       => 'text',
+  ) );
+  $runnerbox->add_group_field( $runnerbox_id, array(
+    'name'       => esc_html__( 'Contact', 'cmb2' ),
+    'id'         => 'contact',
+    'type'       => 'text',
+  ) );
+  $runnerbox->add_group_field( $runnerbox_id, array(
+    'name'        => esc_html__( 'Description', 'cmb2' ),
+    'description' => esc_html__( 'Write a short description for this entry', 'cmb2' ),
+    'id'          => 'description',
+    'type'        => 'textarea_small',
+  ) );
+  $runnerbox->add_group_field( $runnerbox_id, array(
+    'name' => esc_html__( 'Image', 'cmb2' ),
+    'id'   => 'image',
+    'type' => 'file',
+  ) );
+  $runnerbox->add_group_field( $runnerbox_id, array(
+    'name' => esc_html__( 'Image Caption', 'cmb2' ),
+    'id'   => 'imagecaption',
+    'type' => 'text',
+  ) );
+
     $cmb_group = new_cmb2_box( array(
         'id'            => 'people_metabox',
-        'title'         => 'People',
+        'title'         => 'Royal Council',
         'object_types'  => array( 'page' ), // Post type
-        'show_on'      => array( 'key' => 'page-template', 'value' => 'template-user.blade.php' ),
+        'show_on'       => array( 'key' => 'page-template', 'value' => 'template-user.blade.php' ),
         'context'       => 'normal',
         'priority'      => 'high',
         'show_names'    => true, // Show field names on the left
@@ -129,4 +181,5 @@ add_action( 'cmb2_admin_init', function() {
       'id'   => 'imagecaption',
       'type' => 'text',
     ) );
+    
 });
