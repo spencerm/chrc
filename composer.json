@@ -36,15 +36,20 @@
       "url": "git@github.com:spencerm/google-events-calendar.git"
     },
     {
+      "type": "git",
+      "url": "git@github.com:spencerm/simple-galleries.git"
+    },
+    {
       "type": "vcs",
       "url": "https://github.com/valexar/wp-sync-db"
     }
   ],
   "require": {
     "php": ">=5.6",
-    "composer/installers": "~1.0.12",
+    "composer/installers": "^1.0",
     "vlucas/phpdotenv": "^2.0.1",
-    "oscarotero/env": "^1.0",
+    "johnpbloch/wordpress": "4.*",
+    "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "roots/soil": "dev-master",
     "webdevstudios/cmb2": "^2.2",
@@ -56,15 +61,12 @@
     "wpackagist-plugin/woocommerce": "3.*",
     "wpackagist-plugin/paypal-for-woocommerce": "1.*",
     "wpackagist-plugin/woocommerce-gateway-stripe": "3.*",
-    "johnpbloch/wordpress": "4.7.3",
     "spencerm/google-events-calendar": "dev-master",
+    "spencerm/simple-galleries": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
     "wpackagist-plugin/mailgun": "1.*",
     "wpackagist-plugin/display-all-image-sizes": "dev-trunk",
     "wpackagist-plugin/wpgform": "0.91"
-  },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "^2.5.1"
   },
   "extra": {
     "installer-paths": {
