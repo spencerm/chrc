@@ -62,8 +62,9 @@
     "yargs": "^7.0.2"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "^4.0.0-beta.2",
     "jquery": "1.12.4 - 3",
+    "popper.js": "^1.12.3",
     "font-awesome": "^4.7.0"
   }
 }

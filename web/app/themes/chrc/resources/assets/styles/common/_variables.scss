@@ -22,6 +22,14 @@ $brand-info:                darken(#cd3333,20%);
 $brand-warning:             #f0ad4e;
 $brand-danger:              #d9534f;
 
+$theme-colors: (
+  primary: $brand-primary,
+  success: $brand-success,
+  info: $brand-info,
+  warning: $brand-warning,
+  danger: $brand-danger
+);
+
 
 $font-size-h1:              2rem; 
 $font-size-h2:              2rem;

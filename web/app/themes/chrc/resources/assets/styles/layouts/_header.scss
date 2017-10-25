@@ -59,7 +59,8 @@
 	}
 	.social-links{
 		margin: 0;
-		@extend .hidden-sm-down;
+		@extend .d-none;
+		@extend .d-sm-block;
 		.social-svg-path{
 			fill: #FFF;
 		}
@@ -72,7 +73,8 @@
  * hide join link from larger views
  */
 .menu-item-1443{
-	@extend .hidden-md-up;
+	@extend .d-block;
+	@extend .d-md-none;
 }
 
 @include media-breakpoint-up(sm) {

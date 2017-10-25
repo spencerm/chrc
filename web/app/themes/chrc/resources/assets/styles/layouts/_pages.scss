@@ -53,23 +53,28 @@
  * @uses user template file
  */
 .user-profiles{
-	display: flex;
+	display: inline-flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	h2{
+		width: 100%;
+	}
 	.user-profile{
 		text-align: center;
-		padding-bottom: 1rem;
 		flex: 1 1 auto;
-    padding-bottom: 1rem;
-    min-width: 180px;
+    padding-bottom: 2rem;
+		min-width: 180px;
+		p{
+			padding-right: inherit;
+		}
 		@include media-breakpoint-up(md) {
-			max-width: 50%;
+			width: 50%;
 		}
 	}
 	h3{
 		font-size: 18px;
 		font-weight: bold;
-		color: #555;
+		color: #444;
 		margin: .5rem 0 0;
 	}
 	.img-thumbnail{
@@ -79,7 +84,7 @@
 	}
 	p{
 		margin: 0;
-		font-size: .95rem;
+		font-size: .9rem;
 		a{
 			font-weight: 300;
 		}

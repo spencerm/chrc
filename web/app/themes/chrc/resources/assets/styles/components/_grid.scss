@@ -4,7 +4,7 @@
   @include make-col-ready();
   @include media-breakpoint-up(sm) {
     @include make-col($main-sm-columns);
-    @include make-col-push(1);
+    left: 9%;
     .sidebar-primary & {
         left: 4%;
     }

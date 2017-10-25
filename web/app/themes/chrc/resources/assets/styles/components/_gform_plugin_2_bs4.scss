@@ -14,7 +14,7 @@
 }
 
 .errorheader{
-  @extend .has-warning;
+  @extend .text-danger;
   @extend .form-control;
   b{
     @extend .form-control-feedback;
@@ -64,9 +64,7 @@
     cursor: default;
     padding: 0;
   }
-} 
-
-
+}
 
 .ss-section-description{
   max-width: 650px;
@@ -75,15 +73,13 @@
   white-space: pre-wrap;
 }
 
-
-
 .ss-navigate{
   position: relative;
   z-index: 999;
 }
 #ss-back-button, #ss-forward-button{
   @extend .btn; 
-  @extend .btn-secondary;
+  @extend .btn-secondary !optional;
 }
 #ss-submit{
   @extend .btn; 
