@@ -60,29 +60,37 @@
  * @uses user template file
  */
  .page-template-template-user-blade{
-	 .sidebar{
-		 left: inherit;
-	 }
-	 .main{
-		 flex: inherit;
-		 max-width: inherit;
-		 left: inherit;
-	 }
-	 .page-title{
-		 padding-left: 1rem;
-	 }
- }
+	.sidebar{
+		left: inherit;
+	}
+	.main{
+		flex: inherit;
+		max-width: inherit;
+		left: inherit;
+	}
+	@include media-breakpoint-up(md) {
+		h1, h2{
+			padding-left: 1rem;
+		}
+		.entry-content {
+			padding: 0 1rem 1rem;
+			max-width: 750px;
+		}
+	}
+}
 .user-profiles{
 	// display: inline-flex;
 	// justify-content: space-between;
 	// flex-wrap: wrap;
+	clear: left;
 	h2{
 		width: 100%;
+		margin-bottom: 0;
 	}
 	.user-profile{
 		text-align: center;
 		flex: 1 1 auto;
-    padding-bottom: 2rem;
+    padding: 1rem 0;
 		min-width: 180px;
 		p{
 			padding-right: inherit;

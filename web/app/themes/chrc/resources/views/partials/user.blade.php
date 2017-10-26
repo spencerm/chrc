@@ -3,26 +3,20 @@
  * User profile template 
  * 
  * using cmb2 
- * people_group 
+ * 
  */ 
 ?>
 
-<div class="user-profiles">
-
 <?php
 
-
-  $entries = get_post_meta( get_the_ID(), 'people_group', true );
-
-  foreach ( (array) $entries as $person):
-
-  $name       = $person['name'];
-  $nameLink   = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
-  $email      = $person['contact'] ?? false;
-  $title      = $person['title'] ?? false;
-  $bio        = $person['description'] ?? false;
-  $userTitle  = $person['imagecaption'] ?? false;
-  $userPhoto  = $person['image_id'] ?? false;
+    $name       = $person['name'];
+    $nameLink   = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
+    $email      = $person['contact'] ?? false;
+    $title      = $person['title'] ?? false;
+    $bio        = $person['description'] ?? false;
+    $userTitle  = $person['imagecaption'] ?? false;
+    $userTitle  = $userTitle ? " / " . $userTitle : false;
+    $userPhoto  = $person['image_id'] ?? false;
 ?>
 
 <div class="user-profile">
@@ -34,15 +28,8 @@
     </a>
   <?php endif; ?>
   <h3><?= $name ?></h3>
-  <p><?= $title ?> / <?= $userTitle ?></p>
+  <p><?= $title ?> <?= $userTitle ?></p>
   <p><a href="mailto:<?= $email ?>"><?= $email ?></a></p>
-  <?php 
-  /*
-    if( $bio ){
-      echo '<p>(<small><a href="#modal-bio" data-toggle="modal" data-target="#modal-bio-' . $nameLink . '">click for bio</a></small>)</p>';
-    } 
-  */ 
-  ?>
 </div>
 
 <?php if( $bio ): ?>
@@ -50,24 +37,22 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <div class="modal-title">
+             <p><?= $title ?><?= $userTitle ?></p>
+             <h5><?= $name ?></h5>
+            </div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h5 class="modal-title">
-             <small><?= $title ?></small> <?= $name ?>
-            </h5>
-            <h6 class="text-right"><i><?= $userTitle ?></i></h6>
           </div>
           <div class="modal-body">
             <p><?= $bio ?></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-secondary"><a href="mailto:<?= $email ?>">Email</a></button>
+            <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
+            <button type="button" class="btn  btn-outline-success"><a href="mailto:<?= $email ?>">Email</a></button>
           </div>
         </div>
       </div>
     </div>
 <?php endif; ?>
-<?php endforeach; ?>
-</div>

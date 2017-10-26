@@ -13862,12 +13862,25 @@ h4 {
   left: inherit;
 }
 
-.page-template-template-user-blade .page-title {
-  padding-left: 1rem;
+@media (min-width: 768px) {
+  .page-template-template-user-blade h1,
+  .page-template-template-user-blade h2 {
+    padding-left: 1rem;
+  }
+
+  .page-template-template-user-blade .entry-content {
+    padding: 0 1rem 1rem;
+    max-width: 750px;
+  }
+}
+
+.user-profiles {
+  clear: left;
 }
 
 .user-profiles h2 {
   width: 100%;
+  margin-bottom: 0;
 }
 
 .user-profiles .user-profile {
@@ -13875,7 +13888,7 @@ h4 {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-  padding-bottom: 2rem;
+  padding: 1rem 0;
   min-width: 180px;
 }
 
