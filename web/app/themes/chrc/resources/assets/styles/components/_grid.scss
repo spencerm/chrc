@@ -7,6 +7,9 @@
     left: 9%;
     .sidebar-primary & {
         left: 4%;
+        .page-title{
+          margin: 2rem 0;
+        }
     }
   }
 }

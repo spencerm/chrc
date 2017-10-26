@@ -37,9 +37,12 @@
   <p><?= $title ?> / <?= $userTitle ?></p>
   <p><a href="mailto:<?= $email ?>"><?= $email ?></a></p>
   <?php 
+  /*
     if( $bio ){
       echo '<p>(<small><a href="#modal-bio" data-toggle="modal" data-target="#modal-bio-' . $nameLink . '">click for bio</a></small>)</p>';
-    } ?>
+    } 
+  */ 
+  ?>
 </div>
 
 <?php if( $bio ): ?>

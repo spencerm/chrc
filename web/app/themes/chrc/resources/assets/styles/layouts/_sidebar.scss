@@ -15,7 +15,7 @@
   z-index: 1;
   max-width: 300px;
   margin-top: 1rem;
-  padding: 2rem .5rem 2rem 1.5rem;
+  padding: 2rem 0 2rem 1.5rem;
   float: right;
   border-left: #eee 1px solid;
   h3{
@@ -32,11 +32,4 @@
   }
 }
 
-.sidebar-primary{
-  .page-title{
-    margin: 2rem 0;
-  }
-  .gce-feed {
-    padding: 16px 12px;
-  }
-}
+

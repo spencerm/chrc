@@ -38,7 +38,15 @@
 	.navbar-nav{
 		@include media-breakpoint-down(sm) {
 			text-align: right;
-			padding-right: 5px;
+			padding-right: 15px;
+			flex-wrap: wrap;
+			border: 1px white solid;
+			z-index: 2000;
+			position: relative;
+			flex-direction: row;
+			.menu-item{
+				width: 50%;
+			}
 		}
 	}
 	.nav-link{

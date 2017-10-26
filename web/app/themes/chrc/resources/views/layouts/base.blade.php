@@ -13,7 +13,7 @@
       <div class="content row">
         <main class="main">
           @if (App\display_sidebar())
-            <aside class="sidebar hidden-sm-down">
+            <aside class="sidebar d-none d-sm-block">
               @include('partials.sidebar')
             </aside>
           @endif

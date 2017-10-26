@@ -36,10 +36,17 @@
  */
 
 .home .main{
-	// padding-top: 5rem;
+	h3{
+		font-size: 1.4rem;
+	}
 	padding-bottom: 5rem;
 	.btn-twitter-nojs{
 		max-width: 400px;
+	}
+	@include media-breakpoint-up(md) {
+		.gce-feed {
+			padding: 1rem .8rem;
+		}
 	}
 }
 
@@ -52,10 +59,23 @@
  * about page
  * @uses user template file
  */
+ .page-template-template-user-blade{
+	 .sidebar{
+		 left: inherit;
+	 }
+	 .main{
+		 flex: inherit;
+		 max-width: inherit;
+		 left: inherit;
+	 }
+	 .page-title{
+		 padding-left: 1rem;
+	 }
+ }
 .user-profiles{
-	display: inline-flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+	// display: inline-flex;
+	// justify-content: space-between;
+	// flex-wrap: wrap;
 	h2{
 		width: 100%;
 	}
@@ -67,8 +87,13 @@
 		p{
 			padding-right: inherit;
 		}
+		a:hover{
+			background-color: lighten($brand-success, 20%);
+		}
 		@include media-breakpoint-up(md) {
-			width: 50%;
+			max-width: 305px;
+			float: left;
+			width: 100%;
 		}
 	}
 	h3{
@@ -95,7 +120,7 @@
 			color: #555;
 		}
 		i{
-			font-size: .9em;
+			font-size: .85em;
 			text-align: right;
 		}
 	}
