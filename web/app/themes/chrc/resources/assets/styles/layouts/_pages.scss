@@ -62,6 +62,7 @@
  .page-template-template-user-blade{
 	.sidebar{
 		left: inherit;
+		margin-bottom: 10rem;		
 	}
 	.main{
 		flex: inherit;
@@ -164,6 +165,9 @@
 	.qty{
 		padding: 0.3rem;
     margin-bottom: 1.5rem;
+	}
+	.woocommerce div.product form.cart{
+		margin: inherit;
 	}
 	.woocommerce-Tabs-panel{
 		h2{
