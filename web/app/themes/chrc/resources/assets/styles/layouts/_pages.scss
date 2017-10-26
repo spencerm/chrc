@@ -95,11 +95,9 @@
 		p{
 			padding-right: inherit;
 		}
-		a:hover{
-			background-color: lighten($brand-success, 20%);
-		}
 		@include media-breakpoint-up(md) {
-			max-width: 305px;
+			max-width: 310px;
+			height: 250px;
 			float: left;
 			width: 100%;
 		}
@@ -114,6 +112,9 @@
 		border-radius: 50%;
 		max-width: 140px;
 		height: auto;
+		&:hover{
+			opacity: 0.4;
+		}
 	}
 	p{
 		margin: 0;
@@ -152,3 +153,21 @@
 	padding: 2rem 0;
 }
 
+.woocommerce{
+	.wc-box-office-ticket-form{
+		margin: inherit;
+    clear: both;
+	}
+	.nyp{
+    margin-bottom: 1.5rem;
+	}
+	.qty{
+		padding: 0.3rem;
+    margin-bottom: 1.5rem;
+	}
+	.woocommerce-Tabs-panel{
+		h2{
+			display: none;
+		}
+	}
+}
