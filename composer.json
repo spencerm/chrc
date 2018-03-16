@@ -57,15 +57,16 @@
     "wp-sync-db/wp-sync-db-cli": "dev-master",
     "wp-sync-db/wp-sync-db-media-files": "dev-master",
     "wpackagist-plugin/regenerate-thumbnails": "*",
-    "wpackagist-plugin/autodescription": "2.*",
+    "wpackagist-plugin/autodescription": "3.*",
     "wpackagist-plugin/woocommerce": "3.*",
     "wpackagist-plugin/paypal-for-woocommerce": "1.*",
-    "wpackagist-plugin/woocommerce-gateway-stripe": "3.*",
+    "wpackagist-plugin/woocommerce-gateway-stripe": "4.*",
     "spencerm/google-events-calendar": "dev-master",
     "spencerm/simple-galleries": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
     "wpackagist-plugin/mailgun": "1.*",
     "wpackagist-plugin/display-all-image-sizes": "dev-trunk",
+    "wpackagist-plugin/featured-images-for-rss-feeds": "1.*",
     "wpackagist-plugin/wpgform": "0.91"
   },
   "extra": {
