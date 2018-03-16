@@ -10,8 +10,9 @@ if($more_posts):
 
 ?>
     
+<h3><?= get_the_category_by_ID($more_posts); ?></h3>
 
-<div class="card-dark">
+<div class="card-columns">
 <?php 
   $NewQuery = new WP_Query( array( 
     'cat' => $more_posts , 
@@ -30,7 +31,7 @@ if($more_posts):
     <figure class="card-img-top">
       <?php the_post_thumbnail('card'); ?>
     </figure>
-    <div class="card-block">
+    <div class="card-body">
       <h3 class="card-title">
         <a href="<?= get_permalink(); ?>"><?= get_the_title(); ?></a>
       </h3>

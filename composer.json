@@ -67,7 +67,8 @@
     "wpackagist-plugin/mailgun": "1.*",
     "wpackagist-plugin/display-all-image-sizes": "dev-trunk",
     "wpackagist-plugin/featured-images-for-rss-feeds": "1.*",
-    "wpackagist-plugin/wpgform": "0.91"
+    "wpackagist-plugin/wpgform": "0.91",
+    "wpackagist-plugin/gutenberg": "2.4.0"
   },
   "extra": {
     "installer-paths": {

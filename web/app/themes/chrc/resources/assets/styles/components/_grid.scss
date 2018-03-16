@@ -37,9 +37,15 @@
 
 .card{
   max-width: 402px;
-  margin-bottom: 1rem;  
+  margin-bottom: 1rem;
+  overflow: hidden;
+  .card-title{
+    margin-top: 0;
+  }
 }
-
+.card-columns {
+  column-count: 2;
+}
 
 
 .half, .third, .two-third, .quarter{

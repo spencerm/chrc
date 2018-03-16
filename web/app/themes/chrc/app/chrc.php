@@ -2,6 +2,10 @@
 
 namespace Spnzr;
 
+
+
+// include_once("blocks/person.php");
+
 /**
  * google-calendar-events plugin
  */
@@ -41,148 +45,249 @@ add_filter( 'wc_product_sku_enabled', '__return_false' );
  *  CMB2 Page
  *
  */
-add_action( 'cmb2_admin_init', function() {
 
-  $prefix = '_page_';
 
-  $cmb = new_cmb2_box( array(
-      'id'            => 'post_metabox',
-      'title'         => __( 'Add posts to page', 'cmb2' ),
-      'object_types'  => array( 'page' ), // Post type
-      'context'       => 'normal',
-      'priority'      => 'low',
-      'show_names'    => true, // Show field names on the left
-      // 'cmb_styles'    => false, // false to disable the CMB stylesheet
-      // 'closed'     => true, // Keep the metabox closed by default
-  ) );
+if( function_exists('acf_add_local_field_group') ):
 
-  $cmb->add_field( array(
-      'name'           => 'Show category',
-      'desc'           => 'If a category is selected, posts of that category will be additionally rendered',
-      'id'            => $prefix . 'more_posts',
-      'type'          => 'select',
-      // Use a callback to avoid performance hits on pages where this field is not displayed (including the front-end).
-      'default'       => 'None',
-      'show_option_none' => true,
-      'options_cb'    => '\Spnzr\cmb2_get_term_options',
-      // Same arguments you would pass to `get_terms`.
-      'get_terms_args' => array(
-        'taxonomy'    => 'category',
-        'hide_empty'  => false,
+  acf_add_local_field_group(array(
+    'key' => 'group_people',
+    'title' => 'Add people profiles',
+    'fields' => array(
+      array(
+        'key' => 'field_5aac310e39ab9',
+        'label' => 'Heading',
+        'name' => 'heading',
+        'type' => 'text',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'default_value' => '',
+        'placeholder' => '',
+        'prepend' => '',
+        'append' => '',
+        'maxlength' => '',
       ),
-  ) );
-});
-
-/**
- *  CMB2 People 
- *
- */
-add_action( 'cmb2_admin_init', function() {
-
-  $runnerbox = new_cmb2_box( array(
-    'id'            => 'runner_metabox',
-    'title'         => 'Run Leaders',
-    'object_types'  => array( 'page' ), // Post type
-    'show_on'       => array( 'key' => 'page-template', 'value' => 'template-user.blade.php' ),
-    'context'       => 'normal',
-    'priority'      => 'high',
-    'show_names'    => true, // Show field names on the left
-    'cmb_styles'    => false, // false to disable the CMB stylesheet
-  ) );
-  $runnerbox_id = $runnerbox->add_field( array(
-    'id'          => 'run_leader_group',
-    'type'        => 'group',
-    'options'     => array(
-      'group_title'   => esc_html__( 'Runner {#}', 'cmb2' ), // {#} gets replaced by row number
-      'add_button'    => esc_html__( 'Add Another', 'cmb2' ),
-      'remove_button' => esc_html__( 'Remove', 'cmb2' ),
-      'sortable'      => true,
+      array(
+        'key' => 'field_5aac2a7485068',
+        'label' => 'People Repeater',
+        'name' => 'people_repeater',
+        'type' => 'repeater',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'collapsed' => 'field_5aac2bc8cd8cf',
+        'min' => 0,
+        'max' => 0,
+        'layout' => 'row',
+        'button_label' => '',
+        'sub_fields' => array(
+          array(
+            'key' => 'field_5aac2bc8cd8cf',
+            'label' => 'Group Name',
+            'name' => 'group_name',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'default_value' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+            'maxlength' => '',
+          ),
+          array(
+            'key' => 'field_5aac2bd7cd8d0',
+            'label' => 'Group Description',
+            'name' => 'group_description',
+            'type' => 'wysiwyg',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'default_value' => '',
+            'tabs' => 'all',
+            'toolbar' => 'basic',
+            'media_upload' => 0,
+            'delay' => 0,
+          ),
+          array(
+            'key' => 'field_5aac2b56cd8ce',
+            'label' => 'People',
+            'name' => 'people',
+            'type' => 'repeater',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'collapsed' => '',
+            'min' => 0,
+            'max' => 0,
+            'layout' => 'table',
+            'button_label' => '',
+            'sub_fields' => array(
+              array(
+                'key' => 'field_5aac2a9f8506a',
+                'label' => 'Name',
+                'name' => 'name',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+              ),
+              array(
+                'key' => 'field_5aac2a8085069',
+                'label' => 'Profile Image',
+                'name' => 'profile_image',
+                'type' => 'image',
+                'instructions' => '',
+                'required' => 1,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+                ),
+                'return_format' => 'id',
+                'preview_size' => 'thumbnail',
+                'library' => 'all',
+                'min_width' => '',
+                'min_height' => '',
+                'min_size' => '',
+                'max_width' => '',
+                'max_height' => '',
+                'max_size' => '',
+                'mime_types' => '',
+              ),
+              array(
+                'key' => 'field_5aac2aae8506b',
+                'label' => 'serious title',
+                'name' => 'official_title',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+              ),
+              array(
+                'key' => 'field_5aac2aee8506c',
+                'label' => 'caption',
+                'name' => 'caption',
+                'type' => 'text',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+                'maxlength' => '',
+              ),
+              array(
+                'key' => 'field_5aac2af28506d',
+                'label' => 'contact email',
+                'name' => 'contact_email',
+                'type' => 'email',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'prepend' => '',
+                'append' => '',
+              ),
+              array(
+                'key' => 'field_5aac2de127799',
+                'label' => 'bio',
+                'name' => 'bio',
+                'type' => 'textarea',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                  'width' => '',
+                  'class' => '',
+                  'id' => '',
+                ),
+                'default_value' => '',
+                'placeholder' => '',
+                'maxlength' => '',
+                'rows' => '',
+                'new_lines' => '',
+              ),
+            ),
+          ),
+        ),
+      ),
     ),
-  ) );
-  $runnerbox->add_group_field( $runnerbox_id, array(
-    'name'       => esc_html__( 'Name', 'cmb2' ),
-    'id'         => 'name',
-    'type'       => 'text',
-  ) );
-  $runnerbox->add_group_field( $runnerbox_id, array(
-    'name'       => esc_html__( 'Title', 'cmb2' ),
-    'id'         => 'title',
-    'type'       => 'text',
-  ) );
-  $runnerbox->add_group_field( $runnerbox_id, array(
-    'name'       => esc_html__( 'Contact', 'cmb2' ),
-    'id'         => 'contact',
-    'type'       => 'text',
-  ) );
-  $runnerbox->add_group_field( $runnerbox_id, array(
-    'name'        => esc_html__( 'Description', 'cmb2' ),
-    'description' => esc_html__( 'Write a short description for this entry', 'cmb2' ),
-    'id'          => 'description',
-    'type'        => 'textarea_small',
-  ) );
-  $runnerbox->add_group_field( $runnerbox_id, array(
-    'name' => esc_html__( 'Image', 'cmb2' ),
-    'id'   => 'image',
-    'type' => 'file',
-  ) );
-  $runnerbox->add_group_field( $runnerbox_id, array(
-    'name' => esc_html__( 'Image Caption', 'cmb2' ),
-    'id'   => 'imagecaption',
-    'type' => 'text',
-  ) );
-
-    $cmb_group = new_cmb2_box( array(
-        'id'            => 'people_metabox',
-        'title'         => 'Royal Council',
-        'object_types'  => array( 'page' ), // Post type
-        'show_on'       => array( 'key' => 'page-template', 'value' => 'template-user.blade.php' ),
-        'context'       => 'normal',
-        'priority'      => 'high',
-        'show_names'    => true, // Show field names on the left
-        'cmb_styles'    => false, // false to disable the CMB stylesheet
-        // 'closed'     => true, // Keep the metabox closed by default
-    ) );
-
-    $group_field_id = $cmb_group->add_field( array(
-      'id'          => 'people_group',
-      'type'        => 'group',
-      'options'     => array(
-        'group_title'   => esc_html__( 'Person {#}', 'cmb2' ), // {#} gets replaced by row number
-        'add_button'    => esc_html__( 'Add Another', 'cmb2' ),
-        'remove_button' => esc_html__( 'Remove', 'cmb2' ),
-        'sortable'      => true,
+    'location' => array(
+      array(
+        array(
+          'param' => 'post_type',
+          'operator' => '==',
+          'value' => 'page',
+        ),
       ),
-    ) );
-    $cmb_group->add_group_field( $group_field_id, array(
-      'name'       => esc_html__( 'Name', 'cmb2' ),
-      'id'         => 'name',
-      'type'       => 'text',
-    ) );
-    $cmb_group->add_group_field( $group_field_id, array(
-      'name'       => esc_html__( 'Title', 'cmb2' ),
-      'id'         => 'title',
-      'type'       => 'text',
-    ) );
-    $cmb_group->add_group_field( $group_field_id, array(
-      'name'       => esc_html__( 'Contact', 'cmb2' ),
-      'id'         => 'contact',
-      'type'       => 'text',
-    ) );
-    $cmb_group->add_group_field( $group_field_id, array(
-      'name'        => esc_html__( 'Description', 'cmb2' ),
-      'description' => esc_html__( 'Write a short description for this entry', 'cmb2' ),
-      'id'          => 'description',
-      'type'        => 'textarea_small',
-    ) );
-    $cmb_group->add_group_field( $group_field_id, array(
-      'name' => esc_html__( 'Image', 'cmb2' ),
-      'id'   => 'image',
-      'type' => 'file',
-    ) );
-    $cmb_group->add_group_field( $group_field_id, array(
-      'name' => esc_html__( 'Image Caption', 'cmb2' ),
-      'id'   => 'imagecaption',
-      'type' => 'text',
-    ) );
-    
-});
+    ),
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => 1,
+    'description' => '',
+  ));
+  
+  endif;

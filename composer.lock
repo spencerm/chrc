@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "880eb56cbb9849314f271f8200ac7438",
+    "content-hash": "4b7a6a8950836c5e103b7af79aeb6e56",
     "packages": [
         {
             "name": "composer/installers",
@@ -695,6 +695,26 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/featured-images-for-rss-feeds/"
+        },
+        {
+            "name": "wpackagist-plugin/gutenberg",
+            "version": "2.4.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/gutenberg/",
+                "reference": "tags/2.4.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/gutenberg.2.4.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/gutenberg/"
         },
         {
             "name": "wpackagist-plugin/mailchimp-for-wp",
