@@ -2,13 +2,17 @@
 /**
  * User profiles for template user 
  * 
- * using cmb2 
+ * using ACF 
  *  
  */ 
 ?>
 
+<? /* if( have_rows('group_people') ): ?>
+
+<? while( have_rows('group_people') ): the_row(); ?>
+
 <div class="user-profiles">
-  <h2>Run Leaders</h2>
+  <h3><? the_sub_field('heading'); ?></h3>
   <?php
     $entries = get_post_meta( get_the_ID(), 'run_leader_group', true );
     foreach ( (array) $entries as $person):
@@ -17,6 +21,7 @@
     endforeach; 
   ?>
 </div>
+
 
 
 <div class="user-profiles">
@@ -31,5 +36,6 @@
 </div>
 
 
-
+ */ 
+?>
 
