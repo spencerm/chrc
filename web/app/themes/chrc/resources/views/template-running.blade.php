@@ -1,5 +1,5 @@
 {{--
-  Template Name: Running
+  Template Name: People &amp; Cards
 --}}
 
 @extends('layouts.base')

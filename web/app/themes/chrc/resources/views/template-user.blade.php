@@ -1,5 +1,5 @@
 {{--
-  Template Name: People
+  Template Name: Old People 
 --}}
 
 @extends('layouts.base')
@@ -9,5 +9,5 @@
     @include('partials.page-header')
     @include('partials.content-page')
     @include('partials.user-profiles')
-    @endwhile
+  @endwhile
 @endsection

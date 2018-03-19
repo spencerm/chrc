@@ -62,7 +62,7 @@
  .page-template-template-user-blade{
 	.sidebar{
 		left: inherit;
-		margin-bottom: 10rem;		
+		margin-bottom: 3rem;		
 	}
 	.main{
 		flex: inherit;
@@ -80,9 +80,9 @@
 	}
 }
 .user-profiles{
-	// display: inline-flex;
-	// justify-content: space-between;
-	// flex-wrap: wrap;
+	display: inline-flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
 	clear: left;
 	h2{
 		width: 100%;
@@ -97,10 +97,12 @@
 			padding-right: inherit;
 		}
 		@include media-breakpoint-up(md) {
-			max-width: 310px;
+			max-width: 290px;
 			height: 250px;
 			float: left;
-			width: 100%;
+			width: auto;
+			// margin-left: 0;
+			// margin-right: auto;
 		}
 	}
 	h3{
@@ -136,8 +138,6 @@
 	}
 
 }
-
-
 
 .running-bananas{
     background-image: url(https://crownheightsrunningclub.nyc/app/uploads/2017/04/353H.jpg);

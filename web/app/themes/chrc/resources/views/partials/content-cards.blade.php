@@ -5,7 +5,7 @@
  */
 
 
-$more_posts      = get_post_meta( get_the_ID(), '_page_more_posts', true );
+$more_posts      = get_field( 'more_posts', get_the_ID() );
 if($more_posts):
 
 ?>

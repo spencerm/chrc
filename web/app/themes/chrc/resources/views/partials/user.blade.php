@@ -9,14 +9,14 @@
 
 <?php
 
-    $name       = $person['name'];
+    $name       = get_sub_field('field_5aac2a9f8506a');
     $nameLink   = preg_replace('/[^A-Za-z0-9\-]/', '', $name);
-    $email      = $person['contact'] ?? false;
-    $title      = $person['title'] ?? false;
-    $bio        = $person['description'] ?? false;
-    $userTitle  = $person['imagecaption'] ?? false;
+    $email      = get_sub_field('field_5aac2af28506d');
+    $title      = get_sub_field('field_5aac2aae8506b');
+    $bio        = get_sub_field('bio');
+    $userTitle  = get_sub_field('field_5aac2aee8506c');
     $userTitle  = $userTitle ? " / " . $userTitle : false;
-    $userPhoto  = $person['image_id'] ?? false;
+    $userPhoto  = get_sub_field('field_5aac2a8085069');
 ?>
 
 <div class="user-profile">
@@ -29,7 +29,9 @@
   <?php endif; ?>
   <h3><?= $name ?></h3>
   <p><?= $title ?> <?= $userTitle ?></p>
-  <p><a href="mailto:<?= $email ?>"><?= $email ?></a></p>
+  <?php if( $email ): ?>
+    <p><a href="mailto:<?= $email ?>"><?= $email ?></a></p>
+  <?php endif; ?>
 </div>
 
 <?php if( $bio ): ?>
@@ -50,7 +52,9 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-success" data-dismiss="modal">Close</button>
-            <button type="button" class="btn  btn-outline-success"><a href="mailto:<?= $email ?>">Email</a></button>
+            <?php if( $email ): ?>
+              <button type="button" class="btn  btn-outline-success"><a href="mailto:<?= $email ?>">Email</a></button>
+            <?php endif; ?>
           </div>
         </div>
       </div>

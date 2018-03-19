@@ -59,7 +59,7 @@ add_filter('the_content_feed', __NAMESPACE__ . '\\featuredtoRSS');
 
 
 /**
- *  CMB2 Page
+ *  ACF Fields
  *
  */
 
@@ -149,7 +149,7 @@ if( function_exists('acf_add_local_field_group') ):
           array(
             'key' => 'field_5aac2b56cd8ce',
             'label' => 'People',
-            'name' => 'people',
+            'name' => 'people_repeated',
             'type' => 'repeater',
             'instructions' => '',
             'required' => 0,

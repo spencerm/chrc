@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4b7a6a8950836c5e103b7af79aeb6e56",
+    "content-hash": "7e63b26bf51b1f2c5e156ae5f1c9cf68",
     "packages": [
         {
             "name": "composer/installers",
@@ -675,26 +675,6 @@
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/display-all-image-sizes/",
             "time": "2017-02-10T21:24:55+00:00"
-        },
-        {
-            "name": "wpackagist-plugin/featured-images-for-rss-feeds",
-            "version": "1.4.8",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/featured-images-for-rss-feeds/",
-                "reference": "trunk"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/featured-images-for-rss-feeds.zip?timestamp=1517881193",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/featured-images-for-rss-feeds/"
         },
         {
             "name": "wpackagist-plugin/gutenberg",
