@@ -10,7 +10,7 @@ if($more_posts):
 
 ?>
     
-<h3><?= get_the_category_by_ID($more_posts); ?></h3>
+<h2><?= get_the_category_by_ID($more_posts); ?></h2>
 
 <div class="card-columns">
 <?php 

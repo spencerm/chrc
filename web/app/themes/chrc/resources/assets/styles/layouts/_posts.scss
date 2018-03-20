@@ -28,6 +28,11 @@
 }
 
 .entry-content{
+	.alignright{
+		@include media-breakpoint-up(md) {
+			margin-right: -6rem;
+		}
+	}
 	p{
 		@include media-breakpoint-up(md) {
 			padding-right: 4rem;

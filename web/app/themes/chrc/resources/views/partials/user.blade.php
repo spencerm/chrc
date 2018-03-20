@@ -27,10 +27,10 @@
   <?php if( $bio ): ?>
     </a>
   <?php endif; ?>
-  <h3><?= $name ?></h3>
+  <h4><?= $name ?></h4>
   <p><?= $title ?> <?= $userTitle ?></p>
   <?php if( $email ): ?>
-    <p><a href="mailto:<?= $email ?>"><?= $email ?></a></p>
+    <p><a href="mailto:<?= $email ?>" class="user-contact"><?= $email ?></a></p>
   <?php endif; ?>
 </div>
 

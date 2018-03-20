@@ -10,7 +10,7 @@
       </nav>
     </div>
     <div class="quarter">
-      <p class="email text-right"><a href="mailto:runningroyalty01@gmail.com">runningroyalty01@gmail.com</a></p>
+      <p class="email text-right"><a href="mailto:contact@crownheightsrunningclub.nyc">contact@crownheightsrunningclub.nyc</a></p>
     </div>
     <div class="quarter text-right"><p>made by <a href="https://spnzr.com">spencer</a></p></div>
   </div>
