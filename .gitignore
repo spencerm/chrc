@@ -2,7 +2,7 @@
 web/app/plugins/*
 !web/app/plugins/woocommerce-box-office
 !web/app/plugins/woocommerce-name-your-price
-!web/app/mu-plugins/advanced-custom-fields-pro-master
+!web/app/plugins/advanced-custom-fields-pro-master
 !web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
 web/app/upgrade
