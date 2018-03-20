@@ -36,7 +36,7 @@ if($more_posts):
         <a href="<?= get_permalink(); ?>"><?= get_the_title(); ?></a>
       </h3>
       <p><?= get_the_excerpt(); ?></p>
-      <p><a class="btn btn-success excerpt-more" href="<?= get_permalink(); ?>">Click for more!</a></p>
+      <p><a class="btn btn-success excerpt-more" href="<?= get_permalink(); ?>">Read more!</a></p>
     </div>
   </section>
 <?php

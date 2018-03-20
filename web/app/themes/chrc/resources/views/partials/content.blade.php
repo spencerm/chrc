@@ -8,6 +8,7 @@
   </header>
   <div class="entry-summary">
     @php(the_excerpt())
+    <p><a class="btn btn-dark excerpt-more" href="<?= get_permalink(); ?>">Read more!</a></p>
     @include('partials/social-links-share')
   </div>
 </article>
