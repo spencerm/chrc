@@ -250,6 +250,9 @@ class WC_Box_Office_Ticket_Create_Admin {
 	/**
 	 * Create order from given customer and total.
 	 *
+	 * @since 1.0.0
+	 * @version 1.1.7
+	 *
 	 * @param int    $customer_id Customer ID.
 	 * @param string $total       Total for the order.
 	 *
@@ -265,6 +268,32 @@ class WC_Box_Office_Ticket_Create_Admin {
 		$order->set_total( $total );
 		if ( ! $is_pre_wc_30 ) {
 			$order->save();
+		}
+
+		// Set order address.
+		if ( $customer_id ) {
+			$customer = new WC_Customer( $customer_id );
+
+			$keys = array(
+				'first_name',
+				'last_name',
+				'company',
+				'address_1',
+				'address_2',
+				'city',
+				'state',
+				'postcode',
+				'country',
+			);
+			foreach ( array( 'shipping', 'billing' ) as $type ) {
+				$address = array();
+				foreach ( $keys as $key ) {
+					$address[ $key ] = $is_pre_wc_30
+						? (string) get_user_meta( $customer_id, $type . '_' . $key, true )
+						: ( is_callable( array( $customer, 'get_' . $type . '_' . $key ) ) ? $customer->{'get_' . $type . '_' . $key}() : '' );
+				}
+				$order->set_address( $address, $type );
+			}
 		}
 
 		// Cache order.

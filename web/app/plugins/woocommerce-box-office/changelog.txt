@@ -1,5 +1,19 @@
 *** WooCommerce Box Office Changelog ***
 
+2018-03-12 - version 1.1.9
+* Fix - Email (order item meta) formatting no longer pretty.
+* Fix - Unable to add two different products to the cart if Sold individually option is checked for both.
+
+2018-02-21 - version 1.1.8
+* Fix - Issue where ticket checkbox still checked if product type is changed to unsupported ticket product (e.g. subscriptions).
+* Add - Possibility to force ticket creation (e.g. when adding products from 'add-to-cart' query string).
+
+2017-11-27 - version 1.1.7
+* Fix - Ticket information link in email and order confirmation page doesn't work.
+* Fix - Emails to ticket individuals who've booked tickets are not sent.
+* Fix - Issue where order details are not shown in PDF invoice when there's no ticket.
+* Fix - Issue where address details in an order are not populated when ticket is created manually.
+
 2017-08-08 - version 1.1.6
 * Fix - Issue where sold-individually product doesn't work when ticket is enabled.
 
