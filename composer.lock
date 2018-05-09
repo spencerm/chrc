@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5b11acd07838b7712a97490b09ad113",
+    "content-hash": "3b89da4ccecf98aac8b12cbb8eb24227",
     "packages": [
         {
             "name": "composer/installers",
@@ -407,8 +407,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:spencerm/simple-galleries.git",
-                "reference": "80e935bad9a8ad6616d6acbecd1dc1fdd73b45ea"
+                "url": "https://github.com/spencerm/simple-galleries.git",
+                "reference": "e690638660366445ae4e62368ed14db03ea2b393"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spencerm/simple-galleries/zipball/e690638660366445ae4e62368ed14db03ea2b393",
+                "reference": "e690638660366445ae4e62368ed14db03ea2b393",
+                "shasum": ""
             },
             "type": "wordpress-plugin",
             "authors": [
@@ -423,7 +429,11 @@
                 "plugin",
                 "wordpress"
             ],
-            "time": "2018-05-09T20:30:28+00:00"
+            "support": {
+                "source": "https://github.com/spencerm/simple-galleries/tree/master",
+                "issues": "https://github.com/spencerm/simple-galleries/issues"
+            },
+            "time": "2018-05-09T22:22:40+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
