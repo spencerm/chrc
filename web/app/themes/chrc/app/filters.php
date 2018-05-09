@@ -3,6 +3,16 @@
 namespace App;
 
 
+/**
+ * stop WP from wrapping images in p tags
+ */
+add_filter('the_content', function ($content){
+    // find all p tags that have just
+    // <p>maybe some white space<img all stuff up to /> then maybe whitespace </p>
+    // replace it with just the image tag...
+    return preg_replace('/<p>(\s*)(<img .* \/>)(\s*)<\/p>/iU', '\2', $content);
+});
+
 add_filter('sage/display_sidebar', function($sidebar){
   if (is_page('about/join')) {
     return false;

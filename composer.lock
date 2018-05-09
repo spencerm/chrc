@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b405c7ce1238832a87ca70df1de6b9d7",
+    "content-hash": "a5b11acd07838b7712a97490b09ad113",
     "packages": [
         {
             "name": "composer/installers",
@@ -108,20 +108,20 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.9.4",
+            "version": "4.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "5394373d26a8e304eb293c2a9359701a7ab03131"
+                "reference": "c0d69bde6fc373270766a00db333c64f35496d67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/5394373d26a8e304eb293c2a9359701a7ab03131",
-                "reference": "5394373d26a8e304eb293c2a9359701a7ab03131",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/c0d69bde6fc373270766a00db333c64f35496d67",
+                "reference": "c0d69bde6fc373270766a00db333c64f35496d67",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "4.9.4",
+                "johnpbloch/wordpress-core": "4.9.5",
                 "johnpbloch/wordpress-core-installer": "^1.0",
                 "php": ">=5.3.2"
             },
@@ -143,27 +143,27 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-02-06T16:42:18+00:00"
+            "time": "2018-04-03T22:47:48+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "4.9.4",
+            "version": "4.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "eef672cdb4ae9e846c464d4d03684b43d4108eda"
+                "reference": "442ae6c761e3b20cc6a000bee8fefcde5dbab3fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/eef672cdb4ae9e846c464d4d03684b43d4108eda",
-                "reference": "eef672cdb4ae9e846c464d4d03684b43d4108eda",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/442ae6c761e3b20cc6a000bee8fefcde5dbab3fa",
+                "reference": "442ae6c761e3b20cc6a000bee8fefcde5dbab3fa",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "provide": {
-                "wordpress/core-implementation": "4.9.4"
+                "wordpress/core-implementation": "4.9.5"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -183,7 +183,7 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-02-06T16:42:13+00:00"
+            "time": "2018-04-03T22:47:40+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -282,12 +282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/soil.git",
-                "reference": "eba5e67ef4c29e6050a998f320dd2c752bee0e20"
+                "reference": "1f16f9db5f9596bac24fdf57611d4da63362ee11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/soil/zipball/eba5e67ef4c29e6050a998f320dd2c752bee0e20",
-                "reference": "eba5e67ef4c29e6050a998f320dd2c752bee0e20",
+                "url": "https://api.github.com/repos/roots/soil/zipball/1f16f9db5f9596bac24fdf57611d4da63362ee11",
+                "reference": "1f16f9db5f9596bac24fdf57611d4da63362ee11",
                 "shasum": ""
             },
             "require": {
@@ -319,7 +319,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2017-11-14T06:16:14+00:00"
+            "time": "2018-03-29T18:10:18+00:00"
         },
         {
             "name": "roots/wp-password-bcrypt",
@@ -408,7 +408,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:spencerm/simple-galleries.git",
-                "reference": "882f9d1c6225cb28eb5157c921d4f8b909f8d862"
+                "reference": "80e935bad9a8ad6616d6acbecd1dc1fdd73b45ea"
             },
             "type": "wordpress-plugin",
             "authors": [
@@ -423,7 +423,7 @@
                 "plugin",
                 "wordpress"
             ],
-            "time": "2017-05-31T20:52:06+00:00"
+            "time": "2018-05-09T20:30:28+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -580,7 +580,7 @@
         },
         {
             "name": "wpackagist-plugin/autodescription",
-            "version": "3.0.5",
+            "version": "3.0.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/autodescription/",
@@ -588,7 +588,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/autodescription.zip?timestamp=1519755105",
+                "url": "https://downloads.wordpress.org/plugin/autodescription.zip?timestamp=1525625897",
                 "reference": null,
                 "shasum": null
             },
@@ -641,15 +641,15 @@
         },
         {
             "name": "wpackagist-plugin/mailchimp-for-wp",
-            "version": "4.2",
+            "version": "4.2.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mailchimp-for-wp/",
-                "reference": "tags/4.2"
+                "reference": "tags/4.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.2.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -681,15 +681,15 @@
         },
         {
             "name": "wpackagist-plugin/paypal-for-woocommerce",
-            "version": "1.4.7.4",
+            "version": "1.4.8.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/paypal-for-woocommerce/",
-                "reference": "tags/1.4.7.4"
+                "reference": "tags/1.4.8.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/paypal-for-woocommerce.1.4.7.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/paypal-for-woocommerce.1.4.8.9.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -721,15 +721,15 @@
         },
         {
             "name": "wpackagist-plugin/woocommerce",
-            "version": "3.3.4",
+            "version": "3.3.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/woocommerce/",
-                "reference": "tags/3.3.4"
+                "reference": "tags/3.3.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/woocommerce.3.3.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce.3.3.5.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -741,15 +741,15 @@
         },
         {
             "name": "wpackagist-plugin/woocommerce-gateway-stripe",
-            "version": "4.0.7",
+            "version": "4.1.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/woocommerce-gateway-stripe/",
-                "reference": "tags/4.0.7"
+                "reference": "tags/4.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/woocommerce-gateway-stripe.4.0.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce-gateway-stripe.4.1.3.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -761,15 +761,15 @@
         },
         {
             "name": "wpackagist-plugin/wpgform",
-            "version": "0.91",
+            "version": "0.94",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wpgform/",
-                "reference": "tags/0.91"
+                "reference": "tags/0.94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wpgform.0.91.zip",
+                "url": "https://downloads.wordpress.org/plugin/wpgform.0.94.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -795,7 +795,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6"
+        "php": ">=7"
     },
     "platform-dev": []
 }
