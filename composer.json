@@ -36,7 +36,7 @@
       "url": "git@github.com:spencerm/google-events-calendar.git"
     },
     {
-      "type": "git",
+      "type": "vcs",
       "url": "git@github.com:spencerm/simple-galleries.git"
     },
     {
