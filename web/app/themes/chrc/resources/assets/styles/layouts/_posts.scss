@@ -30,7 +30,7 @@
 .entry-content{
 	.alignright{
 		@include media-breakpoint-up(md) {
-			margin-right: -6rem;
+			margin-right: -5rem;
 		}
 	}
 	p{
@@ -51,4 +51,20 @@
 		}
 
 	}
+}
+
+.main .alignleft, .main .alignright, .main .alignnone{
+	@include media-breakpoint-down(sm) {
+		margin-left: -10px;
+		margin-right: -10px;
+		margin-bottom: 5px;
+		width: 100vw;
+		max-width: 100vw;
+		height: auto;
+		.wp-caption-text{
+			margin: 0 10px 10px;
+		}
+	}
+
+	
 }

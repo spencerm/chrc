@@ -177,10 +177,10 @@ let webpackConfig = {
         eslint: { failOnWarning: false, failOnError: true },
       },
     }),
-    new StyleLintPlugin({
-      failOnError: false,
-      syntax: 'scss',
-    }),
+    // new StyleLintPlugin({
+    //   failOnError: false,
+    //   syntax: 'scss',
+    // }),
     new FriendlyErrorsWebpackPlugin(),
   ],
 };
