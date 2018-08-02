@@ -26,11 +26,11 @@
   // Only float if not on an extra small device
   .alignleft {
     float: left;
-    margin-right: ($spacer / 2);
+    margin-right: $spacer;
   }
   .alignright {
     float: right;
-    margin-left: ($spacer / 2);
+    margin-left: $spacer;
   }
 }
 
