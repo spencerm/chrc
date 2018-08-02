@@ -70,7 +70,7 @@
   },
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin", "roots/soil", "wpackagist-plugin/regenerate-thumbnails", "webdevstudios/cmb2-attached-posts", "wp-sync-db/wp-sync-db", "wp-sync-db/wp-sync-db-media-files", "wp-sync-db/wp-sync-db-cli"],
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin", "roots/soil", "wpackagist-plugin/regenerate-thumbnails", "wp-sync-db/wp-sync-db", "wp-sync-db/wp-sync-db-media-files", "wp-sync-db/wp-sync-db-cli"],
       "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
