@@ -49,7 +49,7 @@ add_filter( 'wc_product_sku_enabled', '__return_false' );
 function featuredtoRSS($content) {
   global $post;
   if ( has_post_thumbnail( $post->ID ) ){
-    $content = '<div>' . get_the_post_thumbnail( $post->ID, 'thumbnail', array( 'style' => 'display: block; margin-bottom: 5px; clear:both;max-width: 100%;' ) ) . '</div>' . $content;
+    $content = '<div>' . get_the_post_thumbnail( $post->ID, 'medium', array( 'style' => 'display: block; margin-bottom: 10px; clear:both; max-width: 100%;' ) ) . '</div>' . $content;
   }
   return $content;
 }
