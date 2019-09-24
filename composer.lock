@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "648ff1c4e17487d839811c25714da0f9",
@@ -108,20 +108,20 @@
         },
         {
             "name": "johnpbloch/wordpress",
-            "version": "4.9.7",
+            "version": "4.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress.git",
-                "reference": "6697a15cdfd60cfdf9f4bf04a4e7637a8d2a5afa"
+                "reference": "de02cd79a41e06f36558040724414197cb7f6246"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/6697a15cdfd60cfdf9f4bf04a4e7637a8d2a5afa",
-                "reference": "6697a15cdfd60cfdf9f4bf04a4e7637a8d2a5afa",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress/zipball/de02cd79a41e06f36558040724414197cb7f6246",
+                "reference": "de02cd79a41e06f36558040724414197cb7f6246",
                 "shasum": ""
             },
             "require": {
-                "johnpbloch/wordpress-core": "4.9.7",
+                "johnpbloch/wordpress-core": "4.9.8",
                 "johnpbloch/wordpress-core-installer": "^1.0",
                 "php": ">=5.3.2"
             },
@@ -143,27 +143,27 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-07-05T18:12:19+00:00"
+            "time": "2018-08-02T21:48:39+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core",
-            "version": "4.9.7",
+            "version": "4.9.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnpbloch/wordpress-core.git",
-                "reference": "1116e10f71f8fb811856df212af652c427bc6bd1"
+                "reference": "50323f9b91d7689d615b4af02caf9d80584b1cfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/1116e10f71f8fb811856df212af652c427bc6bd1",
-                "reference": "1116e10f71f8fb811856df212af652c427bc6bd1",
+                "url": "https://api.github.com/repos/johnpbloch/wordpress-core/zipball/50323f9b91d7689d615b4af02caf9d80584b1cfc",
+                "reference": "50323f9b91d7689d615b4af02caf9d80584b1cfc",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "provide": {
-                "wordpress/core-implementation": "4.9.7"
+                "wordpress/core-implementation": "4.9.8"
             },
             "type": "wordpress-core",
             "notification-url": "https://packagist.org/downloads/",
@@ -183,7 +183,7 @@
                 "cms",
                 "wordpress"
             ],
-            "time": "2018-07-05T18:12:13+00:00"
+            "time": "2018-08-02T21:48:32+00:00"
         },
         {
             "name": "johnpbloch/wordpress-core-installer",
@@ -590,15 +590,15 @@
         },
         {
             "name": "wpackagist-plugin/autodescription",
-            "version": "3.0.6",
+            "version": "3.1.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/autodescription/",
-                "reference": "trunk"
+                "reference": "tags/3.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/autodescription.zip?timestamp=1525625897",
+                "url": "https://downloads.wordpress.org/plugin/autodescription.3.1.4.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -651,15 +651,15 @@
         },
         {
             "name": "wpackagist-plugin/mailchimp-for-wp",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mailchimp-for-wp/",
-                "reference": "tags/4.2.4"
+                "reference": "tags/4.2.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.2.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/mailchimp-for-wp.4.2.5.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -671,15 +671,15 @@
         },
         {
             "name": "wpackagist-plugin/mailgun",
-            "version": "1.5.11",
+            "version": "1.6.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/mailgun/",
-                "reference": "tags/1.5.11"
+                "reference": "tags/1.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/mailgun.1.5.11.zip",
+                "url": "https://downloads.wordpress.org/plugin/mailgun.1.6.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -691,15 +691,15 @@
         },
         {
             "name": "wpackagist-plugin/paypal-for-woocommerce",
-            "version": "1.4.14",
+            "version": "1.4.18",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/paypal-for-woocommerce/",
-                "reference": "tags/1.4.14"
+                "reference": "tags/1.4.18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/paypal-for-woocommerce.1.4.14.zip",
+                "url": "https://downloads.wordpress.org/plugin/paypal-for-woocommerce.1.4.18.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -731,15 +731,15 @@
         },
         {
             "name": "wpackagist-plugin/woocommerce",
-            "version": "3.4.4",
+            "version": "3.4.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/woocommerce/",
-                "reference": "tags/3.4.4"
+                "reference": "tags/3.4.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/woocommerce.3.4.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce.3.4.6.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -751,15 +751,15 @@
         },
         {
             "name": "wpackagist-plugin/woocommerce-gateway-stripe",
-            "version": "4.1.8",
+            "version": "4.1.10",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/woocommerce-gateway-stripe/",
-                "reference": "tags/4.1.8"
+                "reference": "tags/4.1.10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/woocommerce-gateway-stripe.4.1.8.zip",
+                "url": "https://downloads.wordpress.org/plugin/woocommerce-gateway-stripe.4.1.10.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -771,15 +771,15 @@
         },
         {
             "name": "wpackagist-plugin/wpgform",
-            "version": "0.94",
+            "version": "0.95",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wpgform/",
-                "reference": "tags/0.94"
+                "reference": "tags/0.95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wpgform.0.94.zip",
+                "url": "https://downloads.wordpress.org/plugin/wpgform.0.95.zip",
                 "reference": null,
                 "shasum": null
             },

@@ -66,6 +66,27 @@ From your WordPress dashboard
 
 == Changelog ==
 
+= 5.7.0-RC2 =
+* Fixed missing enqueue_uploader from post and attachment forms
+* Fixed misc compatibility bugs found during testing 3rd party plugins
+* Fixed unload message appearing after creating new taxonomy term
+* Fixed bug preventing new fields from calculating conditional logic
+* Minor fixes and improvements
+
+= 5.7.0 =
+* Core: Major JavaScript updates
+* Core: Major conditional logic update
+* Core: Improved localization and internationalization
+* Core: Improved logic that remembers collapsed row/layout states
+* Repeater field: Added support to collapse multiple rows (hold shift)
+* Language: Added Croatian translation - Thanks to Vlado Bosnjak
+* Language: Updated Italian translation - thanks to Davide Pantè
+* Language: Updated Romanian translation - thanks to Ionut Staicu
+* Language: Updated German translation - thanks to Ralf Koller
+
+= 5.6.10 =
+* Core: Minor fixes and improvements
+
 = 5.6.9 =
 * User field: Added new 'Return Format' setting (Array, Object, ID)
 * Core: Added basic compatibility with Gutenberg - values now save

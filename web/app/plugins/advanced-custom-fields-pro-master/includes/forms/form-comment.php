@@ -183,7 +183,7 @@ class acf_form_comment {
 						<script type="text/javascript">
 						if( typeof acf !== 'undefined' ) {
 								
-							acf.postbox.render(<?php echo json_encode($o); ?>);
+							acf.newPostbox(<?php echo json_encode($o); ?>);	
 						
 						}
 						</script>
