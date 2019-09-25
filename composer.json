@@ -38,10 +38,6 @@
     {
       "type": "vcs",
       "url": "git@github.com:spencerm/simple-galleries.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/valexar/wp-sync-db"
     }
   ],
   "require": {
@@ -52,25 +48,19 @@
     "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "roots/soil": "dev-master",
-    "wp-sync-db/wp-sync-db": "dev-master",
-    "wp-sync-db/wp-sync-db-cli": "dev-master",
-    "wp-sync-db/wp-sync-db-media-files": "dev-master",
     "wpackagist-plugin/regenerate-thumbnails": "*",
     "wpackagist-plugin/autodescription": "3.*",
     "wpackagist-plugin/woocommerce": "3.*",
-    "wpackagist-plugin/paypal-for-woocommerce": "1.*",
     "wpackagist-plugin/woocommerce-gateway-stripe": "4.*",
     "spencerm/google-events-calendar": "dev-master",
     "spencerm/simple-galleries": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
     "wpackagist-plugin/mailgun": "1.*",
-    "wpackagist-plugin/display-all-image-sizes": "dev-trunk",
-    "wpackagist-plugin/wpgform": "0.*",
-    "wpackagist-plugin/gutenberg": "2.4.0"
+    "wpackagist-plugin/display-all-image-sizes": "dev-trunk"
   },
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin", "roots/soil", "wpackagist-plugin/regenerate-thumbnails", "wp-sync-db/wp-sync-db", "wp-sync-db/wp-sync-db-media-files", "wp-sync-db/wp-sync-db-cli"],
+      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin", "roots/soil", "wpackagist-plugin/regenerate-thumbnails"],
       "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
       "web/app/themes/{$name}/": ["type:wordpress-theme"]
     },
