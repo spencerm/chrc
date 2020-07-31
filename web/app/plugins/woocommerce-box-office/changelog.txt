@@ -1,5 +1,71 @@
 *** WooCommerce Box Office Changelog ***
 
+2020-07-22 - version 1.1.27
+* Fix - Show barcode as image in emails.
+
+2020-07-01 - version 1.1.26
+* Add - `{barcode}` variable to display barcodes in ticket emails.
+* Add - Ticket ID variables to printed tickets and emails.
+* Tweak - Compatibility with WooCommerce Order Barcodes.
+* Tweak - Scan barcode form layout for mobile devices.
+
+2020-06-16 - version 1.1.25
+* Fix - When adding multiple ticket products to cart only last item retains tickets.
+
+2020-06-10 - version 1.1.24
+* Tweak - WC 4.2 compatibility.
+
+2020-04-29 - version 1.1.23
+* Tweak - WC 4.1 compatibility.
+
+2020-04-14 - version 1.1.22
+* Tweak - Add note on logging settings.
+
+2020-04-08 - version 1.1.21
+* Fix - Orders created by Box office are charged additional tax.
+
+2020-03-17 - version 1.1.20
+* Fix - Tickets created for each failed payment and only first one is trashed.
+
+2020-02-26 - version 1.1.19
+* Fix - Undefined constant error.
+* Tweak - WC 4.0 compatibility.
+
+2020-02-18 - version 1.1.18
+* Tweak - Remove legacy code.
+
+2020-02-04 - version 1.1.17
+* Fix - Clearer wording for editing tickets in My Account section
+* Fix - Use proper escaping function for attributes.
+
+2020-01-14 - version 1.1.16
+* Fix   - Title filter overrides all calls to `the_title`.
+* Tweak - Move ticket form fields above "add to cart" button for better UX.
+* Fix   - Updating information on a ticket does not create a Ticket Email.
+* Tweak - WC 3.9 compatibility.
+
+2019-11-04 - version 1.1.15
+* Tweak - WC 3.8 compatibility.
+
+2019-09-25 - version 1.1.14
+* Fix - Update ticket status when moving order to on-hold or pending status.
+* Fix - Can print tickets in statuses that indicate that the ticket was not yet paid for.
+
+2019-08-06 - version 1.1.13
+* Tweak - WC 3.7 compatibility.
+* Fix - Turned ticket export select into multiple select box.
+
+2019-04-16 - version 1.1.12
+* Tweak - WC 3.6 compatibility.
+
+2018-09-25 - version 1.1.11
+* Update - WC 3.5 compatibility.
+
+2018-05-23 - version 1.1.10
+* Update - Privacy policy notification.
+* Update - Export/erasure hooks added.
+* Update - WC 3.4 compatibility.
+
 2018-03-12 - version 1.1.9
 * Fix - Email (order item meta) formatting no longer pretty.
 * Fix - Unable to add two different products to the cart if Sold individually option is checked for both.

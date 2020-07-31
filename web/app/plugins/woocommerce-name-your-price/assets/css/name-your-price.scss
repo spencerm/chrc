@@ -1,0 +1,78 @@
+@import '../../../woocommerce/assets/css/_mixins.scss';
+@font-face {
+    font-family: 'WooCommerce';
+    src:    url('../../../woocommerce/assets/fonts/WooCommerce.eot?jj1bj4');
+    src:    url('../../../woocommerce/assets/fonts/WooCommerce.eot?jj1bj4#iefix') format('embedded-opentype'),
+        url('../../../woocommerce/assets/fonts/WooCommerce.ttf?jj1bj4') format('truetype'),
+        url('../../../woocommerce/assets/fonts/WooCommerce.woff?jj1bj4') format('woff'),
+        url('../../../woocommerce/assets/fonts/WooCommerce.svg?jj1bj4#WooCommerce') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+// general nyp styles
+.product, .wcopc .product-item {
+
+	.nyp-disabled {
+		opacity: 0.2;
+	}
+
+	.single_variation_wrap {
+
+		.nyp { display: none; }
+
+		.suggested-text {
+			margin-bottom: 1.5em;
+			display: inline-block;
+		}
+
+	}
+
+	.nyp {
+
+		margin-bottom: 1.5em;
+
+		label {
+			font-weight: bold;
+			display: block;
+		}
+
+		.nyp-input {
+			display: inline-block;
+			margin-bottom: 0;
+			text-align: center;
+			font-weight: bold;
+			min-width: 10em;
+		}
+
+		.minimum-price {
+			margin: 0;
+			color: inherit;
+			font-size: .75em;
+			opacity: .7;
+		}
+
+		.woocommerce-nyp-message {
+			margin: 1em 0 !important;
+			 ul {
+				list-style-type: none;
+				margin: 0;
+				li {
+					margin: 0;
+					&:before {
+						@include iconbefore( "\e016" );
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+	}
+
+}

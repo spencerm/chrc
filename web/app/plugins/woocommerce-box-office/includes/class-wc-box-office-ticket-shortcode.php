@@ -65,15 +65,18 @@ class WC_Box_Office_Ticket_Shortcode {
 			'pending' === $ticket->status ? ' &mdash; ' . __( 'Pending', 'woocommerce-box-office' ) : ''
 		);
 
-		$template_vars = apply_filters( 'woocommerce_box_office_my_ticket_template_vars', array(
-			'ticket_description' => $description,
-			'ticket_form_params' => array(
-				'ticket_id'            => $ticket->id,
-				'ticket_form'          => $ticket_form,
-				'print_ticket_enabled' => get_post_meta( $ticket->product_id, '_print_tickets', true ),
-				'print_ticket_url'     => wcbo_get_my_ticket_url( $ticket->id, true ),
-			),
-		) );
+		$template_vars = apply_filters(
+			'woocommerce_box_office_my_ticket_template_vars',
+			array(
+				'ticket_description' => $description,
+				'ticket_form_params' => array(
+					'ticket_id'            => $ticket->id,
+					'ticket_form'          => $ticket_form,
+					'print_ticket_enabled' => is_ticket_ready_for_printing( $ticket ),
+					'print_ticket_url'     => wcbo_get_my_ticket_url( $ticket->id, true ),
+				),
+			)
+		);
 
 		ob_start();
 		wc_get_template( 'my-ticket.php', $template_vars, 'woocommerce-box-office', WCBO()->dir . 'templates/' );
@@ -306,16 +309,8 @@ class WC_Box_Office_Ticket_Shortcode {
 			'action' => '',
 		), $params ) );
 
-		if ( 'yes' === get_option( 'woocommerce_enable_chosen' ) ) {
-			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-			$assets_path = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
-			$frontend_script_path = $assets_path . 'js/frontend/';
-			wp_enqueue_script( 'wc-chosen', $frontend_script_path . 'chosen-frontend' . $suffix . '.js', array( 'chosen' ), WC_VERSION, true );
-			wp_enqueue_style( 'woocommerce_chosen_styles', $assets_path . 'css/chosen.css' );
-		}
-
 		WCBO()->components->assets->enqueue_scripts( true );
-		WC_Order_Barcodes()->load_scanner_assets();
+		WC_Order_Barcodes()->load_onscan_js();
 
 		ob_start();
 		wc_get_template( 'ticket/scan.php', array( 'action' => $action ), 'woocommerce-box-office', WCBO()->dir . 'templates/' );

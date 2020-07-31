@@ -11,7 +11,7 @@ class WC_Box_Office_Cart {
 	 */
 	public function __construct() {
 		// Ticket fields form. Set it to render after add to cart.
-		add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'render_ticket_fields' ), 20 );
+		add_action( 'woocommerce_after_add_to_cart_quantity', array( $this, 'render_ticket_fields' ), 20 );
 
 		// Add ticket meta to cart item data.
 		add_filter( 'woocommerce_add_cart_item_data', array( $this, 'add_cart_item_data' ), 10, 2 );

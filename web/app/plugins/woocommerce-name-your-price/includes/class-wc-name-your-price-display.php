@@ -1,4 +1,16 @@
 <?php
+/**
+ * Handle front-end display
+ *
+ * @class   WC_Name_Your_Price_Display
+ * @package WooCommerce Name Your Price/Classes
+ * @since   1.0.0
+ * @version  3.1.2
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * WC_Name_Your_Price_Display class.
@@ -6,19 +18,63 @@
 class WC_Name_Your_Price_Display {
 
 	/**
+	 * The single instance of the class.
+	 *
+	 * @var WC_Name_Your_Price_Display
+	 *
+	 * @since 3.0.0
+	 */
+	protected static $instance = null;
+
+	/**
+	 * Main class instance. Ensures only one instance of class is loaded or can be loaded.
+	 *
+	 * @static
+	 * @return WC_Name_Your_Price_Display
+	 * @since  3.0.0
+	 */
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
+	}
+
+	/**
+	 * Cloning is forbidden.
+	 *
+	 * @since 3.0.0
+	 */
+	public function __clone() {
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cloning this object is forbidden.', 'wc_name_your_price' ), '3.0.0' );
+	}
+
+	/**
+	 * Unserializing instances of this class is forbidden.
+	 *
+	 * @since 3.0.0
+	 */
+	public function __wakeup() {
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Unserializing instances of this class is forbidden.', 'wc_name_your_price' ), '3.0.0' );
+	}
+
+	/**
 	 * __construct function.
 	 *
-	 * @access public
 	 * @return void
 	 */
 	public function __construct() {
 
 		// Single Product Display.
-		add_action( 'wp_enqueue_scripts', array( $this, 'nyp_style' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 20 );
+		add_action( 'woocommerce_before_single_product', array( $this, 'replace_price_template' ) );
 		add_action( 'woocommerce_before_add_to_cart_button', array( $this, 'display_price_input' ), 9 );
-		add_action( 'woocommerce_nyp_after_price_input', array( $this, 'display_minimum_price' ) );
+		add_action( 'wc_nyp_after_price_input', array( $this, 'display_variable_billing_periods' ), 5, 2 );
+		add_action( 'wc_nyp_after_price_input', array( $this, 'display_minimum_price' ) );
+		add_action( 'wc_nyp_after_price_input', array( $this, 'display_error_holder' ), 30 );
+
 		add_filter( 'woocommerce_product_single_add_to_cart_text', array( $this, 'single_add_to_cart_text' ), 10, 2 );
+		add_filter( 'wc_nyp_minimum_price_html', array( $this, 'add_price_terms_html' ), 10, 2 );
 
 		// Display NYP Prices.
 		add_filter( 'woocommerce_get_price_html', array( $this, 'nyp_price_html' ), 10, 2 );
@@ -30,26 +86,43 @@ class WC_Name_Your_Price_Display {
 		// Kill AJAX add to cart WC2.5+.
 		add_filter( 'woocommerce_product_supports', array( $this, 'supports_ajax_add_to_cart' ), 10, 3 );
 
-		// If quick-view is enabled then we need the style and scripts everywhere.
-		add_action( 'wc_quick_view_enqueue_scripts', array( $this, 'nyp_scripts' ) );
-		add_action( 'wc_quick_view_enqueue_scripts', array( $this, 'nyp_style' ) );
-
 		// Post class.
 		add_filter( 'post_class', array( $this, 'add_post_class' ), 30, 3 );
 
 		// Variable products.
-		add_filter( 'woocommerce_variation_is_visible', array( $this, 'variation_is_visible' ), 10, 3 );
+		add_action( 'woocommerce_single_variation', array( $this, 'display_variable_price_input' ), 12 );
+		add_filter( 'woocommerce_variation_is_visible', array( $this, 'variation_is_visible' ), 10, 4 );
 		add_filter( 'woocommerce_available_variation', array( $this, 'available_variation' ), 10, 3 );
 		add_filter( 'woocommerce_get_variation_price', array( $this, 'get_variation_price' ), 10, 4 );
 		add_filter( 'woocommerce_get_variation_regular_price', array( $this, 'get_variation_price' ), 10, 4 );
 
+		// Cart display.
+		add_filter( 'woocommerce_cart_item_price', array( $this, 'add_edit_link_in_cart' ), 10, 3 );
+
 	}
 
 
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Single Product Display Functions
+	 * ---------------------------------------------------------------------------------
+	 */
 
-	/*-----------------------------------------------------------------------------------*/
-	/* Single Product Display Functions */
-	/*-----------------------------------------------------------------------------------*/
+	/**
+	 * Register the scripts and styles.
+	 *
+	 * @since 3.0
+	 */
+	public function register_scripts() {
+
+		$this->nyp_style();
+
+		wp_register_script( 'accounting', WC_Name_Your_Price()->plugin_url() . '/assets/js/accounting.js', array( 'jquery' ), '0.4.2', true );
+
+		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+		wp_register_script( 'woocommerce-nyp', WC_Name_Your_Price()->plugin_url() . '/assets/js/name-your-price' . $suffix . '.js', array( 'jquery', 'accounting' ), WC_Name_Your_Price()->version, true );
+	}
+
 
 	/**
 	 * Load a little stylesheet.
@@ -57,135 +130,229 @@ class WC_Name_Your_Price_Display {
 	 * @return void
 	 * @since 1.0
 	 */
-	public function nyp_style(){
-
-		if ( get_option( 'woocommerce_nyp_disable_css', 'no' ) == 'no' )
+	public function nyp_style() {
+		if ( get_option( 'woocommerce_nyp_disable_css', 'no' ) !== 'yes' ) {
 			wp_enqueue_style( 'woocommerce-nyp', WC_Name_Your_Price()->plugin_url() . '/assets/css/name-your-price.css', false, WC_Name_Your_Price()->version );
-
+			wp_style_add_data( 'woocommerce-nyp', 'rtl', 'replace' );
+		}
 	}
-
-
-	/**
-	 * Register the price input script.
-	 *
-	 * @return void
-	 */
-	function register_scripts() {
-		wp_register_script( 'accounting', WC_Name_Your_Price()->plugin_url() . '/assets/js/accounting.js', array( 'jquery' ), '0.4.2', true );
-
-		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		wp_register_script( 'woocommerce-nyp', WC_Name_Your_Price()->plugin_url() . '/assets/js/name-your-price'. $suffix . '.js', array( 'jquery', 'accounting' ), WC_Name_Your_Price()->version, true );
-	}
-
 
 	/**
 	 * Load price input script.
 	 *
 	 * @return void
 	 */
-	function nyp_scripts() {
+	public function nyp_scripts() {
 
 		wp_enqueue_script( 'accounting' );
 		wp_enqueue_script( 'woocommerce-nyp' );
 
 		$params = array(
-			'currency_format_num_decimals'  => esc_attr( wc_get_price_decimals() ),
-			'currency_format_symbol'        => get_woocommerce_currency_symbol(),
-			'currency_format_decimal_sep'   => esc_attr( wc_get_price_decimal_separator() ),
-			'currency_format_thousand_sep'  => esc_attr( wc_get_price_thousand_separator() ),
-			'currency_format'               => esc_attr( str_replace( array( '%1$s', '%2$s' ), array( '%s', '%v' ), get_woocommerce_price_format() ) ), // For accounting.js
-			'annual_price_factors' =>  WC_Name_Your_Price_Helpers::annual_price_factors(),
-			'minimum_error' => WC_Name_Your_Price_Helpers::error_message( 'minimum_js' ),
+			'currency_format_num_decimals' => wc_get_price_decimals(),
+			'currency_format_symbol'       => get_woocommerce_currency_symbol(),
+			'currency_format_decimal_sep'  => wc_get_price_decimal_separator(),
+			'currency_format_thousand_sep' => wc_get_price_thousand_separator(),
+			'currency_format'              => str_replace( array( '%1$s', '%2$s' ), array( '%s', '%v' ), get_woocommerce_price_format() ), // For accounting.js.
+			'annual_price_factors'         => WC_Name_Your_Price_Helpers::annual_price_factors(),
+			'i18n_subscription_string'     => __( '%price / %period', 'wc_name_your_price' ),
 		);
 
-		wp_localize_script( 'woocommerce-nyp', 'woocommerce_nyp_params', $params );
+		wp_localize_script( 'woocommerce-nyp', 'woocommerce_nyp_params', apply_filters( 'wc_nyp_script_params', $params ) );
 
 	}
 
+	/**
+	 * Remove the default price template.
+	 *
+	 * @since 3.0.0
+	 */
+	public function replace_price_template() {
+		global $product;
+		if ( WC_Name_Your_Price_Helpers::is_nyp( $product ) && has_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price' ) ) {
+
+			// Move price template to before NYP input.
+			remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+			add_action( 'woocommerce_before_add_to_cart_form', array( $this, 'display_suggested_price' ) );
+
+			// Restore price template to original.
+			add_action( 'woocommerce_after_single_product', array( $this, 'restore_price_template' ) );
+
+		}
+	}
+
+	/**
+	 * Restore the default price template.
+	 *
+	 * @since 3.0.0
+	 */
+	public function restore_price_template() {
+		add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+		remove_action( 'woocommerce_before_add_to_cart_form', array( $this, 'display_suggested_price' ) );
+	}
 
 	/**
 	 * Call the Price Input Template.
 	 *
-	 * @param int $product_id
-	 * @param string $prefix - prefix is key to integration with Bundles
+	 * @param mixed obj|int $product
+	 * @param string        $suffix - suffix is key to integration with Bundles
 	 * @return  void
 	 * @since 1.0
 	 */
-	public function display_price_input( $product_id = false, $prefix = false ){
+	public function display_price_input( $product = false, $suffix = false ) {
 
-		if( ! $product_id ){
+		$product = WC_Name_Your_Price_Helpers::maybe_get_product_instance( $product );
+
+		if ( ! $product ) {
 			global $product;
-			$product_id = WC_Name_Your_Price_Core_Compatibility::get_id( $product );
 		}
 
-		// If not NYP quit right now.
-		if( ! WC_Name_Your_Price_Helpers::is_nyp( $product_id ) && ! WC_Name_Your_Price_Helpers::has_nyp( $product_id ) ){
+		// If not NYP quit right now. Also distinguish if we're a variable product vs simple.
+		if ( ! $product ||
+			( 'woocommerce_single_variation' === current_action() && ! WC_Name_Your_Price_Helpers::has_nyp( $product ) ) ||
+			( 'woocommerce_single_variation' !== current_action() && ! WC_Name_Your_Price_Helpers::is_nyp( $product ) && ! apply_filters( 'wc_nyp_force_display_price_input', false, $product ) )
+		) {
 			return;
 		}
+
+		$price    = WC_Name_Your_Price_Helpers::get_price_value_attr( $product, $suffix );
+		$counter  = WC_Name_Your_Price_Helpers::get_counter();
+		$input_id = 'nyp-' . $counter;
+
+		$defaults = array(
+			'input_id'          => $input_id,
+			'input_name'        => 'nyp' . $suffix,
+			'input_value'       => WC_Name_Your_Price_Helpers::format_price( $price ),
+			'input_label'       => WC_Name_Your_Price_Helpers::get_price_input_label_text( $product ),
+			'classes'           => array( 'input-text', 'amount', 'nyp-input', 'text' ),
+			'aria-describedby'  => array( 'nyp-minimum-price-' . $input_id, 'nyp-error-' . $input_id ),
+			'placeholder'       => '',
+			'custom_attributes' => array(),
+		);
+
+		/**
+		 * Filter wc_nyp_price_input_attributes
+		 *
+		 * @param  array $attributes The array of attributes for the NYP div
+		 * @param  obj $product WC_Product The product object
+		 * @param  string $suffix - needed for grouped, composites, bundles, etc.
+		 * @return string
+		 * @since  2.11.0
+		 */
+		$args = apply_filters( 'wc_nyp_price_input_attributes', $defaults, $product, $suffix );
+
+		// Parse args so defaults cannot be unset.
+		wp_parse_args( $args, $defaults );
 
 		// Load up the NYP scripts.
 		$this->nyp_scripts();
 
-		// If the product is a subscription add some items to the price input.
-		if( WC_Name_Your_Price_Helpers::is_subscription( $product_id ) ){
+		$args['product_id']  = $product->get_id();
+		$args['nyp_product'] = $product;
+		$args['prefix']      = $suffix;
+		$args['suffix']      = $suffix;
+		$args['counter']     = $counter;
 
-			// Add the billing period input.
-			if( WC_Name_Your_Price_Helpers::is_billing_period_variable( $product_id ) ){
-				add_filter( 'woocommerce_get_price_input', array( 'WC_Name_Your_Price_Helpers', 'get_subscription_period_input' ), 10, 3 );
-			}
+		$args['updating_cart_key'] = isset( $_GET['update-price'] ) && WC()->cart->find_product_in_cart( sanitize_key( $_GET['update-price'] ) ) ? sanitize_key( $_GET['update-price'] ) : '';
 
-			// Add the price terms.
-			add_filter( 'woocommerce_get_price_input', array( 'WC_Name_Your_Price_Helpers', 'get_subscription_terms' ), 10, 2 );
-
-		}
+		$args['_nypnonce'] = isset( $_GET['_nypnonce'] ) ? sanitize_key( $_GET['_nypnonce'] ) : '';
 
 		// Get the price input template.
 		wc_get_template(
 			'single-product/price-input.php',
-			array( 'product_id' => $product_id,
-					'prefix' 	=> $prefix ),
-			FALSE,
-			WC_Name_Your_Price()->plugin_path() . '/templates/' );
+			$args,
+			false,
+			WC_Name_Your_Price()->plugin_path() . '/templates/'
+		);
+
+		/**
+		 * Filter woocommerce_get_price_input
+		 *
+		 * @param  string $html - the resulting input's html.
+		 * @param  int    $product_id - the product id.
+		 * @param  string $suffix - needed for grouped, composites, bundles, etc.
+		 * @return string
+		 * @deprecated 3.0.0
+		 */
+		if ( has_filter( 'woocommerce_get_price_input' ) ) {
+			wc_doing_it_wrong( __FUNCTION__, 'woocommerce_get_price_input filter has been removed for security reasons! Please consider using the wc_nyp_price_input_attributes filter to modify attributes or overriding the price-input.php template.', '3.0' );
+		}
+
+		WC_Name_Your_Price_Helpers::increase_counter();
 
 	}
 
 	/**
-	 * Call the Minimum Price Template.
+	 * Display the suggested price.
 	 *
-	 * @param int $product_id
+	 * @param mixed obj|int $product
 	 * @return  void
 	 * @since 1.0
 	 */
-	public function display_minimum_price( $product_id ){
+	public function display_suggested_price( $product = false ) {
 
-		if( ! $product_id ){
+		$product = WC_Name_Your_Price_Helpers::maybe_get_product_instance( $product );
+
+		if ( ! $product ) {
 			global $product;
-			$product_id = WC_Name_Your_Price_Core_Compatibility::get_id( $product );
 		}
 
-		// If not NYP quit right now.
-		if( ! WC_Name_Your_Price_Helpers::is_nyp( $product_id ) && ! WC_Name_Your_Price_Helpers::has_nyp( $product_id ) ){
+		$suggested_price_html = WC_Name_Your_Price_Helpers::get_suggested_price_html( $product );
+
+		if ( ! $suggested_price_html && ! WC_Name_Your_Price_Helpers::has_nyp( $product ) ) {
 			return;
 		}
 
-		// Get the minimum price.
-		$minimum = WC_Name_Your_Price_Helpers::get_minimum_price( $product_id );
-
-		if( $minimum > 0 || WC_Name_Your_Price_Helpers::has_nyp( $product_id )){
-
-			// Get the minimum price template.
-			wc_get_template(
-				'single-product/minimum-price.php',
-				array( 'product_id' => $product_id ),
-				FALSE,
-				WC_Name_Your_Price()->plugin_path() . '/templates/' );
-
-		}
+		echo '<p class="price suggested-price">' . wp_kses_post( $suggested_price_html ) . '</p>';
 
 	}
 
 
-	/*
+	/**
+	 * Display minimum price plus any subscription terms if applicable.
+	 *
+	 * @param mixed obj|int $product
+	 * @return  void
+	 * @since 1.0
+	 */
+	public function display_minimum_price( $product = false ) {
+
+		$product = WC_Name_Your_Price_Helpers::maybe_get_product_instance( $product );
+
+		if ( ! $product ) {
+			global $product;
+		}
+
+		$minimum_price_html = WC_Name_Your_Price_Helpers::get_minimum_price_html( $product );
+
+		if ( ! $minimum_price_html && ! WC_Name_Your_Price_Helpers::has_nyp( $product ) ) {
+			return;
+		}
+
+		// Get the minimum price template.
+		wc_get_template(
+			'single-product/minimum-price.php',
+			array(
+				'product_id'  => $product->get_id(),
+				'nyp_product' => $product,
+				'counter'     => WC_Name_Your_Price_Helpers::get_counter(),
+			),
+			false,
+			WC_Name_Your_Price()->plugin_path() . '/templates/'
+		);
+
+	}
+
+
+	/**
+	 * Show the empty error-holding div.
+	 *
+	 * @since 3.0.0
+	 */
+	public function display_error_holder() {
+		printf( '<div id="nyp-error-%s" class="woocommerce-nyp-message" aria-live="assertive" style="display: none"><ul class="woocommerce-error"></ul></div>', esc_attr( WC_Name_Your_Price_Helpers::get_counter() ) );
+	}
+
+	/**
 	 * If NYP change the single item's add to cart button text.
 	 * Don't include on variations as you can't be sure all the variations are NYP.
 	 * Variations will be handled via JS.
@@ -197,17 +364,56 @@ class WC_Name_Your_Price_Display {
 	 */
 	public function single_add_to_cart_text( $text, $product ) {
 
-		if( WC_Name_Your_Price_Helpers::is_nyp( $product ) ){
-			$text = get_option( 'woocommerce_nyp_button_text_single', __( 'Add to Cart', 'wc_name_your_price' ) );
-		} 
+		if ( WC_Name_Your_Price_Helpers::is_nyp( $product ) ) {
+			$nyp_text = trim( apply_filters( 'wc_nyp_single_add_to_cart_text', get_option( 'woocommerce_nyp_button_text_single', '' ), $product ) );
+
+			if ( '' !== $nyp_text ) {
+				$text = $nyp_text;
+			}
+
+			if ( isset( $_GET['update-price'] ) && isset( $_GET['_nypnonce'] ) && wp_verify_nonce( sanitize_key( $_GET['_nypnonce'] ), 'nyp-nonce' ) ) {
+
+				$updating_cart_key = wc_clean( wp_unslash( $_GET['update-price'] ) );
+
+				if ( isset( WC()->cart->cart_contents[ $updating_cart_key ] ) ) {
+					$text = apply_filters( 'wc_nyp_single_update_cart_text', __( 'Update Cart', 'wc_name_your_price' ), $product );
+				}
+			}
+		}
 
 		return $text;
 
 	}
 
-	/*-----------------------------------------------------------------------------------*/
-	/* Display NYP Price HTML */
-	/*-----------------------------------------------------------------------------------*/
+
+	/**
+	 * Add subscription terms to minimum price html
+	 *
+	 * @param string     $html
+	 * @param WC_Product $product
+	 * @return  string
+	 * @since 3.0.0
+	 */
+	public function add_price_terms_html( $html, $product ) {
+
+		$subscription_terms = WC_Name_Your_Price_Helpers::get_subscription_terms_html( $product );
+
+		if ( $html && $subscription_terms ) {
+			// Translators: %1$s is minimum price html. %2$s subscription terms.
+			$html = sprintf( __( '%1$s %2$s', 'wc_name_your_price' ), $html, $subscription_terms );
+		} elseif ( $subscription_terms ) {
+			$html = $subscription_terms;
+		}
+
+		return $html;
+	}
+
+
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Display NYP Price HTML
+	 * ---------------------------------------------------------------------------------
+	 */
 
 	/**
 	 * Filter the Price HTML.
@@ -215,17 +421,16 @@ class WC_Name_Your_Price_Display {
 	 * @param string $html
 	 * @param object $product
 	 * @return string
-	 * @since 1.0
-	 * @renamed in 2.0
+	 * @since 2.0
 	 */
-	function nyp_price_html( $html, $product ){
+	public function nyp_price_html( $html, $product ) {
 
-		if( WC_Name_Your_Price_Helpers::is_nyp( $product ) ){
-			$html =  apply_filters( 'woocommerce_nyp_html', WC_Name_Your_Price_Helpers::get_suggested_price_html( $product ),  $product );
-		} else if( WC_Name_Your_Price_Helpers::has_nyp( $product ) ){ 	
-			$min_variation_string = WC_Name_Your_Price_Helpers::get_price_string( $product, 'minimum-variation' );
-			$html = $min_variation_string != '' ? WC_Name_Your_Price_Core_Compatibility::get_price_html_from_text( $product ) . $min_variation_string : '';	
-			$html = apply_filters( 'woocommerce_variable_nyp_html', $html, $product );
+		if ( WC_Name_Your_Price_Helpers::is_nyp( $product ) ) {
+			$html = apply_filters( 'wc_nyp_price_html', WC_Name_Your_Price_Helpers::get_suggested_price_html( $product ), $product );
+		} elseif ( WC_Name_Your_Price_Helpers::has_nyp( $product ) && ! $product->is_type( 'variable-subscription' ) ) {
+			$min_variation_string = WC_Name_Your_Price_Helpers::is_variable_price_hidden( $product ) ? '' : WC_Name_Your_Price_Helpers::get_price_string( $product, 'minimum-variation' );
+			$html                 = '' !== $min_variation_string ? wc_get_price_html_from_text() . $min_variation_string : '';
+			$html                 = apply_filters( 'wc_nyp_variable_price_html', $html, $product );
 		}
 
 		return $html;
@@ -241,23 +446,24 @@ class WC_Name_Your_Price_Display {
 	 * @since 1.0
 	 * @renamed in 2.0
 	 */
-	function variable_subscription_nyp_price_html( $html, $product ){
+	public function variable_subscription_nyp_price_html( $html, $product ) {
 
-		if( WC_Name_Your_Price_Helpers::has_nyp( $product ) && WC_Name_Your_Price_Helpers::get_minimum_variation_price( $product ) === '' && intval( WC_Subscriptions_Product::get_sign_up_fee( $product ) ) === 0 && intval( WC_Subscriptions_Product::get_trial_length( $product ) ) === 0 ){ 	
+		if ( WC_Name_Your_Price_Helpers::has_nyp( $product ) && WC_Name_Your_Price_Helpers::is_variable_price_hidden( $product ) && intval( WC_Subscriptions_Product::get_sign_up_fee( $product ) ) === 0 && intval( WC_Subscriptions_Product::get_trial_length( $product ) ) === 0 ) {
 			$html = '';
 		}
 
-		return apply_filters( 'woocommerce_variable_subscription_nyp_html', $html, $product );
+		return apply_filters( 'wc_nyp_variable_subscription_nyp_html', $html, $product );
 
 	}
 
 
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Loop Display Functions
+	 * ---------------------------------------------------------------------------------
+	 */
 
-	/*-----------------------------------------------------------------------------------*/
-	/* Loop Display Functions */
-	/*-----------------------------------------------------------------------------------*/
-
-	/*
+	/**
 	 * If NYP change the loop's add to cart button text.
 	 *
 	 * @param string $text
@@ -266,15 +472,22 @@ class WC_Name_Your_Price_Display {
 	 */
 	public function add_to_cart_text( $text, $product ) {
 
-		if ( WC_Name_Your_Price_Helpers::is_nyp( $product ) ){
-			$text = get_option( 'woocommerce_nyp_button_text', __( 'Set Price', 'wc_name_your_price' ) );
+		if ( WC_Name_Your_Price_Helpers::is_nyp( $product ) ) {
+
+			$nyp_text = trim( apply_filters( 'wc_nyp_add_to_cart_text', get_option( 'woocommerce_nyp_button_text', __( 'Choose price', 'wc_name_your_price' ) ), $product ) );
+
+			if ( '' !== $nyp_text ) {
+				$text = $nyp_text;
+			} else {
+				$text = __( 'Choose price', 'wc_name_your_price' );
+			}
 		}
 
 		return $text;
 
 	}
 
-	/*
+	/**
 	 * If NYP change the loop's add to cart button URL.
 	 * Disable ajax add to cart and redirect to product page.
 	 * Supported by WC<2.5.
@@ -286,11 +499,7 @@ class WC_Name_Your_Price_Display {
 	public function add_to_cart_url( $url, $product = null ) {
 
 		if ( WC_Name_Your_Price_Helpers::is_nyp( $product ) ) {
-			$url = get_permalink( WC_Name_Your_Price_Core_Compatibility::get_id( $product ) );
-			// Disables the ajax add to cart for WC<2.5.
-			if( ! WC_Name_Your_Price_Core_Compatibility::is_wc_version_gte( '2.5' ) ){
-				$product->product_type = 'nyp'; 
-			}
+			$url = get_permalink( $product->get_id() );
 		}
 
 		return $url;
@@ -298,7 +507,7 @@ class WC_Name_Your_Price_Display {
 	}
 
 
-	/*
+	/**
 	 * Disable ajax add to cart and redirect to product page.
 	 * Supported by WC2.5+
 	 *
@@ -308,7 +517,7 @@ class WC_Name_Your_Price_Display {
 	 */
 	public function supports_ajax_add_to_cart( $supports_ajax, $feature, $product ) {
 
-		if ( 'ajax_add_to_cart' == $feature && WC_Name_Your_Price_Helpers::is_nyp( $product ) ) {
+		if ( 'ajax_add_to_cart' === $feature && WC_Name_Your_Price_Helpers::is_nyp( $product ) ) {
 			$supports_ajax = false;
 		}
 
@@ -317,25 +526,27 @@ class WC_Name_Your_Price_Display {
 	}
 
 
-	/*-----------------------------------------------------------------------------------*/
-	/* Post Class */
-	/*-----------------------------------------------------------------------------------*/
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Post Class
+	 * ---------------------------------------------------------------------------------
+	 */
 
 	/**
 	 * Add nyp to post class.
 	 *
-	 * @param  array $classes - post classes
+	 * @param  array  $classes - post classes
 	 * @param  string $class
-	 * @param  int $post_id
+	 * @param  int    $post_id
 	 * @return array
 	 * @since 2.0
 	 */
 	public function add_post_class( $classes, $class = '', $post_id = '' ) {
-		if ( ! $post_id || get_post_type( $post_id ) !== 'product' ){
+		if ( ! $post_id || get_post_type( $post_id ) !== 'product' ) {
 			return $classes;
 		}
 
-		if ( WC_Name_Your_Price_Helpers::is_nyp( $post_id ) || WC_Name_Your_Price_Helpers::has_nyp( $post_id ) ){
+		if ( WC_Name_Your_Price_Helpers::is_nyp( $post_id ) || WC_Name_Your_Price_Helpers::has_nyp( $post_id ) ) {
 			$classes[] = 'nyp-product';
 		}
 
@@ -343,52 +554,70 @@ class WC_Name_Your_Price_Display {
 
 	}
 
-	/*-----------------------------------------------------------------------------------*/
-	/* Variable Product Display Functions */
-	/*-----------------------------------------------------------------------------------*/
 
-	/*
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Variable Product Display Functions
+	 * ---------------------------------------------------------------------------------
+	 */
+
+	/**
+	 * Call the Price Input Template for Variable products.
+	 *
+	 * @param mixed obj|int $product
+	 * @param string        $suffix - suffix is key to integration with Bundles
+	 * @since 3.0
+	 */
+	public function display_variable_price_input( $product = false, $suffix = false ) {
+		$this->display_price_input( $product, $suffix );
+	}
+
+	/**
 	 * Make NYP variations visible.
 	 *
-	 * @param  boolean $visible - whether to display this variation or not
-	 * @param  int $variation_id
-	 * @param  int $product_id
+	 * @param  boolean                  $visible - whether to display this variation or not
+	 * @param  int                      $variation_id
+	 * @param  int                      $product_id
+	 * @param  obj WC_Product_Variation
 	 * @return boolean
 	 * @since 2.0
 	 */
-	public function variation_is_visible( $visible, $variation_id, $product_id ){
+	public function variation_is_visible( $visible, $variation_id, $product_id, $variation ) {
 
-		if( WC_Name_Your_Price_Helpers::is_nyp( $variation_id ) )
-			$visible = TRUE;
+		if ( WC_Name_Your_Price_Helpers::is_nyp( $variation ) ) {
+			$visible = true;
+		}
 
 		return $visible;
 	}
 
-	/*
+	/**
 	 * Add nyp data to json encoded variation form.
 	 *
-	 * @param  array $data - this is the variation's json data
+	 * @param  array  $data - this is the variation's json data
 	 * @param  object $product
 	 * @param  object $variation
 	 * @return array
 	 * @since 2.0
 	 */
-	public function available_variation( $data, $product, $variation ){
+	public function available_variation( $data, $product, $variation ) {
 
 		$is_nyp = WC_Name_Your_Price_Helpers::is_nyp( $variation );
 
-		$nyp_data = array ( 'is_nyp' => $is_nyp );
+		$nyp_data = array( 'is_nyp' => $is_nyp );
 
-		if( $is_nyp ){
-			$nyp_data['minimum_price'] = WC_Name_Your_Price_Helpers::get_minimum_price( $variation );
-			$nyp_data['initial_price'] =  WC_Name_Your_Price_Helpers::get_initial_price( $variation );
-			$nyp_data['posted_price'] =  WC_Name_Your_Price_Helpers::get_posted_price( $variation );
-			$nyp_data['price_html'] = '<span class="price">' . WC_Name_Your_Price_Helpers::get_suggested_price_html( $variation ) . '</span>';
-			$nyp_data['minimum_price_html'] = WC_Name_Your_Price_Helpers::get_minimum_price_html( $variation );
-			$nyp_data['add_to_cart_text'] = $variation->single_add_to_cart_text();
-			if( $product->is_type( 'variable-subscription' ) ){
-				$nyp_data['subscription_terms'] = WC_Name_Your_Price_Helpers::get_subscription_terms( '', $variation );
-			}
+		if ( $is_nyp ) {
+			$nyp_data['minimum_price']         = WC_Name_Your_Price_Helpers::get_minimum_price( $variation );
+			$nyp_data['maximum_price']         = WC_Name_Your_Price_Helpers::get_maximum_price( $variation );
+			$nyp_data['initial_price']         = WC_Name_Your_Price_Helpers::get_initial_price( $variation );
+			$nyp_data['price_label']           = WC_Name_Your_Price_Helpers::get_price_input_label_text( $variation );
+			$nyp_data['posted_price']          = WC_Name_Your_Price_Helpers::get_posted_price( $variation );
+			$nyp_data['display_price']         = WC_Name_Your_Price_Helpers::get_price_value_attr( $variation );
+			$nyp_data['display_regular_price'] = $nyp_data['display_price'];
+			$nyp_data['price_html']            = apply_filters( 'woocommerce_show_variation_price', true, $product, $variation ) ? '<span class="price">' . WC_Name_Your_Price_Helpers::get_suggested_price_html( $variation ) . '</span>' : '';
+			$nyp_data['minimum_price_html']    = WC_Name_Your_Price_Helpers::get_minimum_price_html( $variation );
+			$nyp_data['hide_minimum']          = WC_Name_Your_Price_Helpers::is_minimum_hidden( $variation );
+			$nyp_data['add_to_cart_text']      = $variation->single_add_to_cart_text();
 
 		}
 
@@ -399,33 +628,224 @@ class WC_Name_Your_Price_Display {
 	/**
 	 * Get the NYP min price of the lowest-priced variation.
 	 *
-	 * @param  string $price
-	 * @param  string $min_or_max - min or max
-	 * @param  boolean  $display Whether the value is going to be displayed
+	 * @param  string  $price
+	 * @param  string  $min_or_max - min or max
+	 * @param  boolean $display Whether the value is going to be displayed
 	 * @return string
 	 * @since  2.0
 	 */
 	public function get_variation_price( $price, $product, $min_or_max, $display ) {
 
-		if ( WC_Name_Your_Price_Helpers::has_nyp( $product ) && 'min' == $min_or_max ){
+		if ( WC_Name_Your_Price_Helpers::has_nyp( $product ) && 'min' === $min_or_max ) {
 
 			$prices = $product->get_variation_prices();
 
-			if( is_array( $prices ) && isset( $prices['price'] ) ){
-				
+			if ( is_array( $prices ) && isset( $prices['price'] ) ) {
+
 				// Get the ID of the variation with the minimum price.
 				reset( $prices['price'] );
 				$min_id = key( $prices['price'] );
 
 				// If the minimum variation is an NYP variation then get the minimum price. This lets you distinguish between 0 and null.
-				if( WC_Name_Your_Price_Helpers::is_nyp( $min_id ) ){
+				if ( WC_Name_Your_Price_Helpers::is_nyp( $min_id ) ) {
 					$price = WC_Name_Your_Price_Helpers::get_minimum_price( $min_id );
 				}
 			}
-
 		}
 
 		return $price;
 	}
 
-} //end class
+
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Variable Billing Period Display Functions
+	 * ---------------------------------------------------------------------------------
+	 */
+
+	/**
+	 * Display the period options for variable billint periods.
+	 *
+	 * @param mixed obj|int $product
+	 * @param string        $suffix - suffix is key to integration with Bundles
+	 * @since 3.0
+	 */
+	public function display_variable_billing_periods( $product, $suffix ) {
+
+		$product = WC_Name_Your_Price_Helpers::maybe_get_product_instance( $product );
+
+		if ( WC_Name_Your_Price_Helpers::is_billing_period_variable( $product ) ) {
+
+			// Create the dropdown select element.
+			$period = WC_Name_Your_Price_Helpers::get_period_value_attr( $product, $suffix );
+
+			// The pre-selected value.
+			$selected = $period ? $period : 'month';
+
+			// Get list of available periods from Subscriptions plugin.
+			$periods = WC_Name_Your_Price_Helpers::get_subscription_period_strings();
+
+			if ( $periods ) {
+
+				printf( '<span class="nyp-billing-period"><span class="per"> / </span><select id="nyp-period%s" name="%s" class="nyp-period">', intval( WC_Name_Your_Price_Helpers::get_counter() ), esc_attr( 'nyp-period' . $suffix ) );
+
+				foreach ( $periods as $i => $period ) :
+					printf( '<option value="%s" %s>%s</option>', esc_attr( $i ), selected( $i, $selected, false ), esc_html( $period ) );
+				endforeach;
+
+				echo '</select></span>';
+
+				/**
+				 * Filter wc_nyp_subscription_period_input
+				 *
+				 * @param  string $period_input - the resulting input's html.
+				 * @param  obj    $product - the product object.
+				 * @param  string $suffix - needed for grouped, composites, bundles, etc.
+				 * @return string
+				 * @deprecated 3.0.0
+				 */
+				if ( has_filter( 'wc_nyp_subscription_period_input' ) ) {
+					wc_doing_it_wrong( __FUNCTION__, 'woocommerce_get_price_input filter has been removed for security reasons!', '3.0' );
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Cart Display Functions
+	 * ---------------------------------------------------------------------------------
+	 */
+
+	/**
+	 * Add edit link to cart items.
+	 *
+	 * @param  string $content
+	 * @param  array  $cart_item
+	 * @param  string $cart_item_key
+	 * @return string
+	 */
+	public function add_edit_link_in_cart( $content, $cart_item, $cart_item_key ) {
+
+		// Don't show edit link when resubscribing.... move to Subs compat class eventually.
+		if ( isset( $cart_item['nyp'] ) && ! apply_filters( 'wc_nyp_isset_disable_edit_it_cart', isset( $cart_item['subscription_resubscribe'] ), $cart_item, $cart_item_key ) ) {
+
+			if ( function_exists( 'is_cart' ) && is_cart() && ! $this->is_cart_widget() ) {
+
+				$nyp_id = ! empty( $cart_item['variation_id'] ) ? $cart_item['variation_id'] : $cart_item['product_id'];
+
+				$_product = $cart_item['data'];
+
+				$suffix = WC_Name_Your_Price_Helpers::get_suffix( $nyp_id );
+
+				$edit_in_cart_link = add_query_arg(
+					array(
+						'update-price'  => $cart_item_key,
+						'nyp' . $suffix => $cart_item['nyp'],
+						'_nypnonce'     => wp_create_nonce( 'nyp-nonce' ),
+					),
+					$_product->get_permalink()
+				);
+
+				if ( isset( $cart_item['nyp_period'] ) ) {
+					$edit_in_cart_link = add_query_arg( 'nyp-period' . $suffix, $cart_item['nyp_period'], $edit_in_cart_link );
+				}
+
+				$edit_in_cart_text = _x( 'Edit', 'edit in cart link text', 'wc_name_your_price' );
+
+				// Translators: %1$s Original cart price string. %2$s URL for edit price link. %3$s text for edit price link.
+				$content = sprintf( _x( '%1$s<br/><a class="edit_price_in_cart_text edit_in_cart_text" href="%2$s"><small>%3$s</small></a>', 'edit in cart text', 'wc_name_your_price' ), $content, esc_url( $edit_in_cart_link ), $edit_in_cart_text );
+
+			}
+		}
+
+		return $content;
+
+	}
+
+	/**
+	 * Rendering cart widget?
+	 *
+	 * @since  1.4.0
+	 * @return boolean
+	 */
+	public function is_cart_widget() {
+		return did_action( 'woocommerce_before_mini_cart' ) > did_action( 'woocommerce_after_mini_cart' );
+	}
+
+
+	/**
+	 * ---------------------------------------------------------------------------------
+	 * Deprecated Functions
+	 * ---------------------------------------------------------------------------------
+	 */
+
+	/**
+	 * Add a hidden input to facilitate changing the price from cart.
+	 *
+	 * @since 2.11.1
+	 * @deprecated 3.0.0
+	 */
+	public function display_hidden_update_input() {
+		// phpcs:disable WordPress.Security.NonceVerification
+		wc_deprecated_function( 'WC_Name_Your_Price_Display::display_hidden_update_input()', '3.0.0', 'Output is auto-generated by WC_Name_Your_Price_Helpers::get_price_input().' );
+		if ( isset( $_GET['update-price'] ) ) {
+			$updating_cart_key = wc_clean( wp_unslash( $_GET['update-price'] ) );
+			if ( isset( WC()->cart->cart_contents[ $updating_cart_key ] ) ) {
+				echo '<input type="hidden" name="update-price" value="' . esc_attr( $updating_cart_key ) . '" />';
+			}
+		}
+	}
+
+	/**
+	 * Change price input position on variable products - This shows them before Product Addons.
+	 *
+	 * @since 2.8.3
+	 * @deprecated 3.0
+	 */
+	public function move_display_for_variable_product() {
+		wc_deprecated_function( 'WC_Name_Your_Price_Display::move_display_for_variable_product()', '3.0.0', 'Function replaced by WC_Name_Your_Price_Display::display_variable_price_input().' );
+		remove_action( 'woocommerce_before_add_to_cart_button', array( $this, 'display_price_input' ), 9 );
+		add_action( 'woocommerce_single_variation', array( $this, 'display_price_input' ), 12 );
+	}
+
+	/**
+	 * Fix price input position on variable products - This shows them before Product Addons.
+	 *
+	 * @since 2.9.4
+	 * @deprecated 3.0
+	 */
+	public function revert_display_after_variable_product() {
+		wc_deprecated_function( 'WC_Name_Your_Price_Display::revert_display_after_variable_product()', '3.0.0', 'Function replaced by WC_Name_Your_Price_Display::display_variable_price_input().' );
+		add_action( 'woocommerce_before_add_to_cart_button', array( $this, 'display_price_input' ), 9 );
+		remove_action( 'woocommerce_single_variation', array( $this, 'display_price_input' ), 12 ); // After WC variation wrap and before Product Add-ons.
+	}
+
+	/**
+	 * Display the price input with a named prefix to distinguish it from other NYP inputs on the same page.
+	 *
+	 * @param str            $html
+	 * @param obj WC_Product $product
+	 * @return str
+	 * deprecated 3.0.0
+	 */
+	public function grouped_add_input( $html, $product ) {
+		wc_deprecated_function( 'WC_Name_Your_Price_Display::display_input()', '3.0.0', 'Function relocated to WC_NYP_Grouped_Products_Compatibility class.' );
+		return WC_NYP_Grouped_Products_Compatibility::display_input( $html, $product );
+	}
+
+	/**
+	 * Check for the prefix when adding to cart.
+	 *
+	 * @param string $prefix
+	 * @param  int    $nyp_id the product ID or variation ID of the NYP product being displayed
+	 * @return string
+	 * @deprecated 3.0.0
+	 */
+	public function grouped_cart_prefix( $prefix, $nyp_id ) {
+		wc_deprecated_function( 'WC_Name_Your_Price_Display::grouped_cart_prefix()', '3.0.0', 'Function relocated to WC_NYP_Grouped_Products_Compatibility class.' );
+		return WC_NYP_Grouped_Products_Compatibility::grouped_cart_suffix( $prefix, $nyp_id );
+	}
+
+} // End class.

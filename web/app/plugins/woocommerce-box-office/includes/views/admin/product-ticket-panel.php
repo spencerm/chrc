@@ -5,23 +5,23 @@
 					<thead>
 						<tr>
 							<th>
-								<?php _e( 'Label', 'woocommerce-box-office' ); ?>
+								<?php esc_html_e( 'Label', 'woocommerce-box-office' ); ?>
 								<?php if ( function_exists( 'wc_help_tip' ) ) : ?>
 									<?php echo wc_help_tip( __( 'The field label as it is shown to the user.', 'woocommerce-box-office' ) ); ?>
 								<?php else : ?>
-									<span class="tips" data-tip="<?php _e( 'The field label as it is shown to the user.', 'woocommerce-box-office' ); ?>">[?]</span>
+									<span class="tips" data-tip="<?php echo wc_sanitize_tooltip( __( 'The field label as it is shown to the user.', 'woocommerce-box-office' ) ); ?>">[?]</span>
 								<?php endif; ?>
 							</th>
-							<th><?php _e( 'Type', 'woocommerce-box-office' ); ?></th>
+							<th><?php esc_html_e( 'Type', 'woocommerce-box-office' ); ?></th>
 							<th>
-								<?php _e( 'Auto-fill', 'woocommerce-box-office' ); ?>
+								<?php esc_html_e( 'Auto-fill', 'woocommerce-box-office' ); ?>
 								<?php if ( function_exists( 'wc_help_tip' ) ) : ?>
 									<?php echo wc_help_tip( __( 'Choose the customer\'s billing field from which data is auto-filled as well as what options are available for applicable field types.', 'woocommerce-box-office' ) ); ?>
 								<?php else : ?>
-									<span class="tips" data-tip="<?php _e( 'Choose the customer\'s billing field from which data is auto-filled as well as what options are available for applicable field types.', 'woocommerce-box-office' ); ?>">[?]</span>
+									<span class="tips" data-tip="<?php echo wc_sanitize_tooltip( __( 'Choose the customer\'s billing field from which data is auto-filled as well as what options are available for applicable field types.', 'woocommerce-box-office' ) ); ?>">[?]</span>
 								<?php endif; ?>
 							</th>
-							<th><?php _e( 'Required', 'woocommerce-box-office' ); ?></th>
+							<th><?php esc_html_e( 'Required', 'woocommerce-box-office' ); ?></th>
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
@@ -79,13 +79,19 @@
 			?>
 		</div>
 		<div class="options_group show_if_ticket">
-			<p><?php _e( 'This is the content that will be shown on each printed ticket.', 'woocommerce-box-office' ); ?></p>
+			<p><?php esc_html_e( 'This is the content that will be shown on each printed ticket.', 'woocommerce-box-office' ); ?></p>
 			<p class="ticket-label-variables-info">
-				<?php _e( 'Add ticket fields to the content by using following labels: ', 'woocommerce-box-office' ); ?>
+				<?php esc_html_e( 'Add ticket fields to the content by using following labels: ', 'woocommerce-box-office' ); ?>
 				<span class="ticket-label-variables"></span>
 			</p>
 			<p>
-				<?php _e( 'You can also use this ticket product variables: ', 'woocommerce-box-office' ); ?>
+				<?php esc_html_e( 'To insert ticket ID use: ', 'woocommerce-box-office' ); ?>
+				<span class="ticket-id-var">
+					<a href="#"><code>{ticket_id}</code></a>
+				</span>
+			</p>
+			<p>
+				<?php esc_html_e( 'You can also use this ticket product variables: ', 'woocommerce-box-office' ); ?>
 				<span class="ticket-post-vars">
 					<a href="#"><code>{post_title}</code></a>
 					<a href="#"><code>{post_content}</code></a>
@@ -95,15 +101,16 @@
 			$ticket_content = get_post_meta( $post->ID, '_ticket_content', true );
 
 			$settings = array(
-				'wpautop' => true,
+				'wpautop'       => true,
 				'media_buttons' => true,
 				'textarea_name' => 'ticket-content',
 				'textarea_rows' => 30,
-				'editor_class' => 'ticket_content_editor',
-				'teeny' => false,
-				'dfw' => false,
-				'tinymce' => true,
-				'quicktags' => true,
+				'editor_class'  => 'ticket_content_editor',
+				'teeny'         => false,
+				'dfw'           => false,
+				'tinymce'       => true,
+				'quicktags'     => true,
+				'editor_css'    => '<style>.woocommerce_options_panel textarea{height:175px;}</style>',
 			);
 
 			wp_editor( $ticket_content, 'ticket-content-editor', $settings );
@@ -121,24 +128,43 @@
 			<p class="ticket_email"><?php _e( 'This is the content that will make up each email.', 'woocommerce-box-office' ); ?>
 			</p>
 			<p class="ticket-label-variables-info">
-				<?php _e( 'Add ticket fields to the content by using following labels: ', 'woocommerce-box-office' ); ?>
+				<?php esc_html_e( 'Add ticket fields to the content by using following labels: ', 'woocommerce-box-office' ); ?>
 				<span class="ticket-label-variables"></span>
 			</p>
 			<p>
-				<?php _e( 'To insert ticket link use: ', 'woocommerce-box-office' ); ?>
+				<?php esc_html_e( 'To insert ticket link use: ', 'woocommerce-box-office' ); ?>
 				<span class="ticket-link-var">
 					<a href="#"><code>{ticket_link}</code></a>
 				</span>
 			</p>
 			<p>
-				<?php _e( 'To insert ticket token use: ', 'woocommerce-box-office' ); ?>
+				<?php esc_html_e( 'To insert ticket ID use: ', 'woocommerce-box-office' ); ?>
+				<span class="ticket-id-var">
+					<a href="#"><code>{ticket_id}</code></a>
+				</span>
+			</p>
+			<?php
+			$barcode_obj = new WC_Box_Office_Ticket_Barcode();
+			if ( $barcode_obj->is_available() ) {
+			?>
+			<p>
+				<?php esc_html_e( 'To insert barcode use: ', 'woocommerce-box-office' ); ?>
+				<span class="ticket-barcode-var">
+					<a href="#"><code>{barcode}</code></a>
+				</span>
+			</p>
+			<?php
+			}
+			?>
+			<p>
+				<?php esc_html_e( 'To insert ticket token use: ', 'woocommerce-box-office' ); ?>
 				<span class="ticket-token-var">
 					<a href="#"><code>{token}</code></a>
 				</span>
-				<?php _e( 'Ticket token can be used to build private content link, e.g. <code>http://example.com/private?token={token}</code>', 'woocommerce-box-office' ); ?>
+				<?php echo wp_kses_post( 'Ticket token can be used to build private content link, e.g. <code>http://example.com/private?token={token}</code>', 'woocommerce-box-office' ); ?>
 			</p>
 			<p>
-				<?php _e( 'You can also use this ticket product variables: ', 'woocommerce-box-office' ); ?>
+				<?php esc_html_e( 'You can also use this ticket product variables: ', 'woocommerce-box-office' ); ?>
 				<span class="ticket-post-vars">
 					<a href="#"><code>{post_title}</code></a>
 					<a href="#"><code>{post_content}</code></a>

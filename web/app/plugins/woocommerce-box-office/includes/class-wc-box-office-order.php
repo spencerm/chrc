@@ -12,7 +12,7 @@ class WC_Box_Office_Order {
 	public function __construct() {
 		// Add ticket info to order item meta.
 		if ( version_compare( WC_VERSION, '3.0', '>=' ) ) {
-			add_action( 'woocommerce_new_order_item', array( $this, 'add_order_item_meta' ), 50, 2 );
+			add_action( 'woocommerce_new_order_item', array( $this, 'add_order_item_meta' ), 50, 3 );
 		} else {
 			add_action( 'woocommerce_add_order_item_meta', array( $this, 'add_order_item_meta' ), 50, 2 );
 		}
@@ -25,6 +25,12 @@ class WC_Box_Office_Order {
 		// Process completed orders.
 		add_action( 'woocommerce_order_status_processing', array( $this, 'publish_tickets' ), 10, 1 );
 		add_action( 'woocommerce_order_status_completed', array( $this, 'publish_tickets' ), 10, 1 );
+
+		// Proces orders that used to be completed or processing and now are on-hold or pending.
+		add_action( 'woocommerce_order_status_processing_to_on-hold', array( $this, 'maybe_unpublish_tickets' ), 10, 1 );
+		add_action( 'woocommerce_order_status_completed_to_on-hold', array( $this, 'maybe_unpublish_tickets' ), 10, 1 );
+		add_action( 'woocommerce_order_status_processing_to_pending', array( $this, 'maybe_unpublish_tickets' ), 10, 1 );
+		add_action( 'woocommerce_order_status_completed_to_pending', array( $this, 'maybe_unpublish_tickets' ), 10, 1 );
 
 		// When an order is cancelled/fully refunded, trash the tickets.
 		add_action( 'woocommerce_order_status_cancelled', array( $this, 'trash_tickets' ), 10, 1 );
@@ -58,10 +64,11 @@ class WC_Box_Office_Order {
 	/**
 	 * Add ticket meta as order item meta.
 	 *
-	 * @param mixed $item_id Item ID.
-	 * @param mixed $values  Item meta.
+	 * @param mixed $item_id  Item ID.
+	 * @param mixed $values   Item meta.
+	 * @param mixed $order_id Order ID.
 	 */
-	public function add_order_item_meta( $item_id, $values ) {
+	public function add_order_item_meta( $item_id, $values, $order_id = 0 ) {
 		if ( version_compare( WC_VERSION, '3.0', '>=' ) ) {
 			$ticket_meta = ! empty( $values->legacy_values['ticket'] )
 				? $values->legacy_values['ticket']
@@ -100,7 +107,19 @@ class WC_Box_Office_Order {
 			}
 		}
 
+		// Get all tickets related to the order.
+		$tickets = $this->get_tickets_by_order( $order_id );
+
 		foreach ( $ticket_meta['fields'] as $index => $fields ) {
+		 	// Check if a ticket was already created at some point, and trash it (since it will be re-created)
+			foreach ( $tickets as $ticket ) {
+				$ticket = new WC_Box_Office_Ticket( $ticket );
+
+				if ( $ticket->fields === $fields ) {
+					wp_delete_post( $ticket->ID );
+				}
+			}
+
 			$ticket_data = array_merge(
 				$ticket_meta,
 				array(
@@ -111,8 +130,6 @@ class WC_Box_Office_Order {
 			$ticket = new WC_Box_Office_Ticket( $ticket_data );
 			$ticket->create( 'pending' );
 
-			// Store ticket ID for barcode image that's posted from checkout
-			// form.
 			wc_add_order_item_meta(
 				$item_id,
 				sprintf( '_ticket_id_for_%1$s_%2$s', $ticket_meta['key'], $index ),
@@ -267,10 +284,46 @@ class WC_Box_Office_Order {
 			wp_update_post( array( 'ID' => $ticket_id, 'post_status' => 'publish' ) );
 		}
 
-		add_post_meta( $order_id, '_tickets_processed', 'yes' );
+		update_post_meta( $order_id, '_tickets_processed', 'yes' );
 
 		// Send email to each email contact in each ticket.
 		WCBO()->components->cron->schedule_send_email_after_tickets_published( time(), $tickets );
+	}
+
+	/**
+	 * Set ticket to pending.
+	 *
+	 * Changes the status for all the tickets from the order to pending.
+	 *
+	 * @param integer $order_id Order ID.
+	 * @return void
+	 */
+	public function maybe_unpublish_tickets( $order_id = 0 ) {
+		global $wpdb;
+
+		if ( ! $order_id ) {
+			return;
+		}
+
+		$order = wc_get_order( $order_id );
+
+		$tickets = array();
+		foreach ( $order->get_items() as $order_item_id => $item ) {
+			if ( 'line_item' === $item['type'] ) {
+				$tickets = array_merge( $tickets, $wpdb->get_col( $wpdb->prepare( "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_ticket_order_item_id' AND meta_value = %d", $order_item_id ) ) );
+			}
+		}
+
+		if ( empty( $tickets ) ) {
+			return;
+		}
+
+		foreach ( $tickets as $ticket_id ) {
+			wp_update_post( array( 'ID' => $ticket_id, 'post_status' => 'pending' ) );
+		}
+
+		// Reset the processing status so after order status is changed again the ticket status will be updated correctly.
+		update_post_meta( $order_id, '_tickets_processed', 'no' );
 	}
 
 	/**
@@ -361,7 +414,7 @@ class WC_Box_Office_Order {
 	public function get_tickets_by_order( $order_id = 0, $amount = 'all' ) {
 
 		if ( ! $order_id ) {
-			return;
+			return array();
 		}
 
 		if ( 'all' === $amount ) {
@@ -458,8 +511,7 @@ class WC_Box_Office_Order {
 	 * Create barcode fields in chekcout form.
 	 *
 	 * The fields contain 2 * N fields, where N is number of purchased tickets.
-	 * Each field represent barcode text and image for a ticket. Barcode image
-	 * is sent as base64-encoded data in which the image is generated via JS.
+	 * Each field represent barcode text for a ticket.
 	 *
 	 * @since 1.1.1
 	 */
@@ -469,47 +521,14 @@ class WC_Box_Office_Order {
 		}
 
 		$fields = $this->_get_barcode_fields_for_checkout();
+
 		if ( empty( $fields ) ) {
 			return;
 		}
 
-		$el_target = 'object'; // Target element which contains the barcode or qrcode.
-		$el_attr   = 'data';   // Target element attribute which contains the data.
-
-		if ( 'qr' === WC_Order_Barcodes()->barcode_type ) {
-			$el_target = 'img';
-			$el_attr   = 'src';
-		}
-
-		$js = '';
-		echo '<div id="ticket-barcodes">';
 		foreach ( $fields as $key => $field ) {
 			foreach ( $field as $f ) {
-				$id           = str_replace( array( '][', '[', ']' ), array( '-', '-', '' ), $f['image'] );
-				$container_id = $id . '-container';
-
-				echo sprintf( '<div id="%s" style="display: none"></div>', $container_id );
-
 				$barcode_text = WCBO()->components->ticket_barcode->generate_barcode_text_for_ticket();
-
-				$js .= WCBO()->components->ticket_barcode->get_js( array(
-					'container' => '#' . $container_id,
-					'text'      => $barcode_text,
-				) );
-
-				$js .= sprintf(
-					'$( "#%1$s" ).val( $( "#%2$s %3$s" ).attr( "%4$s" ) );',
-					$id,
-					$container_id,
-					$el_target,
-					$el_attr
-				);
-
-				echo sprintf(
-					'<input type="hidden" name="%s" id="%s" />',
-					esc_attr( $f['image'] ),
-					esc_attr( $id )
-				);
 
 				echo sprintf(
 					'<input type="hidden" name="%1$s" value="%2$s" />',
@@ -517,11 +536,6 @@ class WC_Box_Office_Order {
 					esc_attr( $barcode_text )
 				);
 			}
-		}
-		echo '</div>';
-
-		if ( ! empty( $js ) ) {
-			wc_enqueue_js( $js );
 		}
 	}
 
@@ -545,7 +559,6 @@ class WC_Box_Office_Order {
 			$fields[ $ticket_key ] = array();
 			foreach ( $values['ticket']['fields'] as $idx => $__ ) {
 				$fields[ $ticket_key ][ $idx ] = array(
-					'image' => sprintf( 'ticket_barcodes[%1$s][%2$s][image]', $ticket_key, $idx ),
 					'text'  => sprintf( 'ticket_barcodes[%1$s][%2$s][text]', $ticket_key, $idx ),
 				);
 			}
@@ -557,7 +570,7 @@ class WC_Box_Office_Order {
 	/**
 	 * Maybe process barcode fields.
 	 *
-	 * This will process barcode text and image injected in checkout form.
+	 * This will process barcode text injected in checkout form.
 	 * Barcode data will be saved as ticket meta.
 	 *
 	 * @since 1.1.1
@@ -581,7 +594,6 @@ class WC_Box_Office_Order {
 				}
 
 				update_post_meta( $ticket_id, '_barcode_text', $barcode['text'] );
-				update_post_meta( $ticket_id, '_barcode_image', $barcode['image'] );
 			}
 		}
 	}

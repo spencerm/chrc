@@ -27,10 +27,10 @@ class WC_Box_Office_Assets {
 	 * @return void
 	 */
 	public function enqueue_styles() {
-		wp_register_style( 'woocommerce-box-office-frontend', esc_url( WCBO()->assets_url ) . 'css/frontend' . WCBO()->script_suffix . '.css', array(), WCBO()->_version );
+		wp_register_style( 'woocommerce-box-office-frontend', esc_url( WCBO()->assets_url ) . 'css/frontend.css', array(), WCBO()->_version );
 		wp_enqueue_style( 'woocommerce-box-office-frontend' );
 
-		wp_register_style( 'woocommerce-box-office-multiple-tickets', WCBO()->assets_url . 'css/multiple-tickets' . WCBO()->script_suffix . '.css', array( 'dashicons' ), WCBO()->_version );
+		wp_register_style( 'woocommerce-box-office-multiple-tickets', WCBO()->assets_url . 'css/multiple-tickets.css', array( 'dashicons' ), WCBO()->_version );
 
 		if ( is_product() ) {
 			wp_enqueue_style( 'woocommerce-box-office-multiple-tickets' );
@@ -46,9 +46,6 @@ class WC_Box_Office_Assets {
 	 */
 	public function enqueue_scripts( $force = false ) {
 		if ( wcbo_is_my_ticket_page() || $force ) {
-
-			// Register images loaded plugin.
-			wp_register_script( 'imagesloaded', esc_url( WCBO()->assets_url ) . 'js/lib/imagesloaded.pkgd' . WCBO()->script_suffix . '.js', array( 'jquery' ), '3.1.8' );
 
 			// Load JS for ticket edit page.
 			wp_register_script( 'woocommerce-box-office-frontend', esc_url( WCBO()->assets_url ) . 'js/frontend' . WCBO()->script_suffix . '.js', array( 'jquery', 'imagesloaded' ), WCBO()->_version );
@@ -113,20 +110,16 @@ class WC_Box_Office_Assets {
 	 * @return  void
 	 */
 	public function admin_enqueue_styles( $hook = '' ) {
-		wp_register_style( 'woocommerce-box-office-admin-post-type-product', WCBO()->assets_url . 'css/admin-post-type-product' . WCBO()->script_suffix . '.css', array(), WCBO()->_version );
-		wp_register_style( 'woocommerce-box-office-admin-post-type-product-deprecated', WCBO()->assets_url . 'css/admin-post-type-product-deprecated' . WCBO()->script_suffix . '.css', array(), WCBO()->_version );
-		wp_register_style( 'woocommerce-box-office-admin-post-type-event-ticket', WCBO()->assets_url . 'css/admin-post-type-event-ticket' . WCBO()->script_suffix . '.css', array(), WCBO()->_version );
-		wp_register_style( 'woocommerce-box-office-admin-post-type-event-ticket-email', WCBO()->assets_url . 'css/admin-post-type-event-ticket-email' . WCBO()->script_suffix . '.css', array(), WCBO()->_version );
-		wp_register_style( 'woocommerce-box-office-admin-tools', WCBO()->assets_url . 'css/admin-tools' . WCBO()->script_suffix . '.css', array(), WCBO()->_version );
-		wp_register_style( 'woocommerce-box-office-multiple-tickets', WCBO()->assets_url . 'css/multiple-tickets' . WCBO()->script_suffix . '.css', array(), WCBO()->_version );
+		wp_register_style( 'woocommerce-box-office-admin-post-type-product', WCBO()->assets_url . 'css/admin-post-type-product.css', array(), WCBO()->_version );
+		wp_register_style( 'woocommerce-box-office-admin-post-type-event-ticket', WCBO()->assets_url . 'css/admin-post-type-event-ticket.css', array(), WCBO()->_version );
+		wp_register_style( 'woocommerce-box-office-admin-post-type-event-ticket-email', WCBO()->assets_url . 'css/admin-post-type-event-ticket-email.css', array(), WCBO()->_version );
+		wp_register_style( 'woocommerce-box-office-admin-tools', WCBO()->assets_url . 'css/admin-tools.css', array(), WCBO()->_version );
+		wp_register_style( 'woocommerce-box-office-multiple-tickets', WCBO()->assets_url . 'css/multiple-tickets.css', array(), WCBO()->_version );
 
 		$post_type = get_post_type();
 		switch ( $post_type ) {
 			case 'product':
 				wp_enqueue_style( 'woocommerce-box-office-admin-post-type-product' );
-				if ( version_compare( WC()->version, '2.6', '<' ) ) {
-					wp_enqueue_style( 'woocommerce-box-office-admin-post-type-product-deprecated' );
-				}
 				break;
 			case 'event_ticket':
 				wp_enqueue_style( 'woocommerce-box-office-admin-post-type-event-ticket' );

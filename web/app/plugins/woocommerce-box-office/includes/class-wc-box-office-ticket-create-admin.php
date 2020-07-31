@@ -204,10 +204,16 @@ class WC_Box_Office_Ticket_Create_Admin {
 			? wc_get_product( $this->_current_variation_id )
 			: $this->_current_product;
 
-		if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
-			$total = $product->get_display_price( '', $this->_clean_data['quantity'] );
-		} else {
-			$total = wc_get_price_to_display( $product, array( 'qty' => $this->_clean_data['quantity'] ) );
+		$total = $product->get_price() * absint( $this->_clean_data['quantity'] );
+
+		if ( wc_prices_include_tax() ) {
+			$base_tax_rates = WC_Tax::get_base_tax_rates( $product->get_tax_class() );
+			$base_taxes     = WC_Tax::calc_tax( $total, $base_tax_rates, true );
+			$total          = $total - array_sum( $base_taxes );
+
+			if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
+				$total = round( $total, absint( get_option( 'woocommerce_price_num_decimals' ) ) );
+			}
 		}
 
 		switch ( $this->_clean_data['create_order_method'] ) {
@@ -240,8 +246,7 @@ class WC_Box_Office_Ticket_Create_Admin {
 				throw new Exception( __( 'Error: could not create order item', 'woocommerce-box-office' ) );
 			}
 
-			$this->_current_order->calculate_taxes();
-			$this->_current_order->calculate_totals( false );
+			$this->_current_order->calculate_totals( wc_tax_enabled() );
 		}
 
 		return $item_id;

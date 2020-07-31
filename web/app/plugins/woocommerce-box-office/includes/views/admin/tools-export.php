@@ -4,10 +4,9 @@
 	<input type="hidden" name="tab" value="export">
 	<input type="hidden" name="action" value="export_tickets">
 
-	<p><?php _e( 'Export attendee data for the following ticket:', 'woocommerce-box-office' ); ?></p>
+	<p><?php _e( 'Export attendee data for the following chosen tickets:', 'woocommerce-box-office' ); ?></p>
 
-	<select name="tickets[]" class="chosen_select ticket-product-select" style="width:300px" required>
-		<option value=""><?php _e( 'Select ticket product', 'woocommerce-box-office' ); ?></option>
+	<select name="tickets[]" class="chosen_select ticket-product-select" style="width:300px" required multiple>
 		<?php foreach ( wc_box_office_get_all_ticket_products() as $product ) : ?>
 			<option value="<?php echo esc_attr( $product->ID ); ?>"><?php echo esc_html( $product->post_title ); ?></option>
 		<?php endforeach ?>

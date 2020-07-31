@@ -57,7 +57,7 @@ $has_tickets = count( $tickets ) > 0;
 					<?php endif; ?>
 				</td>
 				<td class="ticket-actions">
-					<a href="<?php echo esc_url( wcbo_get_my_ticket_url( $ticket->id ) ); ?>" class="button woocommerce-Button"><?php esc_html_e( 'View', 'woocommerce-box-office' ); ?></a>
+					<a href="<?php echo esc_url( wcbo_get_my_ticket_url( $ticket->id ) ); ?>" class="button woocommerce-Button"><?php esc_html_e( 'View or Edit', 'woocommerce-box-office' ); ?></a>
 				</td>
 			</tr>
 		<?php endforeach; ?>

@@ -138,7 +138,6 @@ class WC_Box_Office {
 	private function _load_includes() {
 		// Box Office functions.
 		require_once( $this->dir . 'includes/wcbo-deprecated-functions.php' );
-		require_once( $this->dir . 'includes/wcbo-core-functions.php' );
 		require_once( $this->dir . 'includes/wcbo-update-functions.php' );
 
 		// Ticket model.
@@ -170,6 +169,7 @@ class WC_Box_Office {
 		require_once( $this->dir . 'includes/class-wc-box-office-assets.php' );
 		require_once( $this->dir . 'includes/class-wc-box-office-tools.php' );
 		require_once( $this->dir . 'includes/class-wc-box-office-report.php' );
+		require_once( $this->dir . 'includes/class-wc-box-office-privacy.php' );
 		require_once( $this->dir . 'includes/class-wc-box-office-order.php' );
 	}
 

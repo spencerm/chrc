@@ -1,76 +1,70 @@
 <?php
 /**
  * Plugin Name: WooCommerce Box Office
- * Version: 1.1.9
- * Plugin URI: https://www.woocommerce.com/products/woocommerce-box-office/
+ * Version: 1.1.27
+ * Plugin URI: https://woocommerce.com/products/woocommerce-box-office/
  * Description: The ultimate event ticket management system, built right on top of WooCommerce.
  * Author: WooCommerce
  * Author URI: https://woocommerce.com/
  * License: GPL-2.0+
  * Requires at least: 4.4
- * Tested up to: 4.8
+ * Tested up to: 5.3
  * Text Domain: woocommerce-box-office
  * Domain Path: /languages
- * WC tested up to: 3.3
+ * WC tested up to: 4.2
  * WC requires at least: 2.6
  *
  * Woo: 1628717:e704c9160de318216a8fa657404b9131
  *
- * Copyright (c) 2017 WooCommerce
+ * Copyright: © 2020 WooCommerce
  *
- * @package WordPress
- * @author WooCommerce
- * @since 1.0.0
+ * @package woocommerce-box-office
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+define( 'WOOCOMMERCE_BOX_OFFICE_VERSION', '1.1.27' ); // WRCS: DEFINED_VERSION.
+
+// Plugin init hook.
+add_action( 'plugins_loaded', 'wc_box_office_init', 5 );
+
 /**
- * Required functions
+ * Initialize plugin.
  */
-if ( ! function_exists( 'woothemes_queue_update' ) ) {
-	require_once( 'woo-includes/woo-functions.php' );
+function wc_box_office_init() {
+
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		add_action( 'admin_notices', 'wc_box_office_woocommerce_deactivated' );
+		return;
+	}
+
+	// Load main plugin class.
+	require_once 'includes/class-wc-box-office.php';
+	require_once 'includes/wcbo-functions.php';
+	WCBO()->init();
+}
+
+// Plugin activation.
+register_activation_hook( __FILE__, 'wc_box_office_maybe_install' );
+
+/**
+ * Plugin update.
+ */
+function wc_box_office_maybe_install() {
+	require_once 'includes/class-wc-box-office.php';
+	require_once 'includes/class-wc-box-office-updater.php';
+	require_once 'includes/wcbo-functions.php';
+
+	$updater = new WC_Box_Office_Updater();
+	$updater->install();
 }
 
 /**
- * Plugin updates
+ * WooCommerce Deactivated Notice.
  */
-woothemes_queue_update( plugin_basename( __FILE__ ), 'e704c9160de318216a8fa657404b9131', '1628717' );
-
-if ( is_woocommerce_active() ) {
-
-	// Load main plugin class.
-	require_once( 'includes/class-wc-box-office.php' );
-
-	/**
-	 * Returns the main instance of WC_Box_Office to prevent the need to use globals.
-	 *
-	 * @since  1.0.0
-	 * @return object WC_Box_Office.
-	 */
-	function WCBO() {
-		$instance = WC_Box_Office::instance( __FILE__, '1.1.9' );
-
-		return $instance;
-	}
-
-	/**
-	 * Init Box Office.
-	 *
-	 * @since 1.1.2
-	 */
-	function _wcbo_init() {
-		WCBO()->init();
-	}
-	add_action( 'plugins_loaded', '_wcbo_init', 5 );
-
-	// Plugin activation.
-	register_activation_hook( __FILE__, function() {
-		require_once( 'includes/class-wc-box-office-updater.php' );
-
-		$updater = new WC_Box_Office_Updater();
-		$updater->install();
-	} );
+function wc_box_office_woocommerce_deactivated() {
+	/* translators: %s: WooCommerce link */
+	echo '<div class="error"><p>' . sprintf( esc_html__( 'WooCommerce Box Office requires %s to be installed and active.', 'woocommerce-box-office' ), '<a href="https://woocommerce.com/" target="_blank">WooCommerce</a>' ) . '</p></div>';
 }

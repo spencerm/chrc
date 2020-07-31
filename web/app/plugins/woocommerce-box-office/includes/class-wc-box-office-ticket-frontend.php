@@ -74,7 +74,7 @@ class WC_Box_Office_Ticket_Frontend {
 			$ticket_form->validate( $_POST );
 
 			// In case email contact is changed, we need to re-send the email.
-			$old_email_fields = $ticket->get_ticket_fields_by_type( 'email' );
+			$old_fields       = $ticket->fields;
 
 			$ticket->update( $ticket_form->get_clean_data() );
 
@@ -82,28 +82,21 @@ class WC_Box_Office_Ticket_Frontend {
 			WCBO()->components->order->update_item_meta_from_ticket( $ticket->id );
 
 			$new_email_fields = $ticket->get_ticket_fields_by_type( 'email' );
+			$new_fields       = $ticket->fields;
 
-			$send_to = array();
-			foreach ( $new_email_fields as $key => $field ) {
-				if ( isset( $old_email_fields[ $key ] ) ) {
-					// Existing field that exists on both new and old fields.
-					// Added to target send if both emails are not equal.
-					if ( 'yes' === $field['email_contact'] && $field['value'] !== $old_email_fields[ $key ]['value'] ) {
-						$send_to[] = $field['value'];
-					}
-				} else {
-					// New field that doesn't exist in old fields. Will add to
-					// target send if field is used as email_contact.
+			if ( $old_fields !== $new_fields ) {
+				$send_to = array();
+				foreach ( $new_email_fields as $key => $field ) {
 					if ( 'yes' === $field['email_contact'] ) {
 						$send_to[] = $field['value'];
 					}
 				}
-			}
 
-			if ( ! empty( $send_to ) ) {
-				$subject = get_post_meta( $ticket->product_id, '_email_ticket_subject', true );
-				$message = get_post_meta( $ticket->product_id, '_ticket_email_html', true );
-				wc_box_office_send_ticket_email( $ticket->id, $send_to, $subject, $message );
+				if ( ! empty( $send_to ) ) {
+					$subject = get_post_meta( $ticket->product_id, '_email_ticket_subject', true );
+					$message = get_post_meta( $ticket->product_id, '_ticket_email_html', true );
+					wc_box_office_send_ticket_email( $ticket->id, $send_to, $subject, $message );
+				}
 			}
 
 			wc_add_notice( __( 'Ticket updated.', 'woocommerce-box-office' ), 'success' );

@@ -136,11 +136,12 @@ class WC_Box_Office_Settings {
 				'id'   => 'box_office_logging_title',
 			),
 			array(
-				'name'    => __( 'Enable Logging', 'woocommerce-box-office' ),
-				'type'    => 'checkbox',
-				'default' => 'no',
-				'desc'    => __( 'Save debug messages to the WooCommerce System Status log.', 'woocommerce-box-office' ),
-				'id'      => 'box_office_enable_logging',
+				'name'     => __( 'Enable Logging', 'woocommerce-box-office' ),
+				'type'     => 'checkbox',
+				'default'  => 'no',
+				'desc'     => __( 'Save debug messages to the WooCommerce System Status log.', 'woocommerce-box-office' ),
+				'desc_tip' => __( 'Note: this may log personal information. We recommend using this for debugging purposes only and deleting the logs when finished.', 'woocommerce-box-office' ),
+				'id'       => 'box_office_enable_logging',
 			),
 			array( 'type' => 'sectionend', 'id' => 'box_office_logging_title' ),
 		);
