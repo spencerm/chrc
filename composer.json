@@ -52,6 +52,7 @@
     "wpackagist-plugin/autodescription": "3.*",
     "wpackagist-plugin/woocommerce": "3.*",
     "wpackagist-plugin/woocommerce-gateway-stripe": "4.*",
+    "wpackagist-plugin/coblocks":"dev-trunk",
     "spencerm/google-events-calendar": "dev-master",
     "spencerm/simple-galleries": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
