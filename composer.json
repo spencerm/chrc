@@ -53,11 +53,12 @@
     "wpackagist-plugin/woocommerce": "4.*",
     "wpackagist-plugin/woocommerce-gateway-stripe": "4.*",
     "wpackagist-plugin/coblocks":"dev-trunk",
+    "wpackagist-plugin/gutenberg":"dev-trunk",
+    "wpackagist-plugin/product-blocks-for-woocommerce":"dev-trunk",
     "spencerm/google-events-calendar": "dev-master",
     "spencerm/simple-galleries": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
-    "wpackagist-plugin/mailgun": "1.*",
-    "wpackagist-plugin/display-all-image-sizes": "dev-trunk"
+    "wpackagist-plugin/mailgun": "1.*"
   },
   "extra": {
     "installer-paths": {

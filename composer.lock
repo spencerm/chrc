@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "302f60430b7ceec2d259966cbcbc92fe",
+    "content-hash": "b757578e6f680cd73fc63d6bd9f0c5a9",
     "packages": [
         {
             "name": "composer/installers",
@@ -591,15 +591,15 @@
         },
         {
             "name": "wpackagist-plugin/autodescription",
-            "version": "3.2.4",
+            "version": "4.0.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/autodescription/",
-                "reference": "tags/3.2.4"
+                "reference": "tags/4.0.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/autodescription.3.2.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/autodescription.4.0.7.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -608,23 +608,42 @@
             "homepage": "https://wordpress.org/plugins/autodescription/"
         },
         {
-            "name": "wpackagist-plugin/display-all-image-sizes",
+            "name": "wpackagist-plugin/coblocks",
             "version": "dev-trunk",
             "source": {
                 "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/display-all-image-sizes/",
+                "url": "https://plugins.svn.wordpress.org/coblocks/",
                 "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/display-all-image-sizes.zip?timestamp=1493923901"
+                "url": "https://downloads.wordpress.org/plugin/coblocks.zip?timestamp=1595523689"
             },
             "require": {
                 "composer/installers": "~1.0"
             },
             "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/display-all-image-sizes/",
-            "time": "2017-05-04T18:51:41+00:00"
+            "homepage": "https://wordpress.org/plugins/coblocks/",
+            "time": "2020-07-23T17:01:29+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/gutenberg",
+            "version": "dev-trunk",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/gutenberg/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/gutenberg.zip?timestamp=1595947895"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/gutenberg/",
+            "time": "2020-07-28T14:51:35+00:00"
         },
         {
             "name": "wpackagist-plugin/mailchimp-for-wp",
@@ -663,6 +682,25 @@
             "homepage": "https://wordpress.org/plugins/mailgun/"
         },
         {
+            "name": "wpackagist-plugin/product-blocks-for-woocommerce",
+            "version": "dev-trunk",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/product-blocks-for-woocommerce/",
+                "reference": "trunk"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/product-blocks-for-woocommerce.zip?timestamp=1593082152"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/product-blocks-for-woocommerce/",
+            "time": "2020-06-25T10:49:12+00:00"
+        },
+        {
             "name": "wpackagist-plugin/regenerate-thumbnails",
             "version": "3.1.3",
             "source": {
@@ -682,15 +720,15 @@
         },
         {
             "name": "wpackagist-plugin/woocommerce",
-            "version": "3.9.3",
+            "version": "4.3.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/woocommerce/",
-                "reference": "tags/3.9.3"
+                "reference": "tags/4.3.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/woocommerce.3.9.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/woocommerce.4.3.1.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
@@ -722,9 +760,11 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "roots/soil": 20,
+        "wpackagist-plugin/coblocks": 20,
+        "wpackagist-plugin/gutenberg": 20,
+        "wpackagist-plugin/product-blocks-for-woocommerce": 20,
         "spencerm/google-events-calendar": 20,
-        "spencerm/simple-galleries": 20,
-        "wpackagist-plugin/display-all-image-sizes": 20
+        "spencerm/simple-galleries": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

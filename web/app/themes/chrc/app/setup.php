@@ -80,6 +80,57 @@ add_action('after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('styles/main.css'));
+
+        // Add support for custom line height controls.
+    add_theme_support( 'custom-line-height' );
+
+    // Add support for experimental link color control.
+    add_theme_support( 'experimental-link-color' );
+
+    // Add support for Block Styles.
+    add_theme_support( 'wp-block-styles' );
+
+    // Add support for full and wide align images.
+    // add_theme_support( 'align-wide' );
+
+    // Add support for editor styles.
+    // add_theme_support( 'editor-styles' );
+
+    // Editor color palette.
+    add_theme_support(
+        'editor-color-palette',
+        array(
+            array(
+                'name'  => __( 'Primary', 'chrc' ),
+                'slug'  => 'primary',
+                'color' => '#0073AA',
+            ),
+            array(
+                'name'  => __( 'Secondary', 'chrc' ),
+                'slug'  => 'secondary',
+                'color' => '#005177',
+            ),
+            array(
+                'name'  => __( 'Dark Gray', 'chrc' ),
+                'slug'  => 'dark-gray',
+                'color' => '#111',
+            ),
+            array(
+                'name'  => __( 'Light Gray', 'chrc' ),
+                'slug'  => 'light-gray',
+                'color' => '#767676',
+            ),
+            array(
+                'name'  => __( 'White', 'chrc' ),
+                'slug'  => 'white',
+                'color' => '#FFF',
+            ),
+        )
+    );
+
+    // Add support for responsive embedded content.
+    add_theme_support( 'responsive-embeds' );
+
 }, 20);
 
 /**
