@@ -14,8 +14,6 @@ add_filter('the_content', function ($content){
 });
 
 
-
-
 add_filter('sage/display_sidebar', function($sidebar){
   if (is_page('about/join')) {
     return false;
@@ -44,13 +42,6 @@ add_filter('body_class', function (array $classes) {
     }
 
     return $classes;
-});
-
-/**
- * Add "… Continued" to the excerpt
- */
-add_filter('excerpt_more', function () {
-    return ' &hellip; ';
 });
 
 /**

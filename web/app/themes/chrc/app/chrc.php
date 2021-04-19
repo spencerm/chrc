@@ -20,27 +20,9 @@ function change_gce_next( $next ) {
 add_filter( 'gce_next_text', __NAMESPACE__ . '\\change_gce_next' );
 
 /**
- * move wpgform js to bottom of footer
- */
-add_action( 'init', function() {
-  remove_action('wp_footer', 'wpgform_footer', 10 );
-  add_action('wp_footer', 'wpgform_footer', 2000) ;
-});
-
-/**
  * media
  */
 add_image_size('card' , 400 , 220 , true );
-
-/**
- *  CHRC shop
- *
- */
-
-/* turn off sku site wide */
-add_filter( 'wc_product_sku_enabled', '__return_false' );
-
-
 
 /**
  *  Add images to RSS feed
@@ -59,11 +41,9 @@ add_filter('the_content_feed', __NAMESPACE__ . '\\featuredtoRSS');
 
 
 /**
- *  ACF Fields
+ * ACF Fields
  *
  */
-
-
 if( function_exists('acf_add_local_field_group') ):
 
   acf_add_local_field_group(array(

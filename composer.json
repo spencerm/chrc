@@ -44,10 +44,10 @@
     "php": ">=7",
     "composer/installers": "^1.0",
     "vlucas/phpdotenv": "^2.0.1",
-    "johnpbloch/wordpress": "5.*",
+    "johnpbloch/wordpress": "^5.7.0",
     "oscarotero/env": "^1.1.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "roots/soil": "dev-master",
+    "roots/soil": "^4.0.0",
     "wpackagist-plugin/regenerate-thumbnails": "*",
     "wpackagist-plugin/autodescription": "4.*",
     "wpackagist-plugin/woocommerce": "4.*",
@@ -56,9 +56,9 @@
     "wpackagist-plugin/gutenberg":"dev-trunk",
     "wpackagist-plugin/product-blocks-for-woocommerce":"dev-trunk",
     "spencerm/google-events-calendar": "dev-master",
-    "spencerm/simple-galleries": "dev-master",
     "wpackagist-plugin/mailchimp-for-wp": "4.*",
-    "wpackagist-plugin/mailgun": "1.*"
+    "wpackagist-plugin/mailgun": "1.*",
+    "wpackagist-plugin/wp-rollback":"1.7.1"
   },
   "extra": {
     "installer-paths": {
